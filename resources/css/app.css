@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem) scale(0.90);
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+}
+
+.fade {
+    animation: fade 0.3s ease-in-out;
+}
+
+.entrance {
+    animation: entrance 0.3s ease-in-out;
+}
+
+.menu-popup {
+    @apply fixed top-0 left-0 bg-slate-800 bg-opacity-50 w-full h-full flex justify-center items-center text-slate-700;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+}
+
+.fade-down {
+    animation: fade-down 2s ease-in-out;
+}
+
+.fade-up {
+    animation: fade-up 2s ease-in-out;
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+}
