@@ -1,15 +1,16 @@
+import Header from "@/Components/Homepage/Header";
 import Navbar from "@/Components/Navbar";
 import { Head } from "@inertiajs/react";
 
 const Homepage = (props) => {
-    console.log(props);
+    console.log("props halaman :", props);
     return (
         <>
+            <Head title="Homepage" />
             <Navbar active={"Homepage"} />
-            <div className="entrance">
-                <Head title="Homepage" />
+            <div className="entrance flex flex-col items-center">
+                <Header data={props.auth.user} />
                 <h1>Hellow {props.auth.user.username}</h1>
-                <h2>Desa {props.auth.user.desa}</h2>
             </div>
         </>
     );

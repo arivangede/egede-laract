@@ -2,8 +2,6 @@ import { Link } from "@inertiajs/react";
 import MenuButton from "./MenuButton";
 
 const Navbar = ({ active }) => {
-    console.log(active);
-
     return (
         <ul className="fixed bottom-0 w-full p-3 flex justify-between items-center shadow-md border-t-2 rounded-t-xl bg-white text-slate-500">
             <Link

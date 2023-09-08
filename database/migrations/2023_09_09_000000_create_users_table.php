@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->string('desa')->nullable();
+            $table->foreignId('desa_id')->nullable()->constrained('desa');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -26,6 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['desa_id']);
+            $table->dropColumn('desa_id');
+        });
         Schema::dropIfExists('users');
     }
 };

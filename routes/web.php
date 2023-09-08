@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuestAppController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,7 +19,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Homepage');
-})->name('user.home');
+})->name('user.home')->middleware('auth');
 Route::get('/aktivitas', function () {
     return Inertia::render('Aktivitas');
 });
@@ -29,7 +30,7 @@ Route::get('/profil', function () {
     return Inertia::render('Profil');
 });
 
-Route::get('/login', [AuthController::class, 'index'])->name('user.login');
+Route::get('/login', [AuthController::class, 'index'])->name('user.login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 // Route::get('/', function () {
