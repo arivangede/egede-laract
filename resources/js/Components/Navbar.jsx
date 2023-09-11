@@ -14,7 +14,9 @@ const Navbar = ({ active }) => {
                 }`}
             >
                 <div
-                    className={`${active === "Homepage" ? divActive : ""}`}
+                    className={`scaling ${
+                        active === "Homepage" ? divActive : ""
+                    }`}
                 ></div>
                 <i className="bx bxs-home text-2xl leading-5"></i>
                 <span className="text-xs ">Beranda</span>
@@ -26,7 +28,9 @@ const Navbar = ({ active }) => {
                 }`}
             >
                 <div
-                    className={`${active === "Aktivitas" ? divActive : ""}`}
+                    className={`scaling ${
+                        active === "Aktivitas" ? divActive : ""
+                    }`}
                 ></div>
                 <i className="bx  bxs-collection bx-rotate-270 text-2xl leading-5"></i>
                 <span className="text-xs ">Aktivitas</span>
@@ -39,7 +43,9 @@ const Navbar = ({ active }) => {
                 }`}
             >
                 <div
-                    className={`${active === "Notifikasi" ? divActive : ""}`}
+                    className={`scaling ${
+                        active === "Notifikasi" ? divActive : ""
+                    }`}
                 ></div>
                 <i className="bx bxs-bell text-2xl leading-5"></i>
                 <span className="text-xs ">Notifikasi</span>
@@ -51,7 +57,9 @@ const Navbar = ({ active }) => {
                 }`}
             >
                 <div
-                    className={`${active === "Profil" ? divActive : ""}`}
+                    className={`scaling ${
+                        active === "Profil" ? divActive : ""
+                    }`}
                 ></div>
                 <i className="bx bxs-user-circle text-2xl leading-5 "></i>
                 <span className="text-xs">Profil</span>

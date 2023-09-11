@@ -50,3 +50,17 @@
         transform: translateY(2rem);
     }
 }
+
+@keyframes scaling {
+    0% {
+        scale: 0;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+.scaling {
+    animation: scaling 300ms ease-in-out;
+}
