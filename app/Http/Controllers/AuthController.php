@@ -29,7 +29,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return to_route('user.home');
+            return to_route('user.home')->with('message', true);
         } else {
             return to_route('user.login')->withErrors('username / password salah');
         }
