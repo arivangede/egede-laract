@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MenuPopUp from "./MenuPopUp";
 
-import button from "../../assets/icon/logo-tengah.png";
+import button from "@/assets/icon/logo-tengah.png";
 
 const MenuButton = () => {
     const [popup, setPopup] = useState(false);

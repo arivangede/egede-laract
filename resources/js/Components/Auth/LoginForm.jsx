@@ -1,9 +1,9 @@
 import { Head, router } from "@inertiajs/react";
 import { useState } from "react";
 
-import logo from "../../../assets/icon/logo-egede.png";
-import topAsset from "../../../assets/img/login/assetTop.png";
-import bottomAsset from "../../../assets/img/login/assetBottom.png";
+import logo from "@/assets/icon/logo-egede.png";
+import topAsset from "@/assets/img/login/assetTop.png";
+import bottomAsset from "@/assets/img/login/assetBottom.png";
 
 function LoginForm({ errors, flash }) {
     console.log("errors", errors);

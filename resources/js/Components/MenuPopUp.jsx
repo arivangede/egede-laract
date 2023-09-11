@@ -1,14 +1,14 @@
 import { Link } from "@inertiajs/react";
 
-import enews from "../../assets/icon/menu/enews-icon.png";
-import profildesa from "../../assets/icon/menu/profildesa-icon.png";
-import regulasi from "../../assets/icon/menu/regulasi-icon.png";
-import pengaduan from "../../assets/icon/menu/pengaduan-icon.png";
-import datadesa from "../../assets/icon/menu/datadesa-icon.png";
-import layananpublik from "../../assets/icon/menu/layananpublik-icon.png";
-import keuangandesa from "../../assets/icon/menu/keuangan-icon.png";
-import wisatabudaya from "../../assets/icon/menu/wisatabudaya-icon.png";
-import epasar from "../../assets/icon/menu/epasar-icon.png";
+import enews from "@/assets/icon/menu/enews-icon.png";
+import profildesa from "@/assets/icon/menu/profildesa-icon.png";
+import regulasi from "@/assets/icon/menu/regulasi-icon.png";
+import pengaduan from "@/assets/icon/menu/pengaduan-icon.png";
+import datadesa from "@/assets/icon/menu/datadesa-icon.png";
+import layananpublik from "@/assets/icon/menu/layananpublik-icon.png";
+import keuangandesa from "@/assets/icon/menu/keuangan-icon.png";
+import wisatabudaya from "@/assets/icon/menu/wisatabudaya-icon.png";
+import epasar from "@/assets/icon/menu/epasar-icon.png";
 
 function MenuPopUp(props) {
     return props.trigger ? (

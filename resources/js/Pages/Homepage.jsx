@@ -1,3 +1,4 @@
+import Carousel from "@/Components/Homepage/Carousel";
 import Header from "@/Components/Homepage/Header";
 import Navbar from "@/Components/Navbar";
 import { Head } from "@inertiajs/react";
@@ -7,11 +8,11 @@ const Homepage = (props) => {
     return (
         <>
             <Head title="Homepage" />
-            <Navbar active={"Homepage"} />
             <div className="entrance flex flex-col items-center">
                 <Header data={props.auth.user} />
-                <h1>Hellow {props.auth.user.username}</h1>
+                <Carousel />
             </div>
+            <Navbar active={"Homepage"} />
         </>
     );
 };
