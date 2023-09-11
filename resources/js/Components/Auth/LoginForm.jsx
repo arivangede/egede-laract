@@ -98,7 +98,7 @@ function LoginForm({ errors, flash }) {
 
                 <div className="pt-4">
                     {errors[0] ? (
-                        <div className="alert alert-error w-full">
+                        <div className="alert alert-error w-full flex">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="stroke-current shrink-0 h-6 w-6"
@@ -119,7 +119,7 @@ function LoginForm({ errors, flash }) {
                     )}
 
                     {flash.message ? (
-                        <div className="alert alert-success w-full">
+                        <div className="alert alert-success w-full flex">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="stroke-current shrink-0 h-6 w-6"
