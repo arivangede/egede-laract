@@ -31,7 +31,7 @@ function Header({ data, flash }) {
                         />
                     </svg>
                     <p>
-                        Selamat datang,
+                        Selamat datang,{" "}
                         <span className="capitalize">{data.username}!</span>
                     </p>
                 </div>
