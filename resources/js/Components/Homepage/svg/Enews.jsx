@@ -1,6 +1,4 @@
 function Enews({ color, bgcolor }) {
-    console.log("svg color :", color);
-    console.log("svg bgcolor :", bgcolor);
     return (
         <svg
             version="1.1"

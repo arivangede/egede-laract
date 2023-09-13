@@ -3,9 +3,9 @@ import { Link } from "@inertiajs/react";
 const Navbar = ({ active }) => {
     const isActive = "text-red-500";
     const divActive =
-        "absolute top-0 w-full left-0 h-[3px] rounded-full bg-red-500";
+        "absolute top-0 w-full left-0 h-[5px] rounded-b-xl bg-red-500";
     return (
-        <ul className="fixed bottom-0 w-full px-4  flex justify-between items-center shadow-md border-t-2 rounded-t-xl bg-white text-slate-500">
+        <ul className="fixed z-40 bottom-0 w-full px-4 flex justify-between items-center shadow-md border-t-2 bg-white text-slate-500">
             <Link
                 href="/"
                 className={`flex flex-col justify-center items-center h-full w-16 p-3 relative ${
