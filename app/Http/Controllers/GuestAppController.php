@@ -10,6 +10,54 @@ class GuestAppController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Homepage');
+        return Inertia::render('Homepage', [
+            'berita' => [
+                [
+                    'Title1',
+                    '02-02-2023',
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem ad inventore labore dolorum, quod at commodi
+            cupiditate similique officiis consectetur.',
+                    'Dauh Puri Kaja',
+                    'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
+                ],
+                [
+                    'Title2',
+                    '02-02-2023',
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem ad inventore labore dolorum, quod at commodi
+            cupiditate similique officiis consectetur.',
+                    'Dauh Puri Kaja',
+                    'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
+                ],
+                [
+                    'Title3',
+                    '02-02-2023',
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem ad inventore labore dolorum, quod at commodi
+            cupiditate similique officiis consectetur.',
+                    'Dauh Puri Kaja',
+                    'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
+                ],
+                [
+                    'Title4',
+                    '02-02-2023',
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem ad inventore labore dolorum, quod at commodi
+            cupiditate similique officiis consectetur.',
+                    'Dauh Puri Kaja',
+                    'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
+                ],
+                [
+                    'Title5',
+                    '02-02-2023',
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dolorem ad inventore labore dolorum, quod at commodi
+            cupiditate similique officiis consectetur.',
+                    'Dauh Puri Kaja',
+                    'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
+                ]
+            ]
+        ]);
     }
 }

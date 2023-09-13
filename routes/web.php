@@ -17,9 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Homepage');
-})->name('user.home')->middleware('auth');
+Route::get('/', [GuestAppController::class, 'index'])->name('user.home')->middleware('auth');
 Route::get('/aktivitas', function () {
     return Inertia::render('Aktivitas');
 });
