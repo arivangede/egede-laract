@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,10 @@ Route::get('/profil', function () {
 Route::get('/login', [AuthController::class, 'index'])->name('user.login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
+
+
+Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
+
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),

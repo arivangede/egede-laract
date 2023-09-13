@@ -5,7 +5,7 @@ function CardBerita({ berita }) {
             {berita.map((item, i) => (
                 <div
                     key={i}
-                    className="w-full h-40 p-2 bg-slate-50 shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2"
+                    className="w-full h-40 bg-slate-50 shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2"
                 >
                     <div className="h-full w-[40%] border rounded-xl overflow-hidden">
                         <img
@@ -14,7 +14,7 @@ function CardBerita({ berita }) {
                             className="h-full w-full object-cover object-center"
                         />
                     </div>
-                    <div className="flex flex-col justify-center w-[60%]">
+                    <div className="flex flex-col justify-center w-[60%] p-2">
                         <div>
                             <h1 className="font-bold text-xl line-clamp-1 px-2">
                                 {item[0]}

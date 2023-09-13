@@ -16,7 +16,7 @@ const Homepage = (props) => {
                     <Header data={props.auth.user} flash={props.flash} />
                     <Carousel datadesa={props.auth.user.desa} />
                     <Menu />
-                    <div className="h-screen w-full flex flex-col gap-4 p-4">
+                    <div className="h-full w-full flex flex-col gap-4 p-4 pb-20">
                         <h1 className="font-bold text-slate-600 w-full">
                             Berita Terbaru
                         </h1>

@@ -12,7 +12,10 @@ import LainnyaButton from "./LainnyaButton";
 function Menu() {
     return (
         <div className="grid grid-rows-2 grid-flow-col gap-2 pb-4">
-            <Link className="w-20 h-20 rounded flex flex-col justify-around items-center">
+            <Link
+                href="/e-news"
+                className="w-20 h-20 rounded flex flex-col justify-around items-center"
+            >
                 <div className="w-16 h-16 rounded-full flex justify-center items-center bg-slate-200 bg-opacity-40 p-2 drop-shadow-md">
                     <Enews color={"#fff"} bgcolor={"#ff4344"} />
                 </div>
