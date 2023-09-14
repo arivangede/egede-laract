@@ -35,6 +35,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 
 Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
+Route::get('/e-news/{title}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

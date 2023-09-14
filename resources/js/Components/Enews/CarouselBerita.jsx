@@ -1,6 +1,8 @@
+import { Link } from "@inertiajs/react";
 import { useState, useRef, useEffect } from "react";
 
-function CarouselBerita() {
+function CarouselBerita({ berita }) {
+    console.log("carousel", berita);
     const carouselRef = useRef(null);
     const [activeSlide, setActiveSlide] = useState(0);
     useEffect(() => {
@@ -39,38 +41,39 @@ function CarouselBerita() {
                 className="w-full h-full flex gap-2 carousel pb-4"
                 ref={carouselRef}
             >
-                {slides
-                    ? slides.map((slides, i) => (
-                          <div
+                {berita
+                    ? berita.map((slides, i) => (
+                          <Link
+                              href={"/e-news/" + slides.title}
                               key={i}
                               className="carousel-item w-full h-48 flex justify-center items-center"
                           >
                               <div className="h-full w-[95%] border rounded-xl overflow-hidden shadow-lg relative">
                                   <img
-                                      src={slides}
+                                      src={slides.image}
                                       alt="image"
                                       className="h-full w-full object-cover object-center"
                                   />
                                   <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black to-transparent flex flex-col justify-end items-center">
                                       <h1 className="font-bold text-slate-50 text-xl text-center">
-                                          Lorem ipsum dolor sit amet.
+                                          {slides.title}
                                       </h1>
                                       <div className="w-full flex justify-between items-center text-slate-50 px-4 py-2">
-                                          <span>02/02/2023</span>
+                                          <span>{slides.date}</span>
                                           <span className="badge bg-transparent border-slate-50 text-slate-50">
-                                              Dauh Puri Kaja
+                                              {slides.author}
                                           </span>
                                       </div>
                                   </div>
                               </div>
-                          </div>
+                          </Link>
                       ))
                     : ""}
             </div>
 
             <div className="absolute bottom-2 right-0 left-0">
                 <div className="flex items-center justify-center gap-1">
-                    {slides.map((_, i) => (
+                    {berita.map((_, i) => (
                         <div
                             key={i}
                             className={`transition-all w-2 h-2 rounded-full bg-red-500  ${

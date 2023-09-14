@@ -16,7 +16,7 @@ function Enews(props) {
                     <h1 className="text-slate-800">Berita Terbaru</h1>
                 </div>
                 <div className="h-full w-full py-4">
-                    <CarouselBerita />
+                    <CarouselBerita berita={props.berita} />
                 </div>
                 <div className="h-full w-full flex flex-col justify-center items-center gap-4 px-4">
                     <h1 className="font-bold text-slate-800 w-full">
