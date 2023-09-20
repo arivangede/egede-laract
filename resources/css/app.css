@@ -64,3 +64,25 @@
 .scaling {
     animation: scaling 300ms ease-in-out;
 }
+
+@keyframes clicked {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.clicked {
+    animation: clicked 300ms ease-in-out;
+}

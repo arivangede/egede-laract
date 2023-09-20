@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,7 +36,12 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 
 Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
-Route::get('/e-news/{title}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
+Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
+
+
+Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');
+Route::post('/likes/{id}', [LikeController::class, 'destroy'])->middleware('auth');
+
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

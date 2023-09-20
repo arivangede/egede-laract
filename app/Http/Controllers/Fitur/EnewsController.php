@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Fitur;
 
 use App\Http\Controllers\Controller;
+use App\Models\eNews;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,118 +12,32 @@ class EnewsController extends Controller
 {
     public function index()
     {
-        $berita = [
-            [
-                'title' => 'Title1',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title2',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title3',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title4',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title5',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ]
-        ];
+        $berita = eNews::orderBy('id', 'desc')->with('users')->get();
+        $beritaTerbaru = $berita->take(5);
+        $beritaLainnya = $berita->skip(5)->values()->all();
 
         return Inertia::render('Fitur/Enews/Index', [
-            'berita' => $berita,
+            'carousel' => $beritaTerbaru,
+            'card' => $beritaLainnya
         ]);
     }
 
-    public function show($title)
+    public function show($id, Request $request)
     {
-        $berita = [
-            [
-                'title' => 'Title1',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title2',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title3',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title4',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ],
-            [
-                'title' => 'Title5',
-                'date' => '02-02-2023',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dolorem ad inventore labore dolorum, quod at commodi
-            cupiditate similique officiis consectetur.',
-                'author' => 'Dauh Puri Kaja',
-                'image' => 'https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/09/16032324/image002-12.png'
-            ]
-        ];
+        $selectedBerita = eNews::with('users')->find($id);
+        $likesCount = Like::where('enews_id', $id)->count();
 
-        $newBerita = [];
-        foreach ($berita as $item) {
-            if ($item['title'] === $title) {
-                $newBerita = $item;
-            }
+        $existinglike = Like::where('user_id', auth()->id())->where('enews_id', $request->id)->first();
+        if (!$existinglike) {
+            $like = false;
+        } else {
+            $like = true;
         }
 
         return Inertia::render('Fitur/Enews/Show', [
-            'berita' => $newBerita
+            'berita' => $selectedBerita,
+            'likes_count' => $likesCount,
+            'liked' => $like
         ]);
     }
 }

@@ -17,7 +17,13 @@ class DesaSeeder extends Seeder
             'nama_desa' => 'Dauh Puri Kaja',
             'kecamatan' => 'Denpasar Utara',
             'kota' => 'Denpasar',
-            'logo_desa' => 'dauhpurikaja'
+            'sc_desa' => 'dauhpurikaja'
+        ]);
+        DB::table('desa')->insert([
+            'nama_desa' => 'Peguyangan',
+            'kecamatan' => 'Denpasar Utara',
+            'kota' => 'Denpasar',
+            'sc_desa' => 'peguyangan'
         ]);
     }
 }

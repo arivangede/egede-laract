@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('enews', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('title');
+            $table->foreignId('author')->constrained('users');
+            $table->text('content');
+            $table->text('image');
             $table->foreignId('desa_id')->nullable()->constrained('desa');
-            $table->string('password');
-            $table->foreignId('kelas_id')->constrained('userclasses');
-            $table->rememberToken();
+            $table->string('jenis')->nullable();
             $table->timestamps();
         });
     }
@@ -27,10 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['desa_id']);
-            $table->dropColumn('desa_id');
-        });
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('enews');
     }
 };

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Desa;
+use App\Models\eNews;
 
 class User extends Authenticatable
 {
@@ -48,5 +49,9 @@ class User extends Authenticatable
     public function desa()
     {
         return $this->belongsTo(Desa::class, 'desa_id');
+    }
+    public function enews()
+    {
+        return $this->hasMany(eNews::class, 'author');
     }
 }
