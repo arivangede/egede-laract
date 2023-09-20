@@ -57,7 +57,7 @@ function Show(props) {
                             onLikeChange={handleLikeChange}
                             liked={props.liked}
                         />
-                        <span>{likeCount}</span>
+                        <span>{likeCount} suka</span>
                         <ShareBtn />
                     </div>
                     <div className="flex gap-2">
