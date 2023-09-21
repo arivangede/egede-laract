@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import LainnyaPopup from "./LainnyaPopup";
-import Lainnya from "./svg/Lainnya";
+import LainnyaPopup from "../LainnyaPopup";
+import Lainnya from "../svg/Lainnya";
 function LainnyaButton() {
     const [popup, setPopup] = useState(null);
     return (

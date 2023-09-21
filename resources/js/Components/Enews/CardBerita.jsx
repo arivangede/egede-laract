@@ -11,9 +11,9 @@ function CardBerita({ berita }) {
                 ? berita.map((item, i) => (
                       <div
                           key={i}
-                          className="w-full h-40 bg-slate-50 shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2"
+                          className="w-full h-40 bg-slate-50 shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2 overflow-hidden"
                       >
-                          <div className="h-full w-[40%] border overflow-hidden">
+                          <div className="h-full w-[40%] overflow-hidden">
                               <img
                                   src={item["image"]}
                                   alt="image"

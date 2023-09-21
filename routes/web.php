@@ -38,6 +38,9 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
 Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
 
+Route::get('/data-desa', function () {
+    return Inertia::render('Fitur/DataDesa/Index');
+});
 
 Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');
 Route::post('/likes/{id}', [LikeController::class, 'destroy'])->middleware('auth');
