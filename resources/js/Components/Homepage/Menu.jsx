@@ -10,7 +10,7 @@ import EpasarBtn from "./MenuBtn/EpasarBtn";
 function Menu() {
     return (
         <>
-            <div className="grid grid-rows-2 grid-flow-col gap-2 pb-4">
+            <div className="grid grid-cols-4 grid-flow-row gap-2 pb-4">
                 <EnewsBtn />
                 <ProfilDesaBtn />
                 <RegulasiBtn />

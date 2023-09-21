@@ -1,11 +1,3 @@
-import { Link } from "@inertiajs/react";
-
-import ProfilDesa from "./svg/ProfilDesa";
-import Regulasi from "./svg/Regulasi";
-import Pengaduan from "./svg/Pengaduan";
-import DataDesa from "./svg/DataDesa";
-import LayananPublik from "./svg/LayananPublik";
-import Epasar from "./svg/Epasar";
 import EnewsBtn from "./MenuBtn/EnewsBtn";
 import ProfilDesaBtn from "./MenuBtn/ProfilDesaBtn";
 import RegulasiBtn from "./MenuBtn/RegulasiBtn";
