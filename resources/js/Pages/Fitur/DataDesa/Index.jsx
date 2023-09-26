@@ -9,7 +9,7 @@ function Index(props) {
     return (
         <>
             <Head title="Data Desa" />
-            <div className="entrance min-h-screen bg-red-500 relative">
+            <div className="min-h-screen bg-red-500 relative">
                 <Header />
                 <Container>
                     <div className="-mt-8 px-4 w-full flex flex-col gap-4 items-center justify-center">

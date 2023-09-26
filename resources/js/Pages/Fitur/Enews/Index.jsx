@@ -8,7 +8,7 @@ function Enews(props) {
     return (
         <>
             <Head title="E-News" />
-            <div className="entrance min-h-screen bg-slate-100 flex flex-col items-center ">
+            <div className="entrance min-h-screen bg-slate-50 flex flex-col items-center ">
                 <div className="w-full flex gap-4 items-center py-4 px-4">
                     <div className="h-8 w-8">
                         <Link href="/">

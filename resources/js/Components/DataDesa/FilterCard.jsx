@@ -1,6 +1,6 @@
 function FilterCard() {
     return (
-        <div className="flex flex-col p-4 gap-3 bg-slate-50 shadow-lg rounded-xl w-full items-center">
+        <div className="flex flex-col p-4 gap-3 bg-white shadow-lg rounded-xl w-full items-center">
             <h1 className="font-black tracking-wider text-slate-700 text-xl">
                 Filter
             </h1>

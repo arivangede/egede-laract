@@ -11,7 +11,7 @@ const Homepage = (props) => {
         <>
             <Head title="Homepage" />
             <Navbar active={"Homepage"} />
-            <div className="entrance flex flex-col items-center bg-slate-100">
+            <div className="entrance flex flex-col items-center bg-slate-50">
                 <div className="flex flex-col items-center">
                     <Header data={props.auth.user} flash={props.flash} />
                     <Carousel datadesa={props.auth.user.desa} />
