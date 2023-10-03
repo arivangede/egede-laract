@@ -32,4 +32,9 @@ class DataDesaController extends Controller
             'dataPenduduk' => $data
         ]);
     }
+
+    public function analisa()
+    {
+        return Inertia::render('Fitur/DataDesa/AnalisaData');
+    }
 }

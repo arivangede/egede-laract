@@ -41,6 +41,7 @@ Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.en
 
 Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
 Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
+Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa')->middleware('auth');
 
 Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');
 Route::post('/likes/{id}', [LikeController::class, 'destroy'])->middleware('auth');

@@ -2,7 +2,7 @@ import ChartDesa from "@/Components/DataDesa/ChartDesa";
 import Container from "@/Components/DataDesa/Container";
 import FilterCard from "@/Components/DataDesa/FilterCard";
 import Header from "@/Components/DataDesa/Header";
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
 function Index(props) {
@@ -41,8 +41,18 @@ function Index(props) {
                             onKategoriChange={handleKategoriChange}
                         />
                     </div>
+                    <div className="w-full py-4 px-8 flex justify-center items-center">
+                        <Link
+                            href="/data-desa/analisa-data"
+                            className="w-full p-4 flex justify-center items-center bg-red-500 rounded-lg shadow"
+                        >
+                            <h1 className="text-white font-bold">
+                                Analisa Data
+                            </h1>
+                        </Link>
+                    </div>
                     {!props.dataPenduduk ? (
-                        <div className="h-full flex justify-center items-center p-8">
+                        <div className=" flex justify-center items-center p-8">
                             <h1 className="text-slate-600 text-center">
                                 Pilih Desa dan Kategori untuk memunculkan Chart.
                             </h1>

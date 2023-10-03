@@ -61,12 +61,18 @@ function ChartDesa({ dataPenduduk }) {
 
     return (
         <>
-            <div className="flex flex-col gap-4 px-2">
-                <div className="h-[17rem]">
-                    <Chart type="doughnut" data={data} options={options1} />
+            <div className="entrance flex flex-col gap-4 px-2 pb-8">
+                <div className="bg-white rounded-xl shadow">
+                    <div className="h-[25rem] pt-4 pb-12 px-4">
+                        <h1>Doughnut Chart</h1>
+                        <Chart type="doughnut" data={data} options={options1} />
+                    </div>
                 </div>
-                <div className="h-[18rem]">
-                    <Chart type="bar" data={data} options={options2} />
+                <div className="bg-white rounded-xl shadow">
+                    <div className="h-[25rem] pt-4 pb-12 px-4">
+                        <h1>Bar Chart</h1>
+                        <Chart type="bar" data={data} options={options2} />
+                    </div>
                 </div>
             </div>
         </>
