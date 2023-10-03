@@ -15,14 +15,16 @@ class DataDesaController extends Controller
         $desa = $request->input('desa');
         $kategori = $request->input('kategori');
 
-        if ($kategori === 'pekerjaan') {
+        if ($desa && $kategori === 'pekerjaan') {
             $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pekerjaan as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
-        } else if ($kategori === 'suku_bangsa') {
+        } else if ($desa && $kategori === 'suku_bangsa') {
             $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('suku_bangsa as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
-        } else if ($kategori === 'agama') {
+        } else if ($desa && $kategori === 'agama') {
             $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+        } else if (!$desa) {
+            $data = null;
         } else {
-            $data = [];
+            $data = null;
         }
 
 

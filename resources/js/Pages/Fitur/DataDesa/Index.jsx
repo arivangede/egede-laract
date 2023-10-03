@@ -30,7 +30,7 @@ function Index(props) {
         <>
             <Head title="Data Desa" />
             <div className="min-h-screen bg-red-500 relative">
-                <Header />
+                <Header titlePage={"Data Desa"} />
 
                 <Container>
                     <div className="w-full -mt-8 flex justify-center items-center">
@@ -41,10 +41,20 @@ function Index(props) {
                             onKategoriChange={handleKategoriChange}
                         />
                     </div>
-                    <ChartDesa
-                        dataPenduduk={props.dataPenduduk}
-                        kategori={selectedKategori}
-                    />
+                    {!props.dataPenduduk ? (
+                        <div className="h-full flex justify-center items-center p-8ç">
+                            <h1 className="text-slate-600 text-center">
+                                Pilih Desa dan Kategori untuk memunculkan Chart.
+                            </h1>
+                        </div>
+                    ) : (
+                        <>
+                            <ChartDesa
+                                dataPenduduk={props.dataPenduduk}
+                                kategori={selectedKategori}
+                            />
+                        </>
+                    )}
                 </Container>
             </div>
         </>
