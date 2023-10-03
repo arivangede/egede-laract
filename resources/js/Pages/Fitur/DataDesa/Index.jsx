@@ -42,7 +42,7 @@ function Index(props) {
                         />
                     </div>
                     {!props.dataPenduduk ? (
-                        <div className="h-full flex justify-center items-center p-8ç">
+                        <div className="h-full flex justify-center items-center p-8">
                             <h1 className="text-slate-600 text-center">
                                 Pilih Desa dan Kategori untuk memunculkan Chart.
                             </h1>
