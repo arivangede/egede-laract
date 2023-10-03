@@ -24,6 +24,7 @@ function FilterCard({ desa, kategori, onDesaChange, onKategoriChange }) {
                     <option value={"pekerjaan"}>Pekerjaan</option>
                     <option value={"suku_bangsa"}>Suku Bangsa</option>
                     <option value={"agama"}>Agama</option>
+                    <option value={"usia"}>Klasifikasi Usia</option>
                 </select>
             </div>
         </div>

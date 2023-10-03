@@ -22,7 +22,7 @@ function ChartDesa({ dataPenduduk }) {
     const labels = dataPenduduk.map((item) => item.kategori);
     const dataValues = dataPenduduk.map((item) => item.jumlah);
 
-    console.log(labels, dataValues);
+    console.log(dataPenduduk);
     var data = {
         labels: labels,
         datasets: [
@@ -31,13 +31,13 @@ function ChartDesa({ dataPenduduk }) {
                 data: dataValues,
                 borderWidth: 1,
                 backgroundColor: ["#ff4344", "#ff8790", "#ff7657"],
-                hoverOffset: 4,
+                hoverOffset: 12,
             },
         ],
     };
 
     var options1 = {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {},
         legend: {
             labels: {
@@ -63,14 +63,14 @@ function ChartDesa({ dataPenduduk }) {
         <>
             <div className="entrance flex flex-col gap-4 px-2 pb-8">
                 <div className="bg-white rounded-xl shadow">
-                    <div className="h-[25rem] pt-4 pb-12 px-4">
-                        <h1>Doughnut Chart</h1>
+                    <div className="h-[26rem] pt-4 pb-12 px-4">
+                        <h1 className="text-slate-700">Doughnut Chart</h1>
                         <Chart type="doughnut" data={data} options={options1} />
                     </div>
                 </div>
                 <div className="bg-white rounded-xl shadow">
-                    <div className="h-[25rem] pt-4 pb-12 px-4">
-                        <h1>Bar Chart</h1>
+                    <div className="h-[25rem] pt-4 pb-10 px-4">
+                        <h1 className="text-slate-700">Bar Chart</h1>
                         <Chart type="bar" data={data} options={options2} />
                     </div>
                 </div>
