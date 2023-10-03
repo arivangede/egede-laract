@@ -1,20 +1,29 @@
-function FilterCard() {
+function FilterCard({ desa, kategori, onDesaChange, onKategoriChange }) {
     return (
-        <div className="flex flex-col p-4 gap-3 bg-white shadow-lg rounded-xl w-full items-center">
+        <div className="flex flex-col p-4 gap-3 bg-white shadow-lg rounded-xl w-[90%] items-center">
             <h1 className="font-black tracking-wider text-slate-700 text-xl">
                 Filter
             </h1>
 
-            <div className="w-full flex items-center gap-4 ">
-                <select className="select select-ghost text-slate-700">
+            <div className="w-full flex justify-center items-center gap-4 text-sm">
+                <select
+                    value={desa}
+                    onChange={(e) => onDesaChange(e.target.value)}
+                    className="select select-ghost text-slate-700"
+                >
                     <option value={""}>Pilih Desa</option>
-                    <option value={"Dauh Puri Kaja"}>Dauh Puri Kaja</option>
-                    <option value={"Dauh Puri"}>Dauh Puri</option>
+                    <option value={"1"}>Dauh Puri Kaja</option>
+                    <option value={"2"}>Dauh Puri</option>
                 </select>
-                <select className="select select-ghost text-slate-700">
+                <select
+                    value={kategori}
+                    onChange={(e) => onKategoriChange(e.target.value)}
+                    className="select select-ghost text-slate-700"
+                >
                     <option value={""}>Pilih Kategori</option>
-                    <option value={"Kategori 1"}>Kategori 1</option>
-                    <option value={"Kategori 2"}>Kategori 2</option>
+                    <option value={"pekerjaan"}>Pekerjaan</option>
+                    <option value={"suku_bangsa"}>Suku Bangsa</option>
+                    <option value={"agama"}>Agama</option>
                 </select>
             </div>
         </div>

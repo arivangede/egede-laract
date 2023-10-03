@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dauhpurikaja', function (Blueprint $table) {
+        Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no_kk');
-            $table->bigInteger('kepala_keluarga')->nullable();
+            $table->string('no_kk');
+            $table->string('kepala_keluarga')->nullable();
             $table->string('nama');
             $table->bigInteger('nik');
             $table->string('jenis_kelamin');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('alamat');
             $table->string('dusun')->nullable();
-            $table->string('desa');
+            $table->foreignId('desa')->constrained('desa');
             $table->string('kecamatan');
             $table->string('kota');
             $table->string('provinsi');
@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dauhpurikaja');
+        Schema::dropIfExists('penduduks');
     }
 };

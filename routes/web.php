@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Fitur\DataDesaController;
 use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
 use App\Http\Controllers\LikeController;
@@ -38,9 +39,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
 Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
 
-Route::get('/data-desa', function () {
-    return Inertia::render('Fitur/DataDesa/Index');
-});
+Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
+Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
 
 Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');
 Route::post('/likes/{id}', [LikeController::class, 'destroy'])->middleware('auth');
