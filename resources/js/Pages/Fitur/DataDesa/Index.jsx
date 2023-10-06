@@ -4,6 +4,17 @@ import FilterCard from "@/Components/DataDesa/FilterCard";
 import Header from "@/Components/DataDesa/Header";
 import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
+import { useSpring, animated } from "react-spring";
+
+function Number({ n }) {
+    const { number } = useSpring({
+        from: { number: 0 },
+        number: n,
+        delay: 200,
+        config: { mass: 1, tension: 20, friction: 10 },
+    });
+    return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>;
+}
 
 function Index(props) {
     console.log(props);
@@ -29,7 +40,7 @@ function Index(props) {
     return (
         <>
             <Head title="Data Desa" />
-            <div className="min-h-screen bg-red-500 relative">
+            <div className="entrance min-h-screen bg-red-500 relative">
                 <Header titlePage={"Data Desa"} />
 
                 <Container>
@@ -44,7 +55,7 @@ function Index(props) {
                     {props.auth.user.kelas_id == 3 ? (
                         ""
                     ) : (
-                        <div className="w-full py-4 px-8 flex justify-center items-center">
+                        <div className="w-full pt-4 px-8 flex justify-center items-center">
                             <Link
                                 href="/data-desa/analisa-data"
                                 className="w-full p-4 flex justify-center items-center bg-red-500 rounded-lg shadow"
@@ -56,7 +67,24 @@ function Index(props) {
                         </div>
                     )}
 
-                    {!props.dataPenduduk ? (
+                    {props.jumlahPenduduk ? (
+                        <div className="entrance w-full p-4 flex items-center">
+                            <div className="stats w-full  shadow">
+                                <div className="stat flex justify-center items-center">
+                                    <div className="stat-title">
+                                        Jumlah Penduduk
+                                    </div>
+                                    <div className="stat-value">
+                                        <Number n={props.jumlahPenduduk} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+
+                    {!props.dataChart && !props.dataTable ? (
                         <div className=" flex justify-center items-center p-8">
                             <h1 className="text-slate-600 text-center">
                                 Pilih Desa dan Kategori untuk memunculkan Chart.
@@ -65,7 +93,8 @@ function Index(props) {
                     ) : (
                         <>
                             <ChartDesa
-                                dataPenduduk={props.dataPenduduk}
+                                dataChart={props.dataChart}
+                                dataTable={props.dataTable}
                                 kategori={selectedKategori}
                             />
                         </>

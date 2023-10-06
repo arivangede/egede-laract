@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Fitur;
 
 use App\Http\Controllers\Controller;
-use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -16,13 +15,16 @@ class DataDesaController extends Controller
         $kategori = $request->input('kategori');
 
         if ($desa && $kategori === 'pekerjaan') {
-            $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pekerjaan as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pekerjaan as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = [];
         } else if ($desa && $kategori === 'suku_bangsa') {
-            $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('suku_bangsa as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('suku_bangsa as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = [];
         } else if ($desa && $kategori === 'agama') {
-            $data = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
         } else if ($desa && $kategori === 'usia') {
-            $data = DB::table('penduduk')
+            $dataChart = DB::table('penduduk')
                 ->select(
                     DB::raw('
                     CASE
@@ -39,15 +41,33 @@ class DataDesaController extends Controller
                 ->where('desa', $desa)
                 ->groupBy('kategori')
                 ->get();
+            $dataTable = [];
+        } else if ($desa && $kategori === 'jenis_kelamin') {
+            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('jenis_kelamin as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = [];
+        } else if ($desa && $kategori === 'pendidikan_terakhir') {
+            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pendidikan_terakhir as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = [];
+        } else if ($desa && $kategori === 'stt_nikah') {
+            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('stt_nikah as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = [];
         } else if (!$desa) {
-            $data = null;
+            $dataChart = null;
+            $dataTable = null;
         } else {
-            $data = null;
+            $dataChart = null;
+            $dataTable = null;
         }
+
+        $jumlahPenduduk = DB::table('penduduk')
+            ->where('desa', $desa)
+            ->count();
 
 
         return Inertia::render('Fitur/DataDesa/Index', [
-            'dataPenduduk' => $data
+            'dataChart' => $dataChart,
+            'dataTable' => $dataTable,
+            'jumlahPenduduk' => $jumlahPenduduk
         ]);
     }
 

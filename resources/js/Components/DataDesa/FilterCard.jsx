@@ -21,10 +21,15 @@ function FilterCard({ desa, kategori, onDesaChange, onKategoriChange }) {
                     className="select select-ghost text-slate-700"
                 >
                     <option value={""}>Pilih Kategori</option>
+                    <option value={"jenis_kelamin"}>Jenis Kelamin</option>
                     <option value={"pekerjaan"}>Pekerjaan</option>
                     <option value={"suku_bangsa"}>Suku Bangsa</option>
                     <option value={"agama"}>Agama</option>
                     <option value={"usia"}>Klasifikasi Usia</option>
+                    <option value={"pendidikan_terakhir"}>
+                        Pendidikan Terakhir
+                    </option>
+                    <option value={"stt_nikah"}>Status Pernikahan</option>
                 </select>
             </div>
         </div>

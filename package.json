@@ -22,11 +22,13 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@react-spring/web": "^9.7.3",
         "chart.js": "^4.4.0",
         "localforage": "^1.10.0",
         "match-sorter": "^6.3.1",
         "react-chartjs-2": "^5.2.0",
         "react-router-dom": "^6.15.0",
+        "react-spring": "^9.7.3",
         "sort-by": "^0.0.2"
     }
 }
