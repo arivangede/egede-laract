@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Fitur;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -71,8 +72,102 @@ class DataDesaController extends Controller
         ]);
     }
 
-    public function analisa()
+    public function analisa(Request $request)
     {
-        return Inertia::render('Fitur/DataDesa/AnalisaData');
+        $desa = $request->input('desa');
+        $selectedDusun = $request->input('dusun');
+        $selectedJk = $request->input('jenis_kelamin');
+        $selectedPekerjaan = $request->input('pekerjaan');
+        $selectedSuku = $request->input('suku');
+        $selectedUsia = $request->input('usia');
+        $selectedSttNikah = $request->input('stt_nikah');
+        $search = $request->input('search');
+
+        $jumlahPenduduk = DB::table('penduduk')
+            ->where('desa', $desa)
+            ->count();
+
+        $dusuns = Penduduk::where('desa', $desa)
+            ->select('dusun')
+            ->distinct()
+            ->orderBy('dusun', 'asc')
+            ->pluck('dusun');
+
+        $jenisKelamin = Penduduk::where('desa', $desa)
+            ->select('jenis_kelamin')
+            ->distinct()
+            ->orderBy('jenis_kelamin', 'asc')
+            ->pluck('jenis_kelamin');
+
+        $pekerjaan = Penduduk::where('desa', $desa)
+            ->select('pekerjaan')
+            ->distinct()
+            ->orderBy('pekerjaan', 'asc')
+            ->pluck('pekerjaan');
+
+        $sukuBangsa = Penduduk::where('desa', $desa)
+            ->select('suku_bangsa')
+            ->distinct()
+            ->orderBy('suku_bangsa', 'asc')
+            ->pluck('suku_bangsa');
+
+        $usia = Penduduk::where('desa', $desa)
+            ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as usia'))
+            ->distinct()
+            ->orderBy('usia', 'asc')
+            ->pluck('usia');
+
+        $sttnikah = Penduduk::where('desa', $desa)
+            ->select('stt_nikah')
+            ->distinct()
+            ->orderBy('stt_nikah', 'asc')
+            ->pluck('stt_nikah');
+
+        if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah) {
+            $Penduduks = Penduduk::where('desa', $desa)->orderBy('id', 'desc')->get();
+            $Penduduk = $Penduduks->take(5);
+            $count = 0;
+        } else {
+            $Penduduks = Penduduk::where('desa', $desa)
+                ->when($selectedDusun, function ($query, $selectedDusun) {
+                    return $query->where('dusun', $selectedDusun);
+                })
+                ->when($selectedJk, function ($query, $selectedJk) {
+                    return $query->where('jenis_kelamin', $selectedJk);
+                })
+                ->when($selectedPekerjaan, function ($query, $selectedPekerjaan) {
+                    return $query->where('pekerjaan', $selectedPekerjaan);
+                })
+                ->when($selectedSuku, function ($query, $selectedSuku) {
+                    return $query->where('suku_bangsa', $selectedSuku);
+                })
+                ->when($selectedUsia, function ($query, $selectedUsia) {
+                    return $query->whereRaw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) = ?', [$selectedUsia]);
+                })
+                ->when($selectedSttNikah, function ($query, $selectedSttNikah) {
+                    return $query->where('stt_nikah', $selectedSttNikah);
+                })
+                ->when($search,  function ($query) use ($search) {
+                    return $query->where('nama', 'like', '%' . $search . '%')
+                        ->orWhere('nik', 'like', '%' . $search . '%')
+                        ->orWhere('no_kk', 'like', '%' . $search . '%');
+                })
+                ->get();
+            $Penduduk = $Penduduks->take(10);
+            $count = $Penduduks->count();
+        }
+
+
+        return Inertia::render('Fitur/DataDesa/AnalisaData', [
+            'jumlahPenduduk' => $jumlahPenduduk,
+            'jumlahHasil' => $count,
+            'dusunOptions' => $dusuns,
+            'jkOptions' => $jenisKelamin,
+            'pekerjaanOptions' => $pekerjaan,
+            'sukuOptions' => $sukuBangsa,
+            'usiaOptions' => $usia,
+            'sttNikahOptions' => $sttnikah,
+            'data' => $Penduduk,
+        ]);
     }
 }

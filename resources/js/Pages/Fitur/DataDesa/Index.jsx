@@ -52,6 +52,7 @@ function Index(props) {
                             onKategoriChange={handleKategoriChange}
                         />
                     </div>
+
                     {props.auth.user.kelas_id == 3 ? (
                         ""
                     ) : (
