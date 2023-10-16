@@ -81,6 +81,9 @@ class DataDesaController extends Controller
         $selectedSuku = $request->input('suku');
         $selectedUsia = $request->input('usia');
         $selectedSttNikah = $request->input('stt_nikah');
+        $selectedAgama = $request->input('agama');
+        $selectedKewarganegaraan = $request->input('kewarganegaraan');
+        $selectedPendidikan = $request->input('pendidikan');
         $search = $request->input('search');
 
         $jumlahPenduduk = DB::table('penduduk')
@@ -123,12 +126,29 @@ class DataDesaController extends Controller
             ->orderBy('stt_nikah', 'asc')
             ->pluck('stt_nikah');
 
-        if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah) {
-            $Penduduks = Penduduk::where('desa', $desa)->orderBy('id', 'desc')->get();
-            $Penduduk = $Penduduks->take(5);
+        $agama = Penduduk::where('desa', $desa)
+            ->select('agama')
+            ->distinct()
+            ->orderBy('agama', 'asc')
+            ->pluck('agama');
+
+        $kewarganegaraan = Penduduk::where('desa', $desa)
+            ->select('kewarganegaraan')
+            ->distinct()
+            ->orderBy('kewarganegaraan', 'asc')
+            ->pluck('kewarganegaraan');
+
+        $pendidikan = Penduduk::where('desa', $desa)
+            ->select('pendidikan_terakhir')
+            ->distinct()
+            ->orderBy('pendidikan_terakhir', 'asc')
+            ->pluck('pendidikan_terakhir');
+
+        if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah && !$selectedAgama && !$selectedKewarganegaraan && !$selectedPendidikan && !$search) {
+            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa', $desa)->orderBy('id', 'desc')->get();
             $count = 0;
         } else {
-            $Penduduks = Penduduk::where('desa', $desa)
+            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa', $desa)
                 ->when($selectedDusun, function ($query, $selectedDusun) {
                     return $query->where('dusun', $selectedDusun);
                 })
@@ -147,14 +167,23 @@ class DataDesaController extends Controller
                 ->when($selectedSttNikah, function ($query, $selectedSttNikah) {
                     return $query->where('stt_nikah', $selectedSttNikah);
                 })
+                ->when($selectedAgama, function ($query, $selectedAgama) {
+                    return $query->where('agama', $selectedAgama);
+                })
+                ->when($selectedKewarganegaraan, function ($query, $selectedKewarganegaraan) {
+                    return $query->where('kewarganegaraan', $selectedKewarganegaraan);
+                })
+                ->when($selectedPendidikan, function ($query, $selectedPendidikan) {
+                    return $query->where('pendidikan_terakhir', $selectedPendidikan);
+                })
                 ->when($search,  function ($query) use ($search) {
                     return $query->where('nama', 'like', '%' . $search . '%')
                         ->orWhere('nik', 'like', '%' . $search . '%')
                         ->orWhere('no_kk', 'like', '%' . $search . '%');
                 })
                 ->get();
-            $Penduduk = $Penduduks->take(10);
-            $count = $Penduduks->count();
+
+            $count = $Penduduk->count();
         }
 
 
@@ -167,7 +196,18 @@ class DataDesaController extends Controller
             'sukuOptions' => $sukuBangsa,
             'usiaOptions' => $usia,
             'sttNikahOptions' => $sttnikah,
+            'agamaOptions' => $agama,
+            'kewarganegaraanOptions' => $kewarganegaraan,
+            'pendidikanOptions' => $pendidikan,
             'data' => $Penduduk,
+        ]);
+    }
+
+    public function show($nik, Request $request)
+    {
+        $selectedPenduduk = Penduduk::where('nik', $nik)->get();
+        return Inertia::render('Fitur/DataDesa/Show', [
+            'dataPenduduk' => $selectedPenduduk
         ]);
     }
 }

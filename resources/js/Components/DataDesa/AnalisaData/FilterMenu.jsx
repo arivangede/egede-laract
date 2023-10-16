@@ -6,12 +6,27 @@ function FilterMenu({
     sukuOptions,
     usiaOptions,
     sttNikahOptions,
+    agamaOptions,
+    kewarganegaraanOptions,
+    pendidikanOptions,
+    lastDusun,
+    lastJk,
+    lastPekerjaan,
+    lastSuku,
+    lastUsia,
+    lastSttNikah,
+    lastAgama,
+    lastKewarganegaraan,
+    lastPendidikan,
     setDusun,
     setJk,
     setPekerjaan,
     setSuku,
     setUsia,
     setSttNikah,
+    setAgama,
+    setKewarganegaraan,
+    setPendidikan,
     apply,
 }) {
     return (
@@ -33,6 +48,7 @@ function FilterMenu({
                         name="dusun"
                         id="dusun"
                         className="rounded border-slate-300"
+                        value={lastDusun}
                         onChange={(e) => setDusun(e.target.value)}
                     >
                         <option value={""}>pilih</option>;
@@ -54,6 +70,7 @@ function FilterMenu({
                         name="jenis_kelamin"
                         id="jenis_kelamin"
                         className="rounded border-slate-300"
+                        value={lastJk}
                         onChange={(e) => setJk(e.target.value)}
                     >
                         <option value="">pilih</option>
@@ -75,6 +92,7 @@ function FilterMenu({
                         name="pekerjaan"
                         id="pekerjaan"
                         className="rounded border-slate-300"
+                        value={lastPekerjaan}
                         onChange={(e) => setPekerjaan(e.target.value)}
                     >
                         <option value="">pilih</option>
@@ -96,6 +114,7 @@ function FilterMenu({
                         name="suku_bangsa"
                         id="suku_bangsa"
                         className="rounded border-slate-300"
+                        value={lastSuku}
                         onChange={(e) => setSuku(e.target.value)}
                     >
                         <option value="">pilih</option>
@@ -114,6 +133,7 @@ function FilterMenu({
                         name="usia"
                         id="usia"
                         className="rounded border-slate-300"
+                        value={lastUsia}
                         onChange={(e) => setUsia(e.target.value)}
                     >
                         <option value="">pilih</option>
@@ -135,12 +155,76 @@ function FilterMenu({
                         name="stt_nikah"
                         id="stt_nikah"
                         className="rounded border-slate-300"
+                        value={lastSttNikah}
                         onChange={(e) => setSttNikah(e.target.value)}
                     >
                         <option value="">pilih</option>
                         {sttNikahOptions.map((nikah, i) => (
                             <option key={i} value={nikah}>
                                 {nikah}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="flex flex-col">
+                    <label htmlFor="agama" className="text-slate-500 text-sm">
+                        Agama :
+                    </label>
+                    <select
+                        name="agama"
+                        id="agama"
+                        className="rounded border-slate-300"
+                        value={lastAgama}
+                        onChange={(e) => setAgama(e.target.value)}
+                    >
+                        <option value="">pilih</option>
+                        {agamaOptions.map((agama, i) => (
+                            <option key={i} value={agama}>
+                                {agama}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="kewarganegaraan"
+                        className="text-slate-500 text-sm"
+                    >
+                        Warga Negara :
+                    </label>
+                    <select
+                        name="kewarganegaraan"
+                        id="kewarganegaraan"
+                        className="rounded border-slate-300"
+                        value={lastKewarganegaraan}
+                        onChange={(e) => setKewarganegaraan(e.target.value)}
+                    >
+                        <option value="">pilih</option>
+                        {kewarganegaraanOptions.map((WN, i) => (
+                            <option key={i} value={WN}>
+                                {WN}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="flex flex-col">
+                    <label
+                        htmlFor="pendidikan"
+                        className="text-slate-500 text-sm"
+                    >
+                        Pendidikan Terakhir :
+                    </label>
+                    <select
+                        name="pendidikan"
+                        id="pendidikan"
+                        className="rounded border-slate-300"
+                        value={lastPendidikan}
+                        onChange={(e) => setPendidikan(e.target.value)}
+                    >
+                        <option value="">pilih</option>
+                        {pendidikanOptions.map((pendidikan, i) => (
+                            <option key={i} value={pendidikan}>
+                                {pendidikan}
                             </option>
                         ))}
                     </select>

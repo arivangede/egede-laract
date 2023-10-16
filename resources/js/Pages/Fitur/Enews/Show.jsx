@@ -7,12 +7,10 @@ import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
 
 function Show(props) {
-    console.log(props);
-    const newslink = "http://127.0.0.1:8000/e-news/";
-
     const like = props.likes_count;
     const [likeCount, setLikeCount] = useState(like);
 
+    console.log(props.berita);
     const handleLikeChange = (isLiked) => {
         // Jika tombol "Like" diklik, tambahkan like
         if (isLiked) {

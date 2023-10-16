@@ -58,7 +58,11 @@ function Index(props) {
                     ) : (
                         <div className="w-full pt-4 px-8 flex justify-center items-center">
                             <Link
-                                href="/data-desa/analisa-data"
+                                href={
+                                    props.auth.user.desa_id != 0
+                                        ? `/data-desa/analisa-data`
+                                        : "/data-desa/analisa-data"
+                                }
                                 className="w-full p-4 flex justify-center items-center bg-red-500 rounded-lg shadow"
                             >
                                 <h1 className="text-white font-bold">

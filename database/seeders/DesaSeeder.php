@@ -20,10 +20,10 @@ class DesaSeeder extends Seeder
             'sc_desa' => 'dauhpurikaja'
         ]);
         DB::table('desa')->insert([
-            'nama_desa' => 'Peguyangan',
+            'nama_desa' => 'Peguyangan Kangin',
             'kecamatan' => 'Denpasar Utara',
             'kota' => 'Denpasar',
-            'sc_desa' => 'peguyangan'
+            'sc_desa' => 'peguyangankangin'
         ]);
     }
 }

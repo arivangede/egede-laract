@@ -10,14 +10,102 @@ import { useEffect, useState } from "react";
 
 function AnalisaData(props) {
     console.log(props);
+
     const [desaId, setDesaId] = useState(props.auth.user.desa_id);
-    const [dusun, setDusun] = useState();
-    const [jk, setJk] = useState();
-    const [pekerjaan, setPekerjaan] = useState();
-    const [suku, setSuku] = useState();
-    const [usia, setUsia] = useState();
-    const [sttNikah, setSttNikah] = useState();
+
+    const [dusun, setDusun] = useState("");
+    const [jk, setJk] = useState("");
+    const [pekerjaan, setPekerjaan] = useState("");
+    const [suku, setSuku] = useState("");
+    const [usia, setUsia] = useState("");
+    const [sttNikah, setSttNikah] = useState("");
+    const [agama, setAgama] = useState("");
+    const [kewarganegaraan, setKewarganegaraan] = useState("");
+    const [pendidikan, setPendidikan] = useState("");
     const [search, setSearch] = useState("");
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const dataPerPage = 25;
+    const totalRows = props.data.length;
+    const totalPages = Math.ceil(totalRows / dataPerPage);
+    const startIndex = (currentPage - 1) * dataPerPage;
+    const endIndex = startIndex + dataPerPage;
+    const dataToDisplay = props.data.slice(startIndex, endIndex);
+
+    const clearLastOpened = () => {
+        window.localStorage.removeItem("lastopened");
+    };
+
+    const lastState = () => {
+        router.post("/data-desa/analisa-data", {
+            desa: desaId,
+            dusun: dusun,
+            jenis_kelamin: jk,
+            pekerjaan: pekerjaan,
+            suku: suku,
+            usia: usia,
+            stt_nikah: sttNikah,
+            agama: agama,
+            kewarganegaraan: kewarganegaraan,
+            pendidikan: pendidikan,
+            search: search,
+        });
+    };
+
+    useState(() => {
+        const data = JSON.parse(localStorage.getItem("lastopened"));
+        if (data) {
+            setDesaId(data.desaId);
+            setDusun(data.dusun);
+            setJk(data.jk);
+            setPekerjaan(data.pekerjaan);
+            setSuku(data.suku);
+            setUsia(data.usia);
+            setSttNikah(data.sttNikah);
+            setAgama(data.agama);
+            setKewarganegaraan(data.kewarganegaraan);
+            setPendidikan(data.pendidikan);
+            setSearch(data.search);
+            setCurrentPage(data.currentPage);
+        }
+    }, []);
+
+    const lastHistory = {
+        desaId,
+        dusun,
+        jk,
+        pekerjaan,
+        suku,
+        usia,
+        sttNikah,
+        agama,
+        kewarganegaraan,
+        pendidikan,
+        search,
+        currentPage,
+    };
+    console.log(lastHistory);
+
+    useEffect(() => {
+        window.localStorage.setItem("lastopened", JSON.stringify(lastHistory));
+    }, [
+        desaId,
+        dusun,
+        jk,
+        pekerjaan,
+        suku,
+        usia,
+        sttNikah,
+        agama,
+        kewarganegaraan,
+        pendidikan,
+        search,
+        currentPage,
+    ]);
+
+    useEffect(() => {
+        lastState();
+    }, []);
 
     const handleApply = () => {
         router.post("/data-desa/analisa-data", {
@@ -28,18 +116,24 @@ function AnalisaData(props) {
             suku: suku,
             usia: usia,
             stt_nikah: sttNikah,
+            agama: agama,
+            kewarganegaraan: kewarganegaraan,
+            pendidikan: pendidikan,
             search: search,
         });
+        setCurrentPage(1);
+    };
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+        }
     };
 
     const [popUpFilter, setPopUpFilter] = useState(false);
     const FilterButton = () => {
         setPopUpFilter(!popUpFilter);
     };
-
-    useEffect(() => {
-        router.post(`/data-desa/analisa-data`, { desa: desaId });
-    }, [desaId]);
 
     return (
         <>
@@ -48,12 +142,13 @@ function AnalisaData(props) {
                 <div className="w-full flex justify-between items-center">
                     <div className="flex items-center">
                         <div className="w-9">
-                            <Link href="/data-desa">
+                            <Link href="/data-desa" onClick={clearLastOpened}>
                                 <BackBtn color={"#334155"} />
                             </Link>
                         </div>
                         <h1 className="font-extrabold text-xl">Analisa Data</h1>
                     </div>
+
                     <FilterBtn click={FilterButton} />
                 </div>
                 <FilterMenu
@@ -65,12 +160,27 @@ function AnalisaData(props) {
                     sukuOptions={props.sukuOptions}
                     usiaOptions={props.usiaOptions}
                     sttNikahOptions={props.sttNikahOptions}
+                    agamaOptions={props.agamaOptions}
+                    kewarganegaraanOptions={props.kewarganegaraanOptions}
+                    pendidikanOptions={props.pendidikanOptions}
+                    lastDusun={dusun}
+                    lastJk={jk}
+                    lastPekerjaan={pekerjaan}
+                    lastSuku={suku}
+                    lastUsia={usia}
+                    lastSttNikah={sttNikah}
+                    lastAgama={agama}
+                    lastKewarganegaraan={kewarganegaraan}
+                    lastPendidikan={pendidikan}
                     setDusun={setDusun}
                     setJk={setJk}
                     setPekerjaan={setPekerjaan}
                     setSuku={setSuku}
                     setUsia={setUsia}
                     setSttNikah={setSttNikah}
+                    setAgama={setAgama}
+                    setKewarganegaraan={setKewarganegaraan}
+                    setPendidikan={setPendidikan}
                     apply={handleApply}
                 />
                 <div
@@ -87,11 +197,15 @@ function AnalisaData(props) {
                             setSearch={setSearch}
                             apply={handleApply}
                         />
-                        <Pagination />
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 </div>
                 <div className={`flex flex-col items-center gap-3`}>
-                    <PendudukCard data={props.data} />
+                    <PendudukCard data={dataToDisplay} />
                 </div>
             </div>
         </>

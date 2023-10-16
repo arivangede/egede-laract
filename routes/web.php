@@ -43,6 +43,9 @@ Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datad
 Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
 Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa')->middleware('auth');
 Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa')->middleware('auth');
+Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.datadesa')->middleware('auth');
+
+
 
 
 Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');

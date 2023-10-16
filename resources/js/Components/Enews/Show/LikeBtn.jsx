@@ -3,10 +3,6 @@ import { router } from "@inertiajs/react";
 
 function LikeBtn({ userId, newsId, onLikeChange, liked }) {
     const [isLiked, setIsLiked] = useState(liked);
-    console.log("liked:", isLiked);
-    console.log("user_id", userId);
-    console.log("news_id", newsId);
-
     const handleLike = () => {
         if (isLiked) {
             const data = { user_id: userId, news_id: newsId };

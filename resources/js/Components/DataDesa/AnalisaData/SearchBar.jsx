@@ -5,7 +5,7 @@ function SearchBar({ search, setSearch, apply }) {
         <div className="w-[55%] flex justify-between items-center relative">
             <input
                 type="text"
-                placeholder="Cari Nama / Nik"
+                placeholder="Cari Nama/Nik/KK"
                 className="w-full rounded-xl pr-9 border-none shadow"
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}

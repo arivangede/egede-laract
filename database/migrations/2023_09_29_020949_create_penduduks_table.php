@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('pendidikan_terakhir');
             $table->string('pekerjaan');
             $table->string('penghasilan');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
