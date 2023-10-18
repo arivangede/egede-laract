@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fitur;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
+use App\Models\Desa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -16,14 +17,14 @@ class DataDesaController extends Controller
         $kategori = $request->input('kategori');
 
         if ($desa && $kategori === 'pekerjaan') {
-            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pekerjaan as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('pekerjaan as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
             $dataChart = [];
         } else if ($desa && $kategori === 'suku_bangsa') {
-            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('suku_bangsa as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('suku_bangsa as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
             $dataChart = [];
         } else if ($desa && $kategori === 'agama') {
-            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
-            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('agama as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
         } else if ($desa && $kategori === 'usia') {
             $dataChart = DB::table('penduduk')
                 ->select(
@@ -39,18 +40,18 @@ class DataDesaController extends Controller
                     END as kategori'),
                     DB::raw('count(*) as jumlah')
                 )
-                ->where('desa', $desa)
+                ->where('desa_id', $desa)
                 ->groupBy('kategori')
                 ->get();
             $dataTable = [];
         } else if ($desa && $kategori === 'jenis_kelamin') {
-            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('jenis_kelamin as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('jenis_kelamin as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
             $dataTable = [];
         } else if ($desa && $kategori === 'pendidikan_terakhir') {
-            $dataTable = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('pendidikan_terakhir as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataTable = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('pendidikan_terakhir as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
             $dataChart = [];
         } else if ($desa && $kategori === 'stt_nikah') {
-            $dataChart = DB::table('penduduk')->where('desa', $desa)->select(DB::raw('stt_nikah as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
+            $dataChart = DB::table('penduduk')->where('desa_id', $desa)->select(DB::raw('stt_nikah as kategori'), DB::raw('count(*) as jumlah'))->groupBy('kategori')->get();
             $dataTable = [];
         } else if (!$desa) {
             $dataChart = null;
@@ -61,7 +62,7 @@ class DataDesaController extends Controller
         }
 
         $jumlahPenduduk = DB::table('penduduk')
-            ->where('desa', $desa)
+            ->where('desa_id', $desa)
             ->count();
 
 
@@ -87,68 +88,68 @@ class DataDesaController extends Controller
         $search = $request->input('search');
 
         $jumlahPenduduk = DB::table('penduduk')
-            ->where('desa', $desa)
+            ->where('desa_id', $desa)
             ->count();
 
-        $dusuns = Penduduk::where('desa', $desa)
+        $dusuns = Penduduk::where('desa_id', $desa)
             ->select('dusun')
             ->distinct()
             ->orderBy('dusun', 'asc')
             ->pluck('dusun');
 
-        $jenisKelamin = Penduduk::where('desa', $desa)
+        $jenisKelamin = Penduduk::where('desa_id', $desa)
             ->select('jenis_kelamin')
             ->distinct()
             ->orderBy('jenis_kelamin', 'asc')
             ->pluck('jenis_kelamin');
 
-        $pekerjaan = Penduduk::where('desa', $desa)
+        $pekerjaan = Penduduk::where('desa_id', $desa)
             ->select('pekerjaan')
             ->distinct()
             ->orderBy('pekerjaan', 'asc')
             ->pluck('pekerjaan');
 
-        $sukuBangsa = Penduduk::where('desa', $desa)
+        $sukuBangsa = Penduduk::where('desa_id', $desa)
             ->select('suku_bangsa')
             ->distinct()
             ->orderBy('suku_bangsa', 'asc')
             ->pluck('suku_bangsa');
 
-        $usia = Penduduk::where('desa', $desa)
+        $usia = Penduduk::where('desa_id', $desa)
             ->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as usia'))
             ->distinct()
             ->orderBy('usia', 'asc')
             ->pluck('usia');
 
-        $sttnikah = Penduduk::where('desa', $desa)
+        $sttnikah = Penduduk::where('desa_id', $desa)
             ->select('stt_nikah')
             ->distinct()
             ->orderBy('stt_nikah', 'asc')
             ->pluck('stt_nikah');
 
-        $agama = Penduduk::where('desa', $desa)
+        $agama = Penduduk::where('desa_id', $desa)
             ->select('agama')
             ->distinct()
             ->orderBy('agama', 'asc')
             ->pluck('agama');
 
-        $kewarganegaraan = Penduduk::where('desa', $desa)
+        $kewarganegaraan = Penduduk::where('desa_id', $desa)
             ->select('kewarganegaraan')
             ->distinct()
             ->orderBy('kewarganegaraan', 'asc')
             ->pluck('kewarganegaraan');
 
-        $pendidikan = Penduduk::where('desa', $desa)
+        $pendidikan = Penduduk::where('desa_id', $desa)
             ->select('pendidikan_terakhir')
             ->distinct()
             ->orderBy('pendidikan_terakhir', 'asc')
             ->pluck('pendidikan_terakhir');
 
         if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah && !$selectedAgama && !$selectedKewarganegaraan && !$selectedPendidikan && !$search) {
-            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa', $desa)->orderBy('id', 'desc')->get();
+            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa_id', $desa)->orderBy('id', 'desc')->get();
             $count = 0;
         } else {
-            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa', $desa)
+            $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa_id', $desa)
                 ->when($selectedDusun, function ($query, $selectedDusun) {
                     return $query->where('dusun', $selectedDusun);
                 })
@@ -200,14 +201,28 @@ class DataDesaController extends Controller
             'kewarganegaraanOptions' => $kewarganegaraan,
             'pendidikanOptions' => $pendidikan,
             'data' => $Penduduk,
+
         ]);
     }
 
     public function show($nik, Request $request)
     {
-        $selectedPenduduk = Penduduk::where('nik', $nik)->get();
+        $selectedPenduduk = Penduduk::with('desa')->where('nik', $nik);
+        $getData = $selectedPenduduk->first();
+        $no_kk = $getData->no_kk;
+        $getKeluarga = Penduduk::where('no_kk', $no_kk)->whereNotIn('nik', [$nik])->get();
+        $usia = $selectedPenduduk->select(DB::raw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) as usia'))->first();
+
+
+        $nullback = $request->input('back');
+        if (!$nullback) {
+            $nullback = false;
+        }
         return Inertia::render('Fitur/DataDesa/Show', [
-            'dataPenduduk' => $selectedPenduduk
+            'dataPenduduk' => $getData,
+            'usia' => $usia,
+            'dataKeluarga' => $getKeluarga,
+            'nullback' => $nullback
         ]);
     }
 }

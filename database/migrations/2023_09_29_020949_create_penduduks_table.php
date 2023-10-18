@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('alamat');
             $table->string('dusun')->nullable();
-            $table->foreignId('desa')->constrained('desa');
+            $table->foreignId('desa_id')->constrained('desa');
             $table->string('kecamatan');
             $table->string('kota');
             $table->string('provinsi');

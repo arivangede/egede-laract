@@ -30,7 +30,10 @@ function data(namadesa) {
             };
 
         default:
-            break;
+            return {
+                welcome: welcome1,
+                visimisi: visimisi1,
+            };
     }
 }
 

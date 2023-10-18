@@ -17,8 +17,6 @@ function Number({ n }) {
 }
 
 function Index(props) {
-    console.log(props);
-
     const [selectedDesa, setSelectedDesa] = useState("");
     const [selectedKategori, setSelectedKategori] = useState("");
 

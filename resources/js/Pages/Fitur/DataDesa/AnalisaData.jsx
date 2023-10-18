@@ -9,8 +9,6 @@ import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 function AnalisaData(props) {
-    console.log(props);
-
     const [desaId, setDesaId] = useState(props.auth.user.desa_id);
 
     const [dusun, setDusun] = useState("");
@@ -84,7 +82,6 @@ function AnalisaData(props) {
         search,
         currentPage,
     };
-    console.log(lastHistory);
 
     useEffect(() => {
         window.localStorage.setItem("lastopened", JSON.stringify(lastHistory));

@@ -20,7 +20,27 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [GuestAppController::class, 'index'])->name('user.home')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [GuestAppController::class, 'index'])->name('user.home');
+
+    Route::get('/pilih-desa', function () {
+        return Inertia::render('PilihDesa');
+    })->name('user.pilihdesa');
+
+    Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews');
+    Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews');
+
+    Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
+    Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
+    Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa');
+    Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa');
+    Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.datadesa');
+
+    Route::post('/likes', [LikeController::class, 'store']);
+    Route::post('/likes/{id}', [LikeController::class, 'destroy']);
+});
+
+
 Route::get('/aktivitas', function () {
     return Inertia::render('Aktivitas');
 });
@@ -36,20 +56,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
-Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews')->middleware('auth');
-Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews')->middleware('auth');
 
-Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
-Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa')->middleware('auth');
-Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa')->middleware('auth');
-Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa')->middleware('auth');
-Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.datadesa')->middleware('auth');
-
-
-
-
-Route::post('/likes', [LikeController::class, 'store'])->middleware('auth');
-Route::post('/likes/{id}', [LikeController::class, 'destroy'])->middleware('auth');
 
 
 // Route::get('/', function () {

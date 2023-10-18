@@ -1,21 +1,7 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-function PendudukCard({
-    data,
-    desaId,
-    dusun,
-    jk,
-    pekerjaan,
-    suku,
-    usia,
-    sttNikah,
-    agama,
-    kewarganegaraan,
-    pendidikan,
-    setCurrentpage,
-}) {
-    console.log(data);
+function PendudukCard({ data }) {
     return (
         <>
             {data.length === 0 ? (

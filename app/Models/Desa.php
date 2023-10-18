@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\eNews;
+use App\Models\Penduduk;
 
 class Desa extends Model
 {
@@ -18,5 +19,10 @@ class Desa extends Model
     public function news()
     {
         return $this->hasMany(eNews::class, 'desa_id');
+    }
+
+    public function penduduk()
+    {
+        return $this->hasMany(Penduduk::class, 'desa_id');
     }
 }

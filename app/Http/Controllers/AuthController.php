@@ -28,8 +28,17 @@ class AuthController extends Controller
             'password' => $request->password
         ];
 
+
         if (Auth::attempt($infologin)) {
-            return to_route('user.home')->with('message', true);
+
+            if (Auth::check()) {
+                $user = Auth::user();
+                if ($user->kelas_id === 1) {
+                    return to_route('user.pilihdesa');
+                } else {
+                    return to_route('user.home')->with('message', true);;
+                }
+            }
         } else {
             return to_route('user.login')->withErrors('username / password salah');
         }
