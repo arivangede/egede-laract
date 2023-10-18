@@ -75,7 +75,7 @@ const Aktivitas = (props) => {
                     <div
                         className={`${
                             selectedPage != "disimpan" ? "hidden" : ""
-                        } w-full pb-4 px-6 flex gap-4`}
+                        } w-full pb-4 px-6 flex items-center gap-4`}
                     >
                         <button className="py-2 px-4 bg-red-500 shadow text-white rounded-xl">
                             Semua
