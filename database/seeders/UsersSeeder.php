@@ -31,10 +31,11 @@ class UsersSeeder extends Seeder
             'desa_id' => '1',
             'password' => Hash::make('123456'),
             'kelas_id' => '2',
+            'nik' => 123456,
         ]);
         DB::table('users')->insert([
             'username' => 'walikota',
-            'desa_id' => '3',
+            'desa_id' => '1',
             'password' => Hash::make('123456'),
             'kelas_id' => '1',
         ]);

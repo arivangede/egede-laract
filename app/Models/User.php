@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Desa;
 use App\Models\eNews;
+use App\Models\Penduduk;
+use App\Models\UserClass;
 
 class User extends Authenticatable
 {
@@ -53,5 +55,13 @@ class User extends Authenticatable
     public function enews()
     {
         return $this->hasMany(eNews::class, 'author');
+    }
+    public function penduduk()
+    {
+        return $this->belongsTo(Penduduk::class, 'nik', 'nik');
+    }
+    public function userclasses()
+    {
+        return $this->belongsTo(UserClass::class, 'kelas_id', 'id');
     }
 }

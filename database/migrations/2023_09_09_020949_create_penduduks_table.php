@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
-            $table->string('no_kk');
+            $table->bigInteger('no_kk');
             $table->string('kepala_keluarga')->nullable();
             $table->string('nama');
-            $table->bigInteger('nik');
+            $table->bigInteger('nik')->unique()->nullable();
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');

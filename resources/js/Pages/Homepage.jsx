@@ -11,16 +11,18 @@ const Homepage = (props) => {
         <>
             <Head title="Homepage" />
             <Navbar active={"Homepage"} />
-            <div className="entrance flex flex-col items-center bg-slate-50">
-                <div className="flex flex-col items-center">
-                    <Header data={props.auth.user} flash={props.flash} />
-                    <Carousel datadesa={props.auth.user.desa} />
-                    <Menu />
-                    <div className="h-full w-full flex flex-col gap-4 p-4 pb-20">
-                        <h1 className="font-bold text-slate-600 w-full">
-                            Berita Terbaru
-                        </h1>
-                        <CardBerita berita={props.berita} />
+            <div className="bg-slate-50 min-h-screen">
+                <div className="entrance flex flex-col items-center">
+                    <div className="flex flex-col items-center">
+                        <Header data={props.auth.user} flash={props.flash} />
+                        <Carousel datadesa={props.auth.user.desa} />
+                        <Menu />
+                        <div className="h-full w-full flex flex-col gap-4 p-4 pb-20">
+                            <h1 className="font-bold text-slate-600 w-full">
+                                Berita Terbaru
+                            </h1>
+                            <CardBerita berita={props.berita} />
+                        </div>
                     </div>
                 </div>
             </div>

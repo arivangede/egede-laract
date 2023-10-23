@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('desa_id')->nullable()->constrained('desa');
             $table->string('password');
             $table->foreignId('kelas_id')->constrained('userclasses');
+            $table->bigInteger('nik')->unique()->nullable();
+            $table->foreign('nik')->references('nik')->on('penduduk');
             $table->rememberToken();
             $table->timestamps();
         });
