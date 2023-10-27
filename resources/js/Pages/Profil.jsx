@@ -23,10 +23,10 @@ const Profil = (props) => {
                             Logout
                         </Link>
                         <Link
-                            href="#"
+                            href="/dataku"
                             className="font-bold text-base flex items-center h-max gap-2"
                         >
-                            Info Profil
+                            Dataku
                             <img src={profile} alt="icon" className="h-8" />
                         </Link>
                     </div>

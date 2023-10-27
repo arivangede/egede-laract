@@ -38,18 +38,29 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);
+
+    Route::get('/aktivitas', function () {
+        return Inertia::render('Aktivitas');
+    });
+    Route::get('/notifikasi', function () {
+        return Inertia::render('Notifikasi');
+    });
+    Route::get('/profil', function () {
+        return Inertia::render('Profil');
+    });
+    Route::get('/dataku', function () {
+        return Inertia::render('DataKu');
+    });
+    Route::get('/dataku/berkasku', function () {
+        return Inertia::render('BerkasKu');
+    });
+    Route::get('/dataku/editprofil', function () {
+        return Inertia::render('EditProfil');
+    });
 });
 
 
-Route::get('/aktivitas', function () {
-    return Inertia::render('Aktivitas');
-});
-Route::get('/notifikasi', function () {
-    return Inertia::render('Notifikasi');
-});
-Route::get('/profil', function () {
-    return Inertia::render('Profil');
-});
+
 
 Route::get('/login', [AuthController::class, 'index'])->name('user.login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
