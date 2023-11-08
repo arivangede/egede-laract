@@ -54,7 +54,7 @@ function AnalisaData(props) {
         const data = JSON.parse(localStorage.getItem("lastopened"));
         if (data) {
             setDesaId(data.desaId);
-            setDusun(data.dusun);
+            setDusun(data.dusun_id);
             setJk(data.jk);
             setPekerjaan(data.pekerjaan);
             setSuku(data.suku);

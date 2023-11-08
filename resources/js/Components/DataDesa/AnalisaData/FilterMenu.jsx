@@ -53,10 +53,13 @@ function FilterMenu({
                     >
                         <option value={""}>pilih</option>;
                         {dusunOptions.map((dusun, i) => (
-                            <option key={i} value={dusun}>
-                                {dusun}
+                            <option key={i} value={dusun.id}>
+                                {dusun.nama_dusun}
                             </option>
                         ))}
+                        <option value={"wherenull"}>
+                            Belum Ada Data Dusun
+                        </option>
                     </select>
                 </div>
                 <div className="flex flex-col">

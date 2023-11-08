@@ -5,6 +5,8 @@ import { Head, Link } from "@inertiajs/react";
 function Show(props) {
     const data = props.dataPenduduk;
     const usia = props.usia;
+
+    console.log(props);
     return (
         <>
             <Head title={data.nama} />
@@ -26,10 +28,10 @@ function Show(props) {
                             src={
                                 !data.foto
                                     ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                    : data.foto
+                                    : "/storage/" + data.foto
                             }
                             alt="foto"
-                            className="w-28 h-28 object-cover object-center"
+                            className="w-28 h-28 object-cover object-center "
                         />
                     </div>
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -47,7 +49,7 @@ function Show(props) {
                                 src={
                                     !data.foto
                                         ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        : data.foto
+                                        : "/storage/" + data.foto
                                 }
                                 alt="foto"
                                 className="h-full w-full object-cover object-center"
@@ -86,7 +88,9 @@ function Show(props) {
                     <div className="w-full p-2 border-b">
                         <span className="text-sm text-slate-500">Dusun :</span>
                         <h1 className="text-base text-slate-600 font-bold">
-                            {data.dusun}
+                            {!data.dusun_id
+                                ? "Belum ada data dusun"
+                                : data.dusun.nama_dusun}
                         </h1>
                     </div>
                     <div className="w-full p-2 border-b">
@@ -100,7 +104,13 @@ function Show(props) {
                             Kecamatan :
                         </span>
                         <h1 className="text-base text-slate-600 font-bold">
-                            {data.kecamatan}
+                            {data.desa.kecamatan}
+                        </h1>
+                    </div>
+                    <div className="w-full p-2 border-b">
+                        <span className="text-sm text-slate-500">Kota :</span>
+                        <h1 className="text-base text-slate-600 font-bold">
+                            {data.desa.kota}
                         </h1>
                     </div>
                     <div className="w-full p-2 border-b">
@@ -108,7 +118,7 @@ function Show(props) {
                             Provinsi :
                         </span>
                         <h1 className="text-base text-slate-600 font-bold">
-                            {data.provinsi}
+                            {data.desa.provinsi}
                         </h1>
                     </div>
                     <div className="w-full p-2 border-b">
@@ -204,7 +214,7 @@ function Show(props) {
                         <span className="whitespace-nowrap">(Menurut KK)</span>
                     </h1>
                     <div className="flex flex-wrap justify-around items-center w-full gap-14">
-                        {!props.dataKeluarga ? (
+                        {!props.dataKeluarga.length ? (
                             <h1 className="text-slate-500 text-center">
                                 Data Keluarga untuk penduduk ini tidak ditemukan
                             </h1>

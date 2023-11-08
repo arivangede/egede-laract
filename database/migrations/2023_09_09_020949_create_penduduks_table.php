@@ -23,9 +23,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('dusun')->nullable();
             $table->foreignId('desa_id')->constrained('desa');
-            $table->string('kecamatan');
-            $table->string('kota');
-            $table->string('provinsi');
             $table->string('no_hp');
             $table->string('stt_nikah');
             $table->string('agama');

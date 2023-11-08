@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desa', function (Blueprint $table) {
+        Schema::create('dusun', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_desa');
-            $table->string('kecamatan');
-            $table->string('kota');
-            $table->string('provinsi');
-            $table->string('sc_desa');
+            $table->string('nama_dusun');
+            $table->foreignId('desa_id')->constrained('desa');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desa');
+        Schema::dropIfExists('dusun');
     }
 };

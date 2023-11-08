@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\eNews;
 use App\Models\Penduduk;
+use App\Models\Dusun;
 
 class Desa extends Model
 {
@@ -24,5 +25,10 @@ class Desa extends Model
     public function penduduk()
     {
         return $this->hasMany(Penduduk::class, 'desa_id');
+    }
+
+    public function dusun()
+    {
+        return $this->hasMany(Dusun::class, 'desa_id');
     }
 }

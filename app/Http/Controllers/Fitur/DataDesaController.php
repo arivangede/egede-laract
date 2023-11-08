@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fitur;
 use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use App\Models\Desa;
+use App\Models\Dusun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -91,11 +92,10 @@ class DataDesaController extends Controller
             ->where('desa_id', $desa)
             ->count();
 
-        $dusuns = Penduduk::where('desa_id', $desa)
-            ->select('dusun')
-            ->distinct()
-            ->orderBy('dusun', 'asc')
-            ->pluck('dusun');
+        $dusuns = Dusun::where('desa_id', $desa)
+            ->select('id', 'nama_dusun')
+            ->orderBy('nama_dusun', 'asc')
+            ->get();
 
         $jenisKelamin = Penduduk::where('desa_id', $desa)
             ->select('jenis_kelamin')
@@ -151,7 +151,11 @@ class DataDesaController extends Controller
         } else {
             $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa_id', $desa)
                 ->when($selectedDusun, function ($query, $selectedDusun) {
-                    return $query->where('dusun', $selectedDusun);
+                    if ($selectedDusun !== 'wherenull') {
+                        return $query->where('dusun_id', $selectedDusun);
+                    } else {
+                        return $query->whereNull('dusun_id');
+                    }
                 })
                 ->when($selectedJk, function ($query, $selectedJk) {
                     return $query->where('jenis_kelamin', $selectedJk);
@@ -207,7 +211,7 @@ class DataDesaController extends Controller
 
     public function show($nik, Request $request)
     {
-        $selectedPenduduk = Penduduk::with('desa')->where('nik', $nik);
+        $selectedPenduduk = Penduduk::with('desa', 'dusun')->where('nik', $nik);
         $getData = $selectedPenduduk->first();
         $no_kk = $getData->no_kk;
         $getKeluarga = Penduduk::where('no_kk', $no_kk)->whereNotIn('nik', [$nik])->get();

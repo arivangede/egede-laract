@@ -11,6 +11,21 @@ class Penduduk extends Model
 {
     use HasFactory;
     protected $table = 'penduduk';
+    protected $fillable = [
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'agama',
+        'suku_bangsa',
+        'kewarganegaraan',
+        'pendidikan_terakhir',
+        'pekerjaan',
+        'penghasilan',
+        'alamat',
+        'dusun',
+        'no_hp',
+        'foto'
+    ];
 
     public function desa()
     {
@@ -19,5 +34,9 @@ class Penduduk extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'nik');
+    }
+    public function dusun()
+    {
+        return $this->belongsTo(Dusun::class, 'dusun_id');
     }
 }

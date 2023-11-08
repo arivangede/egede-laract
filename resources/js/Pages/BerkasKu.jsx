@@ -17,7 +17,7 @@ function BerkasKu() {
             "
             />
             <div className="min-h-screen bg-slate-50 py-8 px-4 text-slate-600 flex flex-col items-center gap-8">
-                <div className="w-full">
+                <div className="w-full flex justify-start">
                     <Link href="/dataku" className="flex items-center">
                         <div className="h-8 w-8">
                             <BackBtn color={"#1e293b"} />

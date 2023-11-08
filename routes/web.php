@@ -5,6 +5,7 @@ use App\Http\Controllers\Fitur\DataDesaController;
 use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -54,9 +55,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dataku/berkasku', function () {
         return Inertia::render('BerkasKu');
     });
-    Route::get('/dataku/editprofil', function () {
-        return Inertia::render('EditProfil');
-    });
+    Route::get('/dataku/editprofil', [UserProfileController::class, 'index'])->name('user.profile');
+    Route::post('/dataku/editprofil', [UserProfileController::class, 'edit']);
+    Route::post('/changeprofile', [UserProfileController::class, 'update']);
+    Route::post('/deleteprofile', [UserProfileController::class, 'destroy']);
 });
 
 

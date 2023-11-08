@@ -33,7 +33,9 @@ const Profil = (props) => {
                     <div className="w-full px-6 -mt-10 pb-20">
                         <div className="entrance h-full bg-white rounded-2xl w-full shadow flex flex-col items-center gap-6">
                             <KartuEgede userData={props.auth.user} />
-                            <ProfilDisplay userPhoto={props.auth.user.foto} />
+                            <ProfilDisplay
+                                userPhoto={props.auth.user.penduduk.foto}
+                            />
                             <ProfilDesc userData={props.auth.user} />
                         </div>
                     </div>
