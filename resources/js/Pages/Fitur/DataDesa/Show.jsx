@@ -80,6 +80,18 @@ function Show(props) {
                         </h1>
                     </div>
                     <div className="w-full p-2 border-b">
+                        <span className="text-sm text-slate-500">Email :</span>
+                        <h1
+                            className={`text-base  ${
+                                data.email ? "text-slate-600" : "text-slate-300"
+                            } font-bold`}
+                        >
+                            {data.email
+                                ? data.email
+                                : "Email belum diisi oleh penduduk"}
+                        </h1>
+                    </div>
+                    <div className="w-full p-2 border-b">
                         <span className="text-sm text-slate-500">Alamat :</span>
                         <h1 className="text-base text-slate-600 font-bold">
                             {data.alamat}
@@ -87,7 +99,13 @@ function Show(props) {
                     </div>
                     <div className="w-full p-2 border-b">
                         <span className="text-sm text-slate-500">Dusun :</span>
-                        <h1 className="text-base text-slate-600 font-bold">
+                        <h1
+                            className={`text-base  ${
+                                data.dusun_id
+                                    ? "text-slate-600"
+                                    : "text-slate-300"
+                            } font-bold`}
+                        >
                             {!data.dusun_id
                                 ? "Belum ada data dusun"
                                 : data.dusun.nama_dusun}

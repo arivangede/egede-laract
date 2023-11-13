@@ -13,17 +13,18 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('no_kk');
+            $table->bigInteger('no_kk')->index();
             $table->string('kepala_keluarga')->nullable();
             $table->string('nama');
-            $table->bigInteger('nik')->unique()->nullable();
+            $table->bigInteger('nik')->unique()->index();
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('alamat');
-            $table->string('dusun')->nullable();
+            $table->foreignId('dusun_id')->nullable()->constrained('dusun');
             $table->foreignId('desa_id')->constrained('desa');
             $table->string('no_hp');
+            $table->string('email')->nullable();
             $table->string('stt_nikah');
             $table->string('agama');
             $table->string('suku_bangsa');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BerkaskuController;
 use App\Http\Controllers\Fitur\DataDesaController;
 use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
@@ -52,9 +53,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dataku', function () {
         return Inertia::render('DataKu');
     });
-    Route::get('/dataku/berkasku', function () {
-        return Inertia::render('BerkasKu');
-    });
+
+    Route::get('/dataku/berkasku', [BerkaskuController::class, 'index'])->name('user.berkasku');
+    Route::post('/dataku/berkasku/ktp', [BerkaskuController::class, 'updateKtp']);
+    Route::post('/dataku/berkasku/kk', [BerkaskuController::class, 'updateKk']);
+    Route::post('/dataku/berkasku/delete-ktp', [BerkaskuController::class, 'destroyKtp']);
+    Route::post('/dataku/berkasku/delete-kk', [BerkaskuController::class, 'destroyKK']);
     Route::get('/dataku/editprofil', [UserProfileController::class, 'index'])->name('user.profile');
     Route::post('/dataku/editprofil', [UserProfileController::class, 'edit']);
     Route::post('/changeprofile', [UserProfileController::class, 'update']);

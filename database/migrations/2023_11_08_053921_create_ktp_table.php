@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ktp', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->foreignId('desa_id')->nullable()->constrained('desa');
-            $table->string('password');
-            $table->foreignId('kelas_id')->constrained('userclasses');
-            $table->bigInteger('nik')->unique();
+            $table->bigInteger('nik')->unique()->index();
             $table->foreign('nik')->references('nik')->on('penduduk');
-            $table->rememberToken();
+            $table->string('file')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ktp');
     }
 };

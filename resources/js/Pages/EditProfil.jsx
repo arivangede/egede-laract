@@ -38,7 +38,7 @@ function EditProfil(props) {
     const [kota, setKota] = useState(dataDesa.kota);
     const [provinsi, setprovinsi] = useState(dataDesa.provinsi);
 
-    const [email, setEmail] = useState(dataUser.email);
+    const [email, setEmail] = useState(dataPenduduk.email);
     const [telpon, setTelpon] = useState(dataPenduduk.no_hp);
 
     const [error, setError] = useState({});
@@ -65,30 +65,6 @@ function EditProfil(props) {
         email: email,
         telpon: telpon,
     };
-
-    useEffect(() => {
-        const initialData = {
-            alamat: dataPenduduk.alamat,
-            tempatLahir: dataPenduduk.tempat_lahir,
-            tglLahir: dataPenduduk.tanggal_lahir,
-            jenisKelamin: dataPenduduk.jenis_kelamin,
-            statusNikah: dataPenduduk.stt_nikah,
-            agama: dataPenduduk.agama,
-            kewarganegaraan: dataPenduduk.kewarganegaraan,
-            pendidikan: dataPenduduk.pendidikan_terakhir,
-            pekerjaan: dataPenduduk.pekerjaan,
-            penghasilan: dataPenduduk.penghasilan,
-            sukuBangsa: dataPenduduk.suku_bangsa,
-            dusun: dataPenduduk.dusun_id,
-            email: dataUser.email,
-            telpon: dataPenduduk.no_hp,
-        };
-
-        const isFormChanged =
-            JSON.stringify(initialData) !== JSON.stringify(formData);
-
-        setFormChanged(isFormChanged);
-    }, [formData]);
 
     const agamaList = [
         "Hindu",
@@ -160,6 +136,30 @@ function EditProfil(props) {
         setFotoProfil(null);
         setTemporaryUrlPhoto(null);
     };
+
+    useEffect(() => {
+        const initialData = {
+            alamat: dataPenduduk.alamat,
+            tempatLahir: dataPenduduk.tempat_lahir,
+            tglLahir: dataPenduduk.tanggal_lahir,
+            jenisKelamin: dataPenduduk.jenis_kelamin,
+            statusNikah: dataPenduduk.stt_nikah,
+            agama: dataPenduduk.agama,
+            kewarganegaraan: dataPenduduk.kewarganegaraan,
+            pendidikan: dataPenduduk.pendidikan_terakhir,
+            pekerjaan: dataPenduduk.pekerjaan,
+            penghasilan: dataPenduduk.penghasilan,
+            sukuBangsa: dataPenduduk.suku_bangsa,
+            dusun: dataPenduduk.dusun_id,
+            email: dataPenduduk.email,
+            telpon: dataPenduduk.no_hp,
+        };
+
+        const isFormChanged =
+            JSON.stringify(initialData) !== JSON.stringify(formData);
+
+        setFormChanged(isFormChanged);
+    }, [formData, editProfile]);
 
     const isError =
         error.sukuBangsa || error.tempatLahir || error.email || error.pekerjaan;
@@ -277,18 +277,14 @@ function EditProfil(props) {
                                     accept="image/*"
                                     onChange={(e) => {
                                         const file = e.target.files[0];
-                                        if (
-                                            file === fotoProfil ||
-                                            file !== fotoProfil
-                                        ) {
-                                            setFotoProfil(file),
-                                                setTemporaryUrlPhoto(
-                                                    URL.createObjectURL(file)
-                                                ),
-                                                setChanges(true),
-                                                setUpdate(true),
-                                                setInput(false);
-                                        }
+
+                                        setFotoProfil(file);
+                                        setTemporaryUrlPhoto(
+                                            URL.createObjectURL(file)
+                                        );
+                                        setChanges(true);
+                                        setUpdate(true);
+                                        setInput(false);
                                     }}
                                     hidden
                                 />
@@ -523,9 +519,7 @@ function EditProfil(props) {
                                     id="statusNikah"
                                     value={statusNikah}
                                     onChange={(statusNikah) =>
-                                        setJenisKelamin(
-                                            statusNikah.target.value
-                                        )
+                                        setStatusNikah(statusNikah.target.value)
                                     }
                                     className="rounded-xl border-slate-300"
                                 >

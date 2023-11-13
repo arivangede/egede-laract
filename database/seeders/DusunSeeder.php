@@ -13,38 +13,38 @@ class DusunSeeder extends Seeder
      */
     public function run(): void
     {
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Lelangon',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Lumintang',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Mekarsari',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Terunasari',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Wanasari',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Wangaya Kaja',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Wangaya Klod',
-        //     'desa_id' => '1',
-        // ]);
-        // DB::table('dusun')->insert([
-        //     'nama_dusun' => 'Wangaya Klod',
-        //     'desa_id' => '1',
-        // ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Lelangon',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Lumintang',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Mekarsari',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Terunasari',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Wanasari',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Wangaya Kaja',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Wangaya Klod',
+            'desa_id' => '1',
+        ]);
+        DB::table('dusun')->insert([
+            'nama_dusun' => 'Wangaya Klod',
+            'desa_id' => '1',
+        ]);
         DB::table('dusun')->insert([
             'nama_dusun' => 'Ambengan',
             'desa_id' => '2',

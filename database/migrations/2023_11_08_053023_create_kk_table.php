@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('berkas', function (Blueprint $table) {
+        Schema::create('kk', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('no_kk')->unique()->index();
+            $table->foreign('no_kk')->references('no_kk')->on('penduduk');
+            $table->string('file')->nullable();
+            $table->string('file_name')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('berkas');
+        Schema::dropIfExists('kk');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Dusun;
 use App\Models\Penduduk;
 use App\Models\User;
@@ -34,7 +35,6 @@ class UserProfileController extends Controller
     {
 
         $user = auth()->user();
-        $iduser = $user->id;
         $nik = $user->nik;
         $penduduk = Penduduk::where('nik', $nik)->first();
 
@@ -136,8 +136,7 @@ class UserProfileController extends Controller
             }
 
             if ($email) {
-                $userdata = User::where('id', $iduser)->first();
-                $userdata->update(['email' => $email]);
+                $updateData['email'] = $email;
             }
 
             $penduduk->update($updateData);

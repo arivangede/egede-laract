@@ -22,7 +22,8 @@ class Penduduk extends Model
         'pekerjaan',
         'penghasilan',
         'alamat',
-        'dusun',
+        'dusun_id',
+        'email',
         'no_hp',
         'foto'
     ];
@@ -38,5 +39,13 @@ class Penduduk extends Model
     public function dusun()
     {
         return $this->belongsTo(Dusun::class, 'dusun_id');
+    }
+    public function kk()
+    {
+        return $this->belongsTo(KK::class, 'no_kk');
+    }
+    public function ktp()
+    {
+        return $this->belongsTo(KTP::class, 'nik');
     }
 }
