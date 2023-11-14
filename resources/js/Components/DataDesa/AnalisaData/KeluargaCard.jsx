@@ -29,7 +29,7 @@ function KeluargaCard({ data }) {
                             : "Anggota Keluarga"}
                     </h1>
                     <Link
-                        href={`/data-desa/analisa-data/show/${item.nik}?back=true`}
+                        href={`/data-desa/analisa-data/show/${item.nik}`}
                         className="w-full p-2 flex justify-center items-center bg-slate-600 text-white rounded-b-xl"
                     >
                         Lihat Detail

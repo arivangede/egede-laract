@@ -10,11 +10,18 @@ class GuestAppController extends Controller
 {
     public function index()
     {
-        $berita = eNews::orderBy('id', 'desc')->with('users')->get();
+        $user = auth()->user();
+        $desaid = $user->desa_id;
+
+        $berita = eNews::where('category', 'berita')->where('desa_id', $desaid)->orderBy('id', 'desc')->with('users', 'desa')->get();
         $beritaTerbaru = $berita->take(5);
+
+        $pengumuman = eNews::where('category', 'pengumuman')->where('desa_id', $desaid)->orderBy('id', 'desc')->with('users', 'desa')->get();
+        $pengumumanTerbaru = $pengumuman->take(5);
 
         return Inertia::render('Homepage', [
             'berita' => $beritaTerbaru,
+            'pengumuman' => $pengumumanTerbaru
         ]);
     }
 }

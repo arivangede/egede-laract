@@ -12,19 +12,25 @@ class EnewsController extends Controller
 {
     public function index()
     {
-        $berita = eNews::orderBy('id', 'desc')->with('users')->get();
+        $user = auth()->user();
+        $desaid = $user->desa_id;
+
+        $berita = eNews::where('category', 'berita')->where('desa_id', $desaid)->orderBy('id', 'desc')->with('users', 'desa')->get();
         $beritaTerbaru = $berita->take(5);
         $beritaLainnya = $berita->skip(5)->values()->all();
 
+        $pengumuman = eNews::where('category', 'pengumuman')->where('desa_id', $desaid)->orderBy('id', 'desc')->with('users', 'desa')->get();
+
         return Inertia::render('Fitur/Enews/Index', [
             'carousel' => $beritaTerbaru,
-            'card' => $beritaLainnya
+            'card' => $beritaLainnya,
+            'pengumuman' => $pengumuman
         ]);
     }
 
     public function show($id, Request $request)
     {
-        $selectedBerita = eNews::with('users')->find($id);
+        $selectedBerita = eNews::with('users', 'desa')->find($id);
         $likesCount = Like::where('enews_id', $id)->count();
 
         $existinglike = Like::where('user_id', auth()->id())->where('enews_id', $request->id)->first();

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('enews', function (Blueprint $table) {
             $table->id();
+            $table->string('category');
             $table->string('title');
             $table->foreignId('author')->constrained('users');
             $table->text('content');

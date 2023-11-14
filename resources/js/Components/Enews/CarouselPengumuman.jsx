@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { useState, useRef, useEffect } from "react";
 
-function CarouselBerita({ berita }) {
+function CarouselPengumuman({ pengumuman }) {
     const carouselRef = useRef(null);
     const [activeSlide, setActiveSlide] = useState(0);
     useEffect(() => {
@@ -35,8 +35,8 @@ function CarouselBerita({ berita }) {
                 className="w-full h-full flex gap-2 carousel pb-4"
                 ref={carouselRef}
             >
-                {berita
-                    ? berita.map((item, i) => (
+                {pengumuman
+                    ? pengumuman.map((item, i) => (
                           <Link
                               href={"/e-news/" + item.id}
                               key={i}
@@ -67,7 +67,7 @@ function CarouselBerita({ berita }) {
 
             <div className="absolute bottom-2 right-0 left-0">
                 <div className="flex items-center justify-center gap-1">
-                    {berita.map((_, i) => (
+                    {pengumuman.map((_, i) => (
                         <div
                             key={i}
                             className={`transition-all w-2 h-2 rounded-full bg-red-500  ${
@@ -81,4 +81,4 @@ function CarouselBerita({ berita }) {
     );
 }
 
-export default CarouselBerita;
+export default CarouselPengumuman;

@@ -1,17 +1,17 @@
 import { Link } from "@inertiajs/react";
 
-function CardBerita({ berita }) {
-    if (!berita || !berita.length) {
-        return <p>Tidak ada berita tersedia.</p>;
+function CardPengumuman({ pengumuman }) {
+    if (!pengumuman || !pengumuman.length) {
+        return <p>Tidak ada pengumuman tersedia.</p>;
     }
 
     return (
         <>
-            {berita
-                ? berita.map((item, i) => (
+            {pengumuman
+                ? pengumuman.map((item, i) => (
                       <div
                           key={i}
-                          className="w-full h-40 bg-white shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2 overflow-hidden"
+                          className=" w-full h-40 bg-white shadow-lg rounded-xl border-slate-100 flex justify-around items-center gap-2 overflow-hidden"
                       >
                           <div className="h-full w-[40%] overflow-hidden">
                               <img
@@ -37,7 +37,7 @@ function CardBerita({ berita }) {
                                       {item["desa"]["nama_desa"]}
                                   </span>
                                   <Link
-                                      href={"/e-news/" + berita[i]["id"]}
+                                      href={"/e-news/" + pengumuman[i]["id"]}
                                       className="border rounded-md bg-red-500 px-4 py-1 text-sm text-white"
                                   >
                                       Lihat
@@ -51,4 +51,4 @@ function CardBerita({ berita }) {
     );
 }
 
-export default CardBerita;
+export default CardPengumuman;

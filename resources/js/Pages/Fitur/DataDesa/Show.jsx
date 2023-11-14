@@ -7,15 +7,22 @@ function Show(props) {
     const usia = props.usia;
 
     console.log(props);
+
+    const handleBack = () => {
+        history.back();
+    };
     return (
         <>
             <Head title={data.nama} />
             <div className="min-h-screen bg-slate-50 flex flex-col gap-10 p-4">
                 <div className="w-9">
                     {props.nullback != "true" && (
-                        <Link href="/data-desa/analisa-data">
+                        <div
+                            onClick={handleBack}
+                            href="/data-desa/analisa-data"
+                        >
                             <BackBtn color={"#334155"} />
-                        </Link>
+                        </div>
                     )}
                 </div>
                 <div

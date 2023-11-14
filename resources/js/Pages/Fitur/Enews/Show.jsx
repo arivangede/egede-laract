@@ -21,16 +21,18 @@ function Show(props) {
         }
     };
 
+    const handleBack = () => {
+        history.back();
+    };
+
     return (
         <>
             <Head title={props.berita.title} />
 
             <div className="entrance rounded-t-2xl flex flex-col items-center text-slate-800 bg-slate-50 min-h-screen">
                 <div className="w-full flex p-4">
-                    <div className="w-8">
-                        <Link href="/e-news">
-                            <BackBtn color={"#1e293b"} />
-                        </Link>
+                    <div onClick={handleBack} className="w-8">
+                        <BackBtn color={"#1e293b"} />
                     </div>
                 </div>
                 <div className="w-full px-4 py-2">
@@ -39,7 +41,7 @@ function Show(props) {
                             {props.berita.created_at} |
                         </span>
                         <span className="text-sm pl-1">
-                            {props.berita.users.username}
+                            {props.berita.desa.nama_desa}
                         </span>
                     </div>
                     <h1 className="text-xl font-bold leading-6">
