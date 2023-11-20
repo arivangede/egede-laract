@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews');
     Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews');
+    Route::get('/create-pengumuman', [EnewsController::class, 'pengumuman']);
 
     Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
     Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');

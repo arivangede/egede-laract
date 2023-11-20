@@ -20,34 +20,30 @@ const Aktivitas = (props) => {
                             onClick={() => setSelectedPage("laporan")}
                             className={`${
                                 selectedPage == "laporan"
-                                    ? "-translate-y-2"
-                                    : ""
-                            } transition duration-500 flex flex-col justify-center items-center gap-1`}
+                                    ? "text-slate-700 -translate-y-2"
+                                    : "text-slate-500"
+                            } transition duration-200 flex flex-col justify-center items-center gap-1`}
                         >
-                            <h2 className="text-slate-500 font-bold">
-                                Laporan Saya
-                            </h2>
+                            <h2 className=" font-bold">Laporan Saya</h2>
                             <div
                                 className={`${
                                     selectedPage == "laporan" ? "" : "scale-0 "
-                                } origin-right transition duration-200 block w-full h-1 rounded-t-xl bg-[#ff4344]`}
+                                } origin-right transition duration-500 block w-full h-1 rounded-t-xl bg-[#ff4344]`}
                             ></div>
                         </button>
                         <button
                             onClick={() => setSelectedPage("disimpan")}
                             className={`${
                                 selectedPage == "disimpan"
-                                    ? "-translate-y-2"
-                                    : ""
-                            } transition duration-500 flex flex-col justify-center items-center gap-1`}
+                                    ? "text-slate-700 -translate-y-2"
+                                    : "text-slate-500"
+                            } transition duration-200 flex flex-col justify-center items-center gap-1`}
                         >
-                            <h2 className="text-slate-500 font-bold">
-                                Disimpan
-                            </h2>
+                            <h2 className=" font-bold">Disimpan</h2>
                             <div
                                 className={`${
                                     selectedPage == "disimpan" ? "" : "scale-0"
-                                } origin-left transition duration-200 block w-full h-1 rounded-t-xl bg-[#ff4344]`}
+                                } origin-left transition duration-500 block w-full h-1 rounded-t-xl bg-[#ff4344]`}
                             ></div>
                         </button>
                     </div>

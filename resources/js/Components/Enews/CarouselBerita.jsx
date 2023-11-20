@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 function CarouselBerita({ berita }) {
     const carouselRef = useRef(null);
     const [activeSlide, setActiveSlide] = useState(0);
+
     useEffect(() => {
         const handleScroll = (e) => {
             const scrollLeft = carouselRef.current.scrollLeft;

@@ -46,4 +46,20 @@ class EnewsController extends Controller
             'liked' => $like
         ]);
     }
+
+    public function pengumuman()
+    {
+        $user = auth()->user();
+        $desa_id = $user->desa_id;
+        $author = $user->desa->nama_desa;
+
+        $pengumuman = Enews::where('desa_id', $desa_id)->where('category', 'pengumuman');
+        $jumlah = $pengumuman->count();
+
+        return Inertia::render('Fitur/Enews/Form', [
+            'desa_id' => $desa_id,
+            'author' => $author,
+            'pengumuman' => $jumlah
+        ]);
+    }
 }
