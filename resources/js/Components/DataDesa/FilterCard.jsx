@@ -9,16 +9,16 @@ function FilterCard({ desa, kategori, onDesaChange, onKategoriChange }) {
                 <select
                     value={desa}
                     onChange={(e) => onDesaChange(e.target.value)}
-                    className="select select-ghost text-slate-700"
+                    className="w-full border-none rounded-full focus:ring-red-400"
                 >
                     <option value={""}>Pilih Desa</option>
                     <option value={"1"}>Dauh Puri Kaja</option>
-                    <option value={"2"}>Dauh Puri</option>
+                    <option value={"2"}>Padang Sambian Kelod</option>
                 </select>
                 <select
                     value={kategori}
                     onChange={(e) => onKategoriChange(e.target.value)}
-                    className="select select-ghost text-slate-700"
+                    className="w-full border-none rounded-full focus:ring-red-400"
                 >
                     <option value={""}>Pilih Kategori</option>
                     <option value={"jenis_kelamin"}>Jenis Kelamin</option>
