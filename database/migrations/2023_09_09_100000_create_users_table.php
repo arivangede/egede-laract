@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->foreignId('desa_id')->nullable()->constrained('desa');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->foreignId('kelas_id')->constrained('userclasses');
             $table->bigInteger('nik')->unique();
             $table->foreign('nik')->references('nik')->on('penduduk');
+            $table->string('email')->unique()->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

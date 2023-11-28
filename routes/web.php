@@ -34,10 +34,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/create-pengumuman', [EnewsController::class, 'pengumuman']);
 
     Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
-    Route::post('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
-    Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa');
-    Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.datadesa');
-    Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.datadesa');
+    Route::post('/data-desa', [DataDesaController::class, 'index']);
+    Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.analisadata');
+    Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa']);
+    Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.showdata');
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);
@@ -67,11 +67,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-
 Route::get('/login', [AuthController::class, 'index'])->name('user.login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register'])->name('user.register');
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::post('/register', [AuthController::class, 'generateOTP']);
+Route::get('/verify', [AuthController::class, 'verifyPage'])->name('user.verify');
+Route::post('/verify', [AuthController::class, 'verifyOTP']);
 
 
 

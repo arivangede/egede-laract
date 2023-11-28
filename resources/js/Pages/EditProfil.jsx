@@ -7,6 +7,7 @@ function EditProfil(props) {
     console.log(props);
     const dataPenduduk = props.auth.penduduk;
     const dataDesa = props.auth.desa;
+    const dataUser = props.auth.user;
     const defaultPict =
         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
@@ -37,7 +38,7 @@ function EditProfil(props) {
     const [kota, setKota] = useState(dataDesa.kota);
     const [provinsi, setprovinsi] = useState(dataDesa.provinsi);
 
-    const [email, setEmail] = useState(dataPenduduk.email);
+    const [email, setEmail] = useState(dataUser.email);
     const [telpon, setTelpon] = useState(dataPenduduk.no_hp);
 
     const [error, setError] = useState({});
@@ -150,7 +151,7 @@ function EditProfil(props) {
             penghasilan: dataPenduduk.penghasilan,
             sukuBangsa: dataPenduduk.suku_bangsa,
             dusun: dataPenduduk.dusun_id,
-            email: dataPenduduk.email,
+            email: dataUser.email,
             telpon: dataPenduduk.no_hp,
         };
 

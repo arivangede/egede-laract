@@ -1,4 +1,4 @@
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
 import logo from "@/assets/icon/logo-egede.png";
@@ -93,6 +93,15 @@ function LoginForm({ errors, flash }) {
                             <span className="font-bold text-xl">Login</span>
                             <i className="bx bxs-log-in-circle text-2xl"></i>
                         </button>
+                        <span className="text-slate-600 text-sm">
+                            Belum punya akun?{" "}
+                            <Link
+                                href="/register"
+                                className="underline font-bold"
+                            >
+                                Daftar Sekarang
+                            </Link>
+                        </span>
                     </div>
                 </form>
 

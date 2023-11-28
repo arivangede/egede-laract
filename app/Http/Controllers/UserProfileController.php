@@ -50,7 +50,6 @@ class UserProfileController extends Controller
             'penghasilan' => 'numeric',
             'alamat' => 'string|min:2|max:50',
             'dusun' => 'numeric',
-            'email' => 'email:dns',
             'noTelp' => 'string|min:10|max:13'
         ], [
             'tempatLahir.regex' => 'Kolom tempat lahir hanya boleh berisi huruf dan spasi.',
@@ -64,7 +63,6 @@ class UserProfileController extends Controller
             'penghasilan.numeric' => 'Kolom penghasilan tidak boleh berisi karakter selain numerik.',
             'alamat.min' => 'Kolom alamat tidak boleh kurang dari 2 karakter.',
             'alamat.max' => 'Kolom alamat tidak boleh lebih dari 50 karakter.',
-            'email' => 'Email harus menggunakan alamat email yang valid.',
             'noTelp.numeric' => 'Kolom No Telepon tidak boleh berisi karakter selain numerik.',
             'noTelp.min' => 'Kolom No Telepon tidak boleh kurang dari 10 karakter numerik.',
             'noTelp.max' => 'Kolom No Telepon tidak boleh lebih dari 13 karakter numerik.',
@@ -82,7 +80,6 @@ class UserProfileController extends Controller
         $penghasilan = $validatedData['penghasilan'];
         $alamat = $validatedData['alamat'];
         $dusun = $validatedData['dusun'];
-        $email = $validatedData['email'];
         $noTelp = $validatedData['noTelp'];
 
         if ($penduduk) {
@@ -133,10 +130,6 @@ class UserProfileController extends Controller
 
             if ($noTelp) {
                 $updateData['no_hp'] = $noTelp;
-            }
-
-            if ($email) {
-                $updateData['email'] = $email;
             }
 
             $penduduk->update($updateData);
