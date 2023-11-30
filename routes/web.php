@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkaskuController;
 use App\Http\Controllers\Fitur\DataDesaController;
@@ -41,10 +42,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);
+    ROute::post('/bookmarks', [ActivityController::class, 'storebookmark']);
+    ROute::post('/bookmarks/{id}', [ActivityController::class, 'destroybookmark']);
 
-    Route::get('/aktivitas', function () {
-        return Inertia::render('Aktivitas');
-    });
+    Route::get('/aktivitas', [ActivityController::class, 'index'])->name('user.activity');
+    Route::post('/aktivitas', [ActivityController::class, 'index']);
     Route::get('/notifikasi', function () {
         return Inertia::render('Notifikasi');
     });

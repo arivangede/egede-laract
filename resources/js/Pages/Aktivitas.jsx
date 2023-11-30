@@ -1,11 +1,26 @@
 import Navbar from "@/Components/Navbar";
 import { Head } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import gambar from "@/assets/svg/gambar.svg";
+import Disimpan from "@/Components/Aktivitas/Disimpan/Disimpan";
 
 const Aktivitas = (props) => {
-    const [selectedPage, setSelectedPage] = useState("laporan");
+    const lastOpened = JSON.parse(localStorage.getItem("lastOpened"));
+    const [selectedPage, setSelectedPage] = useState(lastOpened || "laporan");
 
+    useEffect(() => {
+        window.localStorage.setItem("lastOpened", JSON.stringify(selectedPage));
+    }, [selectedPage]);
+
+    // useEffect(() => {
+    //     const shouldReload = window.localStorage.getItem("reload");
+    //     if (shouldReload === "true") {
+    //         window.localStorage.setItem("reload", "false");
+    //         window.location.reload();
+    //     }
+    // }, []);
+
+    console.log(props);
     return (
         <>
             <Navbar active={"Aktivitas"} />
@@ -48,65 +63,36 @@ const Aktivitas = (props) => {
                         </button>
                     </div>
 
-                    <div
-                        className={`${
-                            selectedPage == "laporan" ? "" : "opacity-0 scale-0"
-                        } origin-bottom transition duration-300 w-full h-full`}
-                    >
+                    {selectedPage == "laporan" ? (
                         <div
-                            className={`${
-                                selectedPage != "laporan" ? "hidden" : ""
-                            }`}
+                            className={`origin-bottom transition duration-300 w-full h-full entrance`}
                         >
-                            <img src={gambar} alt="gambar" className="w-full" />
-                            <div className="w-full flex flex-col items-center justify-center gap-2 px-6 py-2">
-                                <h1 className="text-2xl text-center text-slate-500 font-bold">
-                                    Kamu belum pernah membuat laporan
-                                </h1>
-                                <span className="text-base text-center text-slate-700 font-bold">
-                                    Yuk perhatikan sekitar desa kamu dan
-                                    laporkan di fitur Pengaduan!
-                                </span>
+                            <div
+                                className={`${
+                                    selectedPage != "laporan" ? "hidden" : ""
+                                }`}
+                            >
+                                <img
+                                    src={gambar}
+                                    alt="gambar"
+                                    className="w-full"
+                                />
+                                <div className="w-full flex flex-col items-center justify-center gap-2 px-6 py-2">
+                                    <h1 className="text-2xl text-center text-slate-500 font-bold">
+                                        Kamu belum pernah membuat laporan
+                                    </h1>
+                                    <span className="text-base text-center text-slate-700 font-bold">
+                                        Yuk perhatikan sekitar desa kamu dan
+                                        laporkan di fitur Pengaduan!
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div
-                        className={`${
-                            selectedPage == "disimpan"
-                                ? ""
-                                : "opacity-0 scale-0"
-                        } origin-bottom transition duration-300 w-full h-full relative`}
-                    >
-                        <div
-                            className={`${
-                                selectedPage != "disimpan" ? "hidden" : ""
-                            } w-full pb-4 px-6 flex items-center gap-4`}
-                        >
-                            <button className="py-2 px-4 bg-red-500 shadow text-white rounded-xl">
-                                Semua
-                            </button>
-
-                            <select
-                                name="kategori"
-                                id="kategori"
-                                className="rounded-xl border-slate-300 bg-transparent"
-                            >
-                                <option value="">Kategori</option>
-                                <option value="e-news">E-News</option>
-                                <option value="pengaduan">Pengaduan</option>
-                            </select>
-                        </div>
-                        <div
-                            className={`${
-                                selectedPage != "disimpan" ? "hidden" : ""
-                            }flex justify-center items-center px-6 py-52`}
-                        >
-                            <h1 className="text-xl text-slate-500 font-bold text-center">
-                                Tidak ada konten yang disimpan , Yuk lihat
-                                E-News atau Pengaduan dan simpan yang kamu suka!
-                            </h1>
-                        </div>
-                    </div>
+                    ) : selectedPage == "disimpan" ? (
+                        <Disimpan data={props.bookmarkList} />
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
         </>

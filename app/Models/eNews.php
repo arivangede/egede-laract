@@ -35,4 +35,9 @@ class eNews extends Model
     {
         return $this->likes()->count();
     }
+
+    public function bookmark()
+    {
+        return $this->hasMany(Bookmark::class, 'enews_id');
+    }
 }

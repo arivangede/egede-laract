@@ -10,7 +10,7 @@ function Show(props) {
     const like = props.likes_count;
     const [likeCount, setLikeCount] = useState(like);
 
-    console.log(props.berita);
+    console.log(props);
     const handleLikeChange = (isLiked) => {
         // Jika tombol "Like" diklik, tambahkan like
         if (isLiked) {
@@ -61,7 +61,11 @@ function Show(props) {
                         <ShareBtn />
                     </div>
                     <div className="flex gap-2">
-                        <SaveBtn />
+                        <SaveBtn
+                            userId={props.auth.user.id}
+                            newsId={props.berita.id}
+                            bookmarked={props.bookmarked}
+                        />
                     </div>
                 </div>
 

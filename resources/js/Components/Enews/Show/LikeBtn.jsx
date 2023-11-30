@@ -8,11 +8,9 @@ function LikeBtn({ userId, newsId, onLikeChange, liked }) {
             const data = { user_id: userId, news_id: newsId };
             router.post(`/likes/${newsId}`, data);
             setIsLiked(false);
-            console.log("hapus");
         } else {
             router.post("/likes", { news_id: newsId });
             setIsLiked(true);
-            console.log("buat");
         }
 
         if (onLikeChange) {

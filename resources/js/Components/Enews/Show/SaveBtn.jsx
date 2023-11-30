@@ -1,21 +1,30 @@
+import { router } from "@inertiajs/react";
 import { useState } from "react";
 
-function SaveBtn() {
-    const [isClicked, setIsClicked] = useState(false);
+function SaveBtn({ userId, newsId, bookmarked }) {
+    const [isBookmarked, setIsBookmarked] = useState(bookmarked);
 
-    const handleClick = () => {
-        setIsClicked(!isClicked);
+    const handleBookmark = () => {
+        if (isBookmarked) {
+            const data = { user_id: userId, enews_id: newsId };
+            router.post(`/bookmarks/${newsId}`, data);
+            console.log(userId, newsId);
+            setIsBookmarked(false);
+        } else {
+            router.post("/bookmarks", { news_id: newsId });
+            setIsBookmarked(true);
+        }
     };
 
     return (
         <>
             <button
-                onClick={handleClick}
+                onClick={handleBookmark}
                 className={`w-6 flex justify-center items-center ${
-                    isClicked ? "clicked" : ""
+                    isBookmarked ? "clicked" : ""
                 }`}
             >
-                {isClicked ? (
+                {isBookmarked ? (
                     <svg
                         viewBox="-4 0 30 30"
                         version="1.1"
