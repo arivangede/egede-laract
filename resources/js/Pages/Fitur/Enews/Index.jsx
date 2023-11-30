@@ -94,7 +94,7 @@ function Enews(props) {
                                     pageState == "berita"
                                         ? "scale-100"
                                         : "scale-0"
-                                } transition duration-300 block w-full h-1 bg-[#ff4344] origin-right rounded-b-full`}
+                                } transition duration-300 block w-full h-1 bg-[#ff4344] origin-right rounded-t-full`}
                             ></div>
                         </button>
                         <button
@@ -111,7 +111,7 @@ function Enews(props) {
                                     pageState == "pengumuman"
                                         ? "scale-100"
                                         : "scale-0"
-                                } transition duration-300 block w-full h-1 bg-[#ff4344] origin-left rounded-b-full`}
+                                } transition duration-300 block w-full h-1 bg-[#ff4344] origin-left rounded-t-full`}
                             ></div>
                         </button>
                     </div>
