@@ -7,6 +7,8 @@ use App\Http\Controllers\Fitur\DataDesaController;
 use App\Http\Controllers\Fitur\EnewsController;
 use App\Http\Controllers\GuestAppController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ProfilDesaController;
+use App\Http\Controllers\SubProfilDesaController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +41,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.analisadata');
     Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa']);
     Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.showdata');
+
+    Route::get('/profil-desa', [ProfilDesaController::class, 'index'])->name('user.profildesa');
+    Route::get('/profil-desa/wilayah-desa', [ProfilDesaController::class, 'wilayahdesa'])->name('user.wilayahdesa');
+    Route::get('/profil-desa/sejarah-desa', [ProfilDesaController::class, 'sejarahdesa'])->name('user.sejarahdesa');
+    Route::get('/profil-desa/visi-misi', [ProfilDesaController::class, 'visimisi'])->name('user.visimisidesa');
+    Route::get('/profil-desa/struktur-pemerintahan', [ProfilDesaController::class, 'struktur'])->name('user.visimisidesa');
+    Route::get('/profil-desa/lpm', [ProfilDesaController::class, 'lpm'])->name('user.lpmdesa');
+    Route::get('/profil-desa/sub/{title}', [SubProfilDesaController::class, 'index'])->name('user.sub');
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);

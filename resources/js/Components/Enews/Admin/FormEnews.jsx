@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TextEditor from "./TextEditor";
 
 function FormEnews() {
     const [title, setTitle] = useState("");
@@ -7,7 +8,8 @@ function FormEnews() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ title: title, desc: desc, photoFile: photoFile });
+        const data = { title: title, desc: desc, photoFile: photoFile };
+        console.log(data);
     };
 
     return (
@@ -22,24 +24,18 @@ function FormEnews() {
                         className="border-slate-200 rounded-xl"
                     />
                 </div>
-                <div className="w-full flex flex-col">
+                <div className="w-full h-full flex flex-col">
                     <h1>Deskripsi :</h1>
-                    <textarea
-                        name="desc"
-                        id="desc"
-                        cols="30"
-                        rows="10"
-                        onChange={(e) => setDesc(e.target.value)}
-                        value={desc}
-                        className="border-slate-200 rounded-xl"
-                    />
+                    <TextEditor desc={desc} setdesc={setDesc} />
                 </div>
-                <div className="w-full">
+                <div className="w-full h-full flex items-center gap-4">
                     <button
                         onClick={() =>
                             document.querySelector("#postPhoto").click()
                         }
-                        className="rounded-full h-12 w-12 shadow border border-slate-300 text-sm"
+                        className={`rounded-full h-12 w-12 shadow border border-slate-300 text-sm ${
+                            photoFile ? "bg-green-400" : ""
+                        }`}
                     >
                         photo
                     </button>
@@ -53,6 +49,7 @@ function FormEnews() {
                         }}
                         hidden
                     />
+                    {photoFile.name && <h1>{photoFile.name}</h1>}
                 </div>
                 <button
                     className="border py-2 px-4 rounded-lg"
@@ -61,6 +58,10 @@ function FormEnews() {
                     Submit
                 </button>
             </div>
+            <div
+                dangerouslySetInnerHTML={{ __html: desc }}
+                className="w-full break-all"
+            />
         </div>
     );
 }

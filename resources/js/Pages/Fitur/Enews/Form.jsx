@@ -7,8 +7,6 @@ function Form(props) {
     const handleBack = () => {
         history.back();
     };
-
-    console.log(props);
     return (
         <>
             <Head title="Buat Pengumuman" />
