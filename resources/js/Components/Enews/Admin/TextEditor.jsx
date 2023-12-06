@@ -17,13 +17,15 @@ function TextEditor({ desc, setdesc }) {
     };
 
     return (
-        <ReactQuill
-            theme="bubble"
-            modules={modules}
-            value={desc}
-            onChange={handleChange}
-            className="w-full border border-slate-200 rounded-xl"
-        />
+        <>
+            <ReactQuill
+                theme="bubble"
+                modules={modules}
+                value={desc}
+                onChange={handleChange}
+                className="w-full border border-slate-200 rounded-xl post"
+            />
+        </>
     );
 }
 

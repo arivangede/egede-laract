@@ -22,8 +22,8 @@ function Form(props) {
                         </h1>
                     </div>
 
-                    <FormEnews />
                     <LimitBar pengumumanCount={props.pengumuman} />
+                    <FormEnews />
                 </div>
             </div>
         </>

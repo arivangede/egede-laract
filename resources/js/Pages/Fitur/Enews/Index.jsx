@@ -40,11 +40,11 @@ function Enews(props) {
                                     >
                                         <Link
                                             href="/create-pengumuman"
-                                            className="text-bold"
+                                            className="text-bold text-white"
                                         >
                                             Buat Pengumuman
                                         </Link>
-                                        <button className="text-bold">
+                                        <button className="text-bold text-white">
                                             Buat Berita
                                         </button>
                                     </div>

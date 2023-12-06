@@ -1195,6 +1195,7 @@ li.ql-indent-9.ql-direction-rtl.ql-align-right {
     content: "Enter video:";
 }
 
-a {
+.post a {
     color: #06c;
+    @apply underline
 }
