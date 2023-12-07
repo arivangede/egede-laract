@@ -4,7 +4,7 @@ import RegulasiBtn from "./MenuBtn/RegulasiBtn";
 import PengaduanBtn from "./MenuBtn/PengaduanBtn";
 import DataDesaBtn from "./MenuBtn/DataDesaBtn";
 import LayananPublikBtn from "./MenuBtn/LayananPublikBtn";
-import EpasarBtn from "./MenuBtn/EpasarBtn";
+import KeuanganBtn from "./MenuBtn/KeuanganBtn";
 
 function LainnyaPopup({ trigger, setTrigger }) {
     return trigger ? (
@@ -26,7 +26,7 @@ function LainnyaPopup({ trigger, setTrigger }) {
                     <PengaduanBtn />
                     <DataDesaBtn />
                     <LayananPublikBtn />
-                    <EpasarBtn />
+                    <KeuanganBtn />
                 </div>
             </div>
         </div>

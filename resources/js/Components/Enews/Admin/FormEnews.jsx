@@ -7,7 +7,7 @@ import ShareBtn from "../Show/ShareBtn";
 import SaveBtn from "../Show/SaveBtn";
 import { router } from "@inertiajs/react";
 
-function FormEnews({ author, desaID }) {
+function FormEnews({ author, desaID, error }) {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [photoFile, setPhotoFile] = useState("");
@@ -36,6 +36,7 @@ function FormEnews({ author, desaID }) {
         router.post("/create-pengumuman", data);
     };
 
+    console.log(error);
     return (
         <div className="w-full flex flex-col justify-center items-center px-4 gap-4 pb-10">
             <div className="w-full h-full bg-white shadow rounded-xl flex flex-col justify-center items-center p-4 gap-4">
@@ -45,37 +46,61 @@ function FormEnews({ author, desaID }) {
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="border-slate-200 rounded-xl"
+                        className={`${
+                            error.title ? "border-red-400" : "border-slate-200"
+                        } rounded-xl`}
                     />
+                    {error.title ? (
+                        <span className="text-sm text-red-400">
+                            {error.title}
+                        </span>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className="w-full h-full flex flex-col">
                     <h1>Deskripsi :</h1>
-                    <TextEditor desc={desc} setdesc={setDesc} />
+                    <TextEditor desc={desc} setdesc={setDesc} error={error} />
                 </div>
-                <div className="w-full h-full flex items-center gap-4">
-                    <button
-                        onClick={() =>
-                            document.querySelector("#postPhoto").click()
-                        }
-                        className={`rounded-full h-12 w-12 shadow border border-slate-300 text-sm p-2 ${
-                            photoFile ? "bg-green-400" : ""
-                        }`}
-                    >
-                        <Photo color={photoFile ? "#fff" : "#444"} />
-                    </button>
-                    <input
-                        type="file"
-                        id="postPhoto"
-                        accept="image/*"
-                        onChange={(e) => {
-                            const file = e.target.files[0];
-                            setUrlPhoto(URL.createObjectURL(file));
-                            setPhotoFile(file);
-                        }}
-                        hidden
-                    />
-                    {photoFile.name && <h1>{photoFile.name}</h1>}
+                <div className="w-full h-full flex flex-col gap-4">
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() =>
+                                document.querySelector("#postPhoto").click()
+                            }
+                            className={`rounded-full h-12 w-12 shadow border text-sm p-2 ${
+                                photoFile
+                                    ? "bg-green-400"
+                                    : error.photoFile
+                                    ? "border-red-400 "
+                                    : ""
+                            }`}
+                        >
+                            <Photo color={photoFile ? "#fff" : "#444"} />
+                        </button>
+
+                        <input
+                            type="file"
+                            id="postPhoto"
+                            accept="image/*"
+                            onChange={(e) => {
+                                const file = e.target.files[0];
+                                setUrlPhoto(URL.createObjectURL(file));
+                                setPhotoFile(file);
+                            }}
+                            hidden
+                        />
+                        {photoFile.name && <h1>{photoFile.name}</h1>}
+                    </div>
+                    {error.photoFile ? (
+                        <span className="text-sm text-red-400">
+                            {error.photoFile}
+                        </span>
+                    ) : (
+                        ""
+                    )}
                 </div>
+
                 <button
                     className="border py-2 px-4 rounded-lg"
                     onClick={handleSubmit}

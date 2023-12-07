@@ -38,6 +38,7 @@ function Form(props) {
                     <FormEnews
                         author={props.auth.user.id}
                         desaID={props.auth.user.desa_id}
+                        error={props.errors}
                     />
                 </div>
             </div>

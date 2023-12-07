@@ -5,7 +5,7 @@ import RegulasiBtn from "./MenuBtn/RegulasiBtn";
 import PengaduanBtn from "./MenuBtn/PengaduanBtn";
 import DataDesaBtn from "./MenuBtn/DataDesaBtn";
 import LayananPublikBtn from "./MenuBtn/LayananPublikBtn";
-import EpasarBtn from "./MenuBtn/EpasarBtn";
+import KeuanganBtn from "./MenuBtn/KeuanganBtn";
 
 function Menu() {
     return (
@@ -17,7 +17,7 @@ function Menu() {
                 <PengaduanBtn />
                 <DataDesaBtn />
                 <LayananPublikBtn />
-                <EpasarBtn />
+                <KeuanganBtn />
                 <LainnyaButton />
             </div>
         </>
