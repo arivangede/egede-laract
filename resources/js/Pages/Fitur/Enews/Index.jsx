@@ -67,20 +67,31 @@ function Enews(props) {
                     ) : (
                         ""
                     )}
-                    <div className="w-full flex gap-4 items-center py-4 px-4">
-                        <div
-                            onClick={() =>
-                                window.localStorage.removeItem(
-                                    "lastOpenedEnews"
-                                )
-                            }
-                            className="h-8 w-8"
-                        >
-                            <Link href="/">
-                                <BackBtn color={"#1e293b"} />
-                            </Link>
+                    <div className="w-full flex justify-between gap-4 items-center py-4 px-4">
+                        <div className="flex items-center gap-4">
+                            <div
+                                onClick={() =>
+                                    window.localStorage.removeItem(
+                                        "lastOpenedEnews"
+                                    )
+                                }
+                                className="h-8 w-8"
+                            >
+                                <Link href="/">
+                                    <BackBtn color={"#1e293b"} />
+                                </Link>
+                            </div>
+                            <h1 className="text-slate-800">E-News</h1>
                         </div>
-                        <h1 className="text-slate-800">E-News</h1>
+
+                        {props.auth.user.kelas_id == 2 && (
+                            <Link
+                                href="/panel-admin"
+                                className="font-bold text-red-400"
+                            >
+                                Panel Admin
+                            </Link>
+                        )}
                     </div>
                     <div className="flex items-center gap-6 w-full px-8">
                         <button

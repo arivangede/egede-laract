@@ -7,6 +7,7 @@ use App\Models\Bookmark;
 use App\Models\eNews;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class EnewsController extends Controller
@@ -142,5 +143,29 @@ class EnewsController extends Controller
             ]);
         }
         return to_route('user.enews');
+    }
+
+
+    public function paneladmin()
+    {
+        $admin = auth()->user()->kelas_id;
+        if ($admin == 2) {
+            $desa_id = auth()->user()->desa_id;
+            $berita = eNews::where('desa_id', $desa_id)->where('category', 'berita')->get();
+            $pengumuman = eNews::where('desa_id', $desa_id)->where('category', 'pengumuman')->get();
+            $datachart = eNews::where('desa_id', $desa_id)
+                ->select('category as category', DB::raw('count(*) as jumlah'))
+                ->groupBy('category')
+                ->get();
+        } else {
+            return Inertia::render('kamu bukan admin desa!');
+        }
+
+
+        return Inertia::render('Fitur/Enews/PanelAdmin', [
+            'berita' => $berita,
+            'pengumuman' => $pengumuman,
+            'datachart' => $datachart
+        ]);
     }
 }

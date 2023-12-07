@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/create-pengumuman', [EnewsController::class, 'createpengumuman']);
     Route::post('/create-berita', [EnewsController::class, 'createberita']);
 
+    Route::get('/panel-admin', [EnewsController::class, 'paneladmin'])->name('user.paneladmin');
+
     Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
     Route::post('/data-desa', [DataDesaController::class, 'index']);
     Route::get('/data-desa/analisa-data', [DataDesaController::class, 'analisa'])->name('user.analisadata');
