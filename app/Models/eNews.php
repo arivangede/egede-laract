@@ -12,6 +12,16 @@ class eNews extends Model
 {
     protected $table = 'enews';
 
+    protected $fillable = [
+        'category',
+        'title',
+        'author',
+        'content',
+        'image',
+        'desa_id',
+        'jenis'
+    ];
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->diffForHumans();

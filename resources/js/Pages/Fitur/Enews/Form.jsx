@@ -7,9 +7,18 @@ function Form(props) {
     const handleBack = () => {
         history.back();
     };
+    console.log(props);
+
+    const location = window.location.pathname;
+    const title =
+        location == "/create-pengumuman"
+            ? "pengumuman"
+            : location == "/create-berita"
+            ? "berita"
+            : "";
     return (
         <>
-            <Head title="Buat Pengumuman" />
+            <Head title={`Buat ` + title} />
             <div className="bg-slate-50 min-h-screen">
                 <div className="entrance flex flex-col items-center gap-4 w-full h-full">
                     <div className="w-full p-4 flex items-center">
@@ -17,13 +26,19 @@ function Form(props) {
                             <BackBtn color={"#1e293b"} />
                         </button>
 
-                        <h1 className="text-bold text-slate-600 text-lg">
-                            Form Pengumuman
+                        <h1 className="text-bold text-slate-600 text-lg capitalize">
+                            Form {title}
                         </h1>
                     </div>
 
-                    <LimitBar pengumumanCount={props.pengumuman} />
-                    <FormEnews />
+                    <LimitBar
+                        pengumumanCount={props.enewscount}
+                        title={title}
+                    />
+                    <FormEnews
+                        author={props.auth.user.id}
+                        desaID={props.auth.user.desa_id}
+                    />
                 </div>
             </div>
         </>

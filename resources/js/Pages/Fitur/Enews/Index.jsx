@@ -22,7 +22,7 @@ function Enews(props) {
         <>
             <Head title="E-News" />
             <div className="min-h-screen bg-slate-50">
-                <div className="entrance flex flex-col items-center">
+                <div className="entrance flex flex-col items-center h-full">
                     {props.auth.user.kelas_id == 2 ? (
                         <>
                             <div className="fixed z-50 bottom-4 right-4 flex flex-col items-end gap-1">
@@ -44,9 +44,12 @@ function Enews(props) {
                                         >
                                             Buat Pengumuman
                                         </Link>
-                                        <button className="text-bold text-white">
+                                        <Link
+                                            href="/create-berita"
+                                            className="text-bold text-white"
+                                        >
                                             Buat Berita
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                                 <button
@@ -129,31 +132,31 @@ function Berita(props) {
         >
             <div>
                 {props.carousel.length ? (
-                    <h1 className="text-slate-800 font-bold px-4">
-                        Berita Terbaru
-                    </h1>
+                    <>
+                        <h1 className="text-slate-800 font-bold px-4">
+                            Berita Terbaru
+                        </h1>
+                        <CarouselBerita berita={props.carousel} />
+                    </>
                 ) : (
-                    ""
+                    <h1 className="m-auto">Belum Ada Berita Tersedia</h1>
                 )}
-                <CarouselBerita berita={props.carousel} />
             </div>
             {props.card.length ? (
                 <div className="h-full w-full flex flex-col justify-center items-center gap-4 px-4 pb-20">
                     {props.card.length ? (
-                        <h1 className="font-bold text-slate-800 w-full">
-                            Berita Lainnya
-                        </h1>
-                    ) : (
-                        ""
-                    )}
-                    {props.card.length ? (
-                        <CardBerita berita={props.card} />
+                        <>
+                            <h1 className="font-bold text-slate-800 w-full">
+                                Berita Lainnya
+                            </h1>
+                            <CardBerita berita={props.card} />
+                        </>
                     ) : (
                         ""
                     )}
                 </div>
             ) : (
-                <h1 className="m-auto">Belum Ada Berita Tersedia</h1>
+                ""
             )}
         </div>
     );
@@ -164,15 +167,19 @@ function Pengumuman(props) {
         <>
             <div className="entrance h-full w-full flex flex-col justify-center items-center gap-4 px-4 py-8 pb-20">
                 {props.pengumuman.length ? (
-                    <h1 className="font-bold text-slate-800 w-full">
-                        Pengumuman
-                    </h1>
+                    <>
+                        <h1 className="font-bold text-slate-800 w-full">
+                            Pengumuman
+                        </h1>
+                        <CardPengumuman pengumuman={props.pengumuman} />
+                    </>
                 ) : (
-                    <div>
-                        <h1 className="text-slate-800 font-bold px-4"></h1>
+                    <div className="h-full flex justify-center items-center">
+                        <h1 className="w-full h-full">
+                            Belum Ada Pengumuman Tersedia
+                        </h1>
                     </div>
                 )}
-                <CardPengumuman pengumuman={props.pengumuman} />
             </div>
         </>
     );

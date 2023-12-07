@@ -60,15 +60,87 @@ class EnewsController extends Controller
     {
         $user = auth()->user();
         $desa_id = $user->desa_id;
-        $author = $user->desa->nama_desa;
+
 
         $pengumuman = Enews::where('desa_id', $desa_id)->where('category', 'pengumuman');
         $jumlah = $pengumuman->count();
 
         return Inertia::render('Fitur/Enews/Form', [
-            'desa_id' => $desa_id,
-            'author' => $author,
-            'pengumuman' => $jumlah
+            'enewscount' => $jumlah
         ]);
+    }
+
+    public function berita()
+    {
+        $user = auth()->user();
+        $desa_id = $user->desa_id;
+
+
+        $berita = Enews::where('desa_id', $desa_id)->where('category', 'berita');
+        $jumlah = $berita->count();
+
+        return Inertia::render('Fitur/Enews/Form', [
+            'enewscount' => $jumlah
+        ]);
+    }
+
+    public function createpengumuman(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|min:6|max:20',
+            'desc' => 'required|string|max:3000',
+            'photoFile' => 'required|image|max:1024',
+            'author' => 'required',
+            'category' => 'required',
+            'desaID' => 'required',
+            'jenis' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $isAdmin = $user->kelas_id;
+
+        if ($isAdmin == 2) {
+            $validatedData['photoFile'] = $request->file('photoFile')->store('e-news/dauhpurikaja/pengumuman');
+            Enews::create([
+                'title' => $validatedData['title'],
+                'content' => $validatedData['desc'],
+                'image' => $validatedData['photoFile'],
+                'author' => $validatedData['author'],
+                'category' => $validatedData['category'],
+                'desa_id' => $validatedData['desaID'],
+                'jenis' => $validatedData['jenis'],
+            ]);
+        }
+        return to_route('user.enews');
+    }
+
+    public function createberita(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|string|min:6|max:20',
+            'desc' => 'required|string|max:3000',
+            'photoFile' => 'required|image|max:1024',
+            'author' => 'required',
+            'category' => 'required',
+            'desaID' => 'required',
+            'jenis' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $isAdmin = $user->kelas_id;
+
+        if ($isAdmin == 2) {
+            $validatedData['photoFile'] = $request->file('photoFile')->store('e-news/dauhpurikaja/berita');
+            Enews::create([
+                'title' => $validatedData['title'],
+                'content' => $validatedData['desc'],
+                'image' => $validatedData['photoFile'],
+                'author' => $validatedData['author'],
+                'category' => $validatedData['category'],
+                'desa_id' => $validatedData['desaID'],
+                'jenis' => $validatedData['jenis'],
+            ]);
+        }
+        return to_route('user.enews');
     }
 }

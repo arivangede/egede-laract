@@ -1,12 +1,12 @@
-function LimitBar({ pengumumanCount }) {
+function LimitBar({ pengumumanCount, title }) {
     const countPengumuman = pengumumanCount;
     const limitPengumuman = 365;
     const persentase = Math.floor((countPengumuman / limitPengumuman) * 100);
 
     return (
         <div className="w-full flex flex-col justify-center items-center">
-            <h1 className="text-slate-600 font-bold w-full px-4">
-                Limit Post Pengumuman
+            <h1 className="text-slate-600 font-bold w-full px-4 capitalize">
+                Limit Post {title}
             </h1>
             <div className="w-full flex flex-col justify-center items-center px-10">
                 <div className="bg-slate-100 border w-full rounded-full py-2 flex justify-center items-center overflow-hidden relative">

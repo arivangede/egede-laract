@@ -69,10 +69,13 @@ function Show(props) {
                     </div>
                 </div>
 
-                <div className="px-4 flex flex-col gap-2">
-                    <p className="text-justify indent-4">
-                        {props.berita.content}
-                    </p>
+                <div className="w-full px-4 flex flex-col gap-2">
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: props.berita.content,
+                        }}
+                        className="w-full break-all post"
+                    />
                 </div>
             </div>
         </>

@@ -5,17 +5,35 @@ import noPhoto from "@/assets/img/no-photo-available.png";
 import LikeBtn from "../Show/LikeBtn";
 import ShareBtn from "../Show/ShareBtn";
 import SaveBtn from "../Show/SaveBtn";
+import { router } from "@inertiajs/react";
 
-function FormEnews() {
+function FormEnews({ author, desaID }) {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [photoFile, setPhotoFile] = useState("");
     const [urlPhoto, setUrlPhoto] = useState("");
 
+    const location = window.location.pathname;
+    const category =
+        location == "/create-pengumuman"
+            ? "pengumuman"
+            : location == "/create-berita"
+            ? "berita"
+            : "";
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = { title: title, desc: desc, photoFile: photoFile };
+        const data = {
+            title: title,
+            desc: desc,
+            photoFile: photoFile,
+            author: author,
+            category: category,
+            desaID: desaID,
+            jenis: "desa",
+        };
         console.log(data);
+        router.post("/create-pengumuman", data);
     };
 
     return (
@@ -74,7 +92,7 @@ function FormEnews() {
                         className="break-all"
                     />
                 </div>
-                <div className="w-full border border-slate-400 rounded-xl overflow-hidden min-h-screen">
+                <div className="w-full border border-slate-400 rounded-xl overflow-hidden min-h-[50vh]">
                     {/* <img src="" alt="" /> */}
                     <div className="w-full flex flex-col">
                         <div className="w-full h-60 border border-b flex items-center justify-center">
@@ -87,7 +105,7 @@ function FormEnews() {
                                         : noPhoto
                                 }
                                 alt="photo"
-                                className="object-center object-cover"
+                                className="object-center object-cover w-full h-full"
                             />
                         </div>
                         <div className="w-full flex justify-between items-center p-4 gap-2 relative">
@@ -103,7 +121,7 @@ function FormEnews() {
                         </div>
                         <div
                             dangerouslySetInnerHTML={{ __html: desc }}
-                            className="w-full break-all post py-2 px-2"
+                            className="w-full post py-2 px-2 break-words"
                         />
                     </div>
                 </div>

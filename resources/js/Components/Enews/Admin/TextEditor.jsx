@@ -8,7 +8,7 @@ function TextEditor({ desc, setdesc }) {
 
     const modules = {
         toolbar: [
-            [{ size: ["small", false, "large", "huge"] }],
+            [{ size: ["small", false, "large"] }],
             ["bold", "italic", "underline", "link"],
             [{ color: [] }, { background: [] }],
             [{ list: "ordered" }, { list: "bullet" }],

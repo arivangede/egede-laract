@@ -34,7 +34,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/e-news', [EnewsController::class, 'index'])->name('user.enews');
     Route::get('/e-news/{id}', [EnewsController::class, 'show'])->name('user.show.enews');
-    Route::get('/create-pengumuman', [EnewsController::class, 'pengumuman']);
+    Route::get('/create-pengumuman', [EnewsController::class, 'pengumuman'])->name('user.createpengumuman');
+    Route::get('/create-berita', [EnewsController::class, 'berita'])->name('user.createberita');
+    Route::post('/create-pengumuman', [EnewsController::class, 'createpengumuman']);
+    Route::post('/create-berita', [EnewsController::class, 'createberita']);
 
     Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
     Route::post('/data-desa', [DataDesaController::class, 'index']);
