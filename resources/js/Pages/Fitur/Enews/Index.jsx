@@ -67,7 +67,7 @@ function Enews(props) {
                     ) : (
                         ""
                     )}
-                    <div className="w-full flex justify-between gap-4 items-center py-4 px-4">
+                    <div className="w-full flex justify-between gap-4 items-center py-8 px-4">
                         <div className="flex items-center gap-4">
                             <div
                                 onClick={() =>
@@ -139,7 +139,7 @@ function Enews(props) {
 function Berita(props) {
     return (
         <div
-            className={`entrance h-full w-full py-8 flex flex-col justify-center items-center`}
+            className={`entrance h-full w-full py-8 px-4 flex flex-col justify-center items-center`}
         >
             <div>
                 {props.carousel.length ? (
@@ -176,7 +176,7 @@ function Berita(props) {
 function Pengumuman(props) {
     return (
         <>
-            <div className="entrance h-full w-full flex flex-col justify-center items-center gap-4 px-4 py-8 pb-20">
+            <div className="entrance h-full w-full flex flex-col justify-center items-center gap-4 p-8 pb-20">
                 {props.pengumuman.length ? (
                     <>
                         <h1 className="font-bold text-slate-800 w-full">

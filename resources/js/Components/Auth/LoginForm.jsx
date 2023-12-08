@@ -35,15 +35,15 @@ function LoginForm({ errors, flash }) {
 
             <Head title="Login" />
             <div className="entrance min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-tr from-white to-red-50 ">
-                <form onSubmit={handleLogin} className="w-max">
-                    <div className="px-12 py-8 gap-4 w-full flex flex-col justify-center items-center bg-white shadow-lg border rounded-lg relative z-10 ">
+                <form onSubmit={handleLogin} className="px-12">
+                    <div className="px-12 py-8 gap-4 w-full flex flex-col justify-center items-center bg-transparent backdrop-blur shadow-lg border rounded-lg relative z-10 ">
                         <img src={logo} alt="logo" className="h-[2rem] mb-8" />
 
                         <div>
                             <input
                                 type="text"
                                 placeholder="Username / NIK"
-                                className="w-full p-2 rounded-md border-none outline outline-1 outline-slate-300 focus:ring-2 focus:ring-red-400"
+                                className="w-full p-2 rounded-md border-none outline outline-1 bg-transparent outline-slate-300 focus:ring-2 focus:ring-red-400"
                                 onChange={(username) =>
                                     setUsername(username.target.value)
                                 }
@@ -65,7 +65,7 @@ function LoginForm({ errors, flash }) {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="w-full p-2 rounded-md border-none outline outline-1 outline-slate-300 focus:ring-2 focus:ring-red-400"
+                                className="w-full p-2 rounded-md border-none outline outline-1 bg-transparent outline-slate-300 focus:ring-2 focus:ring-red-400"
                                 onChange={(password) =>
                                     setPassword(password.target.value)
                                 }

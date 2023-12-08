@@ -29,13 +29,13 @@ function Register(props) {
     return (
         <>
             <Head title="Register" />
-            <div className="w-full min-h-screen flex flex-col justify-center items-center bg-slate-50 p-8">
-                <form className="entrance w-full bg-white shadow rounded-xl flex flex-col items-center gap-4 px-8 py-8 text-slate-600">
+            <div className="w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-red-200 from-10% to-slate-50 to-25% p-8">
+                <form className="entrance w-full bg-transparent backdrop-blur shadow-lg rounded-xl flex flex-col items-center gap-4 px-8 py-8 text-slate-600">
                     <h1 className="text-xl font-bold">Register</h1>
                     <input
                         type="text"
                         placeholder="Username"
-                        className="border-slate-200 rounded-lg w-full"
+                        className="border-slate-200 rounded-lg w-full bg-transparent"
                         value={formData.username}
                         onChange={(e) =>
                             setFormData({
@@ -47,7 +47,7 @@ function Register(props) {
                     <input
                         type="text"
                         placeholder="Nama Lengkap (Sesuai KTP)"
-                        className="border-slate-200 rounded-lg w-full"
+                        className="border-slate-200 rounded-lg w-full bg-transparent"
                         value={formData.namaLengkap}
                         onChange={(e) =>
                             setFormData({
@@ -59,7 +59,7 @@ function Register(props) {
                     <input
                         type="text"
                         placeholder="NIK"
-                        className="border-slate-200 rounded-lg w-full"
+                        className="border-slate-200 rounded-lg w-full bg-transparent"
                         value={formData.nik}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -70,7 +70,7 @@ function Register(props) {
                     <input
                         type="email"
                         placeholder="Email"
-                        className="border-slate-200 rounded-lg w-full"
+                        className="border-slate-200 rounded-lg w-full bg-transparent"
                         value={formData.email}
                         onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
@@ -79,7 +79,7 @@ function Register(props) {
                     <input
                         type="password"
                         placeholder="Password"
-                        className="border-slate-200 rounded-lg w-full"
+                        className="border-slate-200 rounded-lg w-full bg-transparent"
                         value={formData.password}
                         onChange={(e) =>
                             setFormData({
@@ -99,7 +99,7 @@ function Register(props) {
                                       formData.password
                                     ? "border-red-400 focus:border-red-400 focus:ring-red-400"
                                     : "border-slate-200"
-                            } rounded-lg w-full`}
+                            } rounded-lg w-full bg-transparent`}
                             value={formData.confirmPassword}
                             onChange={(e) =>
                                 setFormData({
