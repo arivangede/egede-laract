@@ -19,8 +19,11 @@ function PanelAdmin(props) {
                     <h1 className="w-full font-bold">E-News</h1>
                     <ChartAdmin datachart={props.datachart} />
                     <div className="flex justify-center items-center gap-4">
-                        <h1>Berita: {props.datachart[0].jumlah}</h1>
-                        <h1>Pengumuman: {props.datachart[1].jumlah}</h1>
+                        {props.datachart.map((item, i) => (
+                            <h1 key={i} className="font-bold">
+                                {item.category} : {item.jumlah}
+                            </h1>
+                        ))}
                     </div>
                     <Link className="border border-red-500 text-red-500 font-bold text-lg py-2 px-4 rounded-full shadow hover:bg-red-400 hover:text-white transition duration-200">
                         <h1>Lihat Detail</h1>

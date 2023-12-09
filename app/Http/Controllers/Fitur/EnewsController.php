@@ -153,10 +153,17 @@ class EnewsController extends Controller
             $desa_id = auth()->user()->desa_id;
             $berita = eNews::where('desa_id', $desa_id)->where('category', 'berita')->get();
             $pengumuman = eNews::where('desa_id', $desa_id)->where('category', 'pengumuman')->get();
-            $datachart = eNews::where('desa_id', $desa_id)
-                ->select('category as category', DB::raw('count(*) as jumlah'))
-                ->groupBy('category')
-                ->get();
+            if ($berita->isNotEmpty() || $pengumuman->isNotEmpty()) {
+                $datachart = eNews::where('desa_id', $desa_id)
+                    ->select('category as category', DB::raw('count(*) as jumlah'))
+                    ->groupBy('category')
+                    ->get();
+            } else {
+                $datachart = [
+                    ['category' => 'pengumuman', 'jumlah' => 0],
+                    ['category' => 'berita', 'jumlah' => 0]
+                ];
+            }
         } else {
             return Inertia::render('kamu bukan admin desa!');
         }

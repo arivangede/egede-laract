@@ -7,7 +7,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { Doughnut, Bar } from "react-chartjs-2";
 import TabelChart from "./TabelChart";
 
 ChartJs.register(
@@ -76,11 +76,7 @@ function ChartDesa({ kategori, dataChart, dataTable }) {
                     <div className="bg-white rounded-xl shadow flex justify-center items-center">
                         <div className="h-full w-full p-4">
                             <h1 className="text-slate-700">Doughnut Chart</h1>
-                            <Chart
-                                type="doughnut"
-                                data={data}
-                                options={options1}
-                            />
+                            <Doughnut data={data} options={options1} />
                         </div>
                     </div>
                 ) : (
@@ -118,7 +114,7 @@ function ChartDesa({ kategori, dataChart, dataTable }) {
                     <div className="bg-white rounded-xl shadow flex justify-center items-center">
                         <div className="h-full max-h-[25rem] w-full pt-4 pb-8 px-4">
                             <h1 className="text-slate-700">Bar Chart</h1>
-                            <Chart type="bar" data={data} options={options2} />
+                            <Bar data={data} options={options2} />
                         </div>
                     </div>
                 ) : (

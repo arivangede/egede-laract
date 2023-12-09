@@ -41,7 +41,7 @@ function CardPengumuman({ pengumuman }) {
                                   </span>
                                   <Link
                                       href={"/e-news/" + pengumuman[i]["id"]}
-                                      className="border rounded-md bg-red-500 px-4 py-1 text-sm text-white"
+                                      className="border rounded-md bg-red-500 px-3 py-1 text-sm text-white"
                                   >
                                       Lihat
                                   </Link>

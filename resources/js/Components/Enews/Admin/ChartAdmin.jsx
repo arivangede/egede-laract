@@ -52,12 +52,22 @@ function ChartAdmin({ datachart }) {
             },
         },
     };
+
+    console.log(dataValues);
     return (
         <div className="entrance flex flex-col justify-center items-center gap-4 px-2">
-            <h1 className="text-lg font-bold">Doughnut Chart</h1>
-            <div className="w-full h-full flex justify-center items-center">
-                <Chart type="doughnut" data={data} options={options1} />
-            </div>
+            {dataValues[0] != 0 && dataValues[1] != 0 ? (
+                <>
+                    <h1 className="text-lg font-bold">Doughnut Chart</h1>
+                    <div className="w-full h-full flex justify-center items-center">
+                        <Chart type="doughnut" data={data} options={options1} />
+                    </div>
+                </>
+            ) : (
+                <h1 className="text-center">
+                    Kamu Belum Membuat Berita atau Pengumuman
+                </h1>
+            )}
         </div>
     );
 }
