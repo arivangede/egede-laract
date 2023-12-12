@@ -8,7 +8,9 @@ use App\Models\eNews;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Intervention\Image\Facades\Image;
 
 class EnewsController extends Controller
 {
@@ -90,7 +92,7 @@ class EnewsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|min:6|max:20',
             'desc' => 'required|string|max:3000',
-            'photoFile' => 'required|image|max:1024',
+            'photoFile' => 'required|image',
             'author' => 'required',
             'category' => 'required',
             'desaID' => 'required',
@@ -101,11 +103,24 @@ class EnewsController extends Controller
         $isAdmin = $user->kelas_id;
 
         if ($isAdmin == 2) {
-            $validatedData['photoFile'] = $request->file('photoFile')->store('e-news/dauhpurikaja/pengumuman');
+            $picture = Image::make($validatedData['photoFile']);
+            $picture->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $quality = 100;
+            $maxsize = 1024 * 1024;
+            $data = (string) $picture->encode('jpg', $quality);
+            while (strlen($data) > $maxsize) {
+                $quality -= 1;
+                $data = (string) $picture->encoded('jpg', $quality);
+            }
+            $filename = md5($data) . '.jpg';
+            $filepath = '/e-news/dauhpurikaja/pengumuman/' . $filename;
+            Storage::disk('public')->put($filepath, $data);
             Enews::create([
                 'title' => $validatedData['title'],
                 'content' => $validatedData['desc'],
-                'image' => $validatedData['photoFile'],
+                'image' => $filepath,
                 'author' => $validatedData['author'],
                 'category' => $validatedData['category'],
                 'desa_id' => $validatedData['desaID'],
@@ -120,7 +135,7 @@ class EnewsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|min:6|max:20',
             'desc' => 'required|string|max:3000',
-            'photoFile' => 'required|image|max:1024',
+            'photoFile' => 'required|image',
             'author' => 'required',
             'category' => 'required',
             'desaID' => 'required',
@@ -131,11 +146,24 @@ class EnewsController extends Controller
         $isAdmin = $user->kelas_id;
 
         if ($isAdmin == 2) {
-            $validatedData['photoFile'] = $request->file('photoFile')->store('e-news/dauhpurikaja/berita');
+            $picture = Image::make($validatedData['photoFile']);
+            $picture->resize(750, 750, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $quality = 100;
+            $maxsize = 1024 * 1024;
+            $data = (string) $picture->encode('jpg', $quality);
+            while (strlen($data) > $maxsize) {
+                $quality -= 1;
+                $data = (string) $picture->encoded('jpg', $quality);
+            }
+            $filename = md5($data) . '.jpg';
+            $filepath = '/e-news/dauhpurikaja/berita/' . $filename;
+            Storage::disk('public')->put($filepath, $data);
             Enews::create([
                 'title' => $validatedData['title'],
                 'content' => $validatedData['desc'],
-                'image' => $validatedData['photoFile'],
+                'image' => $filepath,
                 'author' => $validatedData['author'],
                 'category' => $validatedData['category'],
                 'desa_id' => $validatedData['desaID'],

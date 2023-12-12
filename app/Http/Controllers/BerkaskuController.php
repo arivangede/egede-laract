@@ -8,6 +8,7 @@ use App\Models\Penduduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Intervention\Image\Facades\Image;
 
 class BerkaskuController extends Controller
 {
@@ -47,26 +48,55 @@ class BerkaskuController extends Controller
         $isKTPavailable = KTP::where('nik', $nik)->first();
 
         $validatedData = $request->validate([
-            'ktp' => 'image|max:1024',
             'ktpName' => 'string'
-        ], [
-            'ktp.image' => 'File ktp harus gambar!',
-            'ktp.max' => 'Ukuran file tidak boleh lebih dari 1mb!'
         ]);
 
-
+        $image = $request->file('ktp');
 
         if ($penduduk) {
-
-            if ($isKTPavailable) {
-                Storage::delete($isKTPavailable->file);
-                $validated['ktp'] = $request->file('ktp')->store('berkasKu/user-ktp');
-                $isKTPavailable->update(['file' => $validated['ktp'], 'file_name' => $validatedData['ktpName']]);
-                return to_route('user.berkasku')->with('message', 'Data File KTP Berhasil Diperbarui');
+            if ($image->isValid()) {
+                if ($isKTPavailable) {
+                    Storage::delete($isKTPavailable->file);
+                    $img = Image::make($image);
+                    $img->resize(750, 750, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $imageQuality = 100;
+                    $maxFileSize = 1024 * 1024;
+                    $imageData = (string) $img->encode('jpg', $imageQuality);
+                    while (strlen($imageData) > $maxFileSize) {
+                        $imageQuality -= 1;
+                        $imageData = (string) $img->encode('jpg', $imageQuality);
+                    }
+                    $filename = md5($imageData) . '.jpg';
+                    $filePath = '/berkasKu/user-ktp/' . $filename;
+                    Storage::disk('public')->put($filePath, $imageData);
+                    $isKTPavailable->update(['file' => $filePath, 'file_name' => $validatedData['ktpName']]);
+                    return to_route('user.berkasku')->with('message', 'Data File KTP Berhasil Diperbarui');
+                } else {
+                    $img = Image::make($image);
+                    $img->resize(750, 750, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $imageQuality = 100;
+                    $maxFileSize = 1024 * 1024;
+                    $imageData = (string) $img->encode('jpg', $imageQuality);
+                    while (strlen($imageData) > $maxFileSize) {
+                        $imageQuality -= 1;
+                        $imageData = (string) $img->encode('jpg', $imageQuality);
+                    }
+                    $filename = md5($imageData) . '.jpg';
+                    $filePath = '/berkasKu/user-ktp/' . $filename;
+                    Storage::disk('public')->put($filePath, $imageData);
+                    KTP::create([
+                        'nik' => $nik,
+                        'file' => $filePath,
+                        'file_name' => $validatedData['ktpName']
+                    ]);
+                    return redirect()->route('user.berkasku')->with('message', 'Data File KTP Berhasil Diperbarui');
+                }
             } else {
-                $filePath = $request->file('ktp')->store('berkasKu/user-ktp');
-                KTP::create(['nik' => $nik, 'file' => $filePath, 'file_name' => $validatedData['ktpName']]);
-                return to_route('user.berkasku')->with('message', 'Data File KTP Berhasil Diperbarui');
+                return to_route('user.berkasku')->with('message', 'Data File KTP Tidak Valid');
             }
         }
     }
@@ -80,26 +110,55 @@ class BerkaskuController extends Controller
         $isKkAvailable = KK::where('no_kk', $penduduk_kk)->first();
 
         $validatedData = $request->validate([
-            'kk' => 'mimes:jpeg,png,jpg,pdf|max:1024',
             'kkName' => 'string'
-        ], [
-            'kk.mimes' => 'File ktp harus gambar atau pdf!',
-            'kk.max' => 'Ukuran file tidak boleh lebih dari 1mb!'
         ]);
 
-
+        $image = $request->file('kk');
 
         if ($penduduk) {
-
-            if ($isKkAvailable) {
-                Storage::delete($isKkAvailable->file);
-                $validated['kk'] = $request->file('kk')->store('berkasKu/user-kk');
-                $isKkAvailable->update(['file' => $validated['kk'], 'file_name' => $validatedData['kkName']]);
-                return to_route('user.berkasku')->with('message', 'Data File KK Berhasil Diperbarui');
+            if ($image->isValid()) {
+                if ($isKkAvailable) {
+                    Storage::delete($isKkAvailable->file);
+                    $img = Image::make($image);
+                    $img->resize(750, 750, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $imageQuality = 100;
+                    $maxFileSize = 1024 * 1024;
+                    $imageData = (string) $img->encode('jpg', $imageQuality);
+                    while (strlen($imageData) > $maxFileSize) {
+                        $imageQuality -= 1;
+                        $imageData = (string) $img->encode('jpg', $imageQuality);
+                    }
+                    $filename = md5($imageData) . '.jpg';
+                    $filePath = '/berkasKu/user-kk/' . $filename;
+                    Storage::disk('public')->put($filePath, $imageData);
+                    $isKkAvailable->update(['file' => $filePath, 'file_name' => $validatedData['kkName']]);
+                    return to_route('user.berkasku')->with('message', 'Data File KK Berhasil Diperbarui');
+                } else {
+                    $img = Image::make($image);
+                    $img->resize(750, 750, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $imageQuality = 100;
+                    $maxFileSize = 1024 * 1024;
+                    $imageData = (string) $img->encode('jpg', $imageQuality);
+                    while (strlen($imageData) > $maxFileSize) {
+                        $imageQuality -= 1;
+                        $imageData = (string) $img->encode('jpg', $imageQuality);
+                    }
+                    $filename = md5($imageData) . '.jpg';
+                    $filePath = '/berkasKu/user-kk/' . $filename;
+                    Storage::disk('public')->put($filePath, $imageData);
+                    KK::create([
+                        'no_kk' => $penduduk_kk,
+                        'file' => $filePath,
+                        'file_name' => $validatedData['kkName']
+                    ]);
+                    return to_route('user.berkasku')->with('message', 'Data File KK Berhasil Diperbarui');
+                }
             } else {
-                $filePath = $request->file('kk')->store('berkasKu/user-kk');
-                KK::create(['no_kk' => $penduduk_kk, 'file' => $filePath, 'file_name' => $validatedData['kkName']]);
-                return to_route('user.berkasku')->with('message', 'Data File KK Berhasil Diperbarui');
+                return to_route('user.berkasku')->with('message', 'Data File KK Tidak Valid');
             }
         }
     }
@@ -109,11 +168,14 @@ class BerkaskuController extends Controller
         $user = auth()->user();
         $nik = $user->nik;
         $ktp = KTP::where('nik', $nik)->first();
+        $filepath = '/' . $ktp->file;
+
+
 
         if ($ktp) {
-            Storage::delete($ktp->file);
+            Storage::delete($filepath);
             $ktp->delete();
-            return to_route('user.berkasku')->with('message', 'Data Ktp Berhasil Dihapus');
+            return to_route('user.berkasku')->with('message', 'Data Ktp Berhasil di Hapus');
         }
     }
     public function destroyKK()

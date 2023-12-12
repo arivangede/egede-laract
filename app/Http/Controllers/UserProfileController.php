@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
+use Intervention\Image\Facades\Image;
 use function Laravel\Prompts\error;
 
 class UserProfileController extends Controller
@@ -145,21 +146,46 @@ class UserProfileController extends Controller
         $update = $request->input('update');
 
         $validated = $request->validate([
-            'foto' => 'image|max:1024'
+            'foto' => 'image'
         ], [
-            'foto.max' => 'Ukuran foto maksimal 1mb!',
             'foto.image' => 'Jenis file harus gambar!',
         ]);
 
         if ($update == true && $request->file('foto')) {
             if ($penduduk && $penduduk->foto) {
                 Storage::delete($penduduk->foto);
-                $validated['foto'] = $request->file('foto')->store('user-profiles');
-                $penduduk->update(['foto' => $validated['foto']]);
+                $foto = Image::make($validated['foto']);
+                $foto->resize(750, 750, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $imageQuality = 100;
+                $maxFileSize = 1024 * 1024;
+                $imageData = (string) $foto->encode('jpeg', $imageQuality);
+                while (strlen($imageData) > $maxFileSize) {
+                    $imageQuality -= 1;
+                    $imageData = (string) $foto->encode('jpeg', $imageQuality);
+                }
+                $filename = md5($imageData) . '.jpeg';
+                $filePath = '/user-profiles/dauhpurikaja/' . $filename;
+                Storage::disk('public')->put($filePath, $imageData);
+                $penduduk->update(['foto' => $filePath]);
                 return to_route('user.profile')->with('message', 'Foto Profil Berhasil Diperbarui');
             } else if ($penduduk && $penduduk->foto == null) {
-                $validated['foto'] = $request->file('foto')->store('user-profiles');
-                $penduduk->update(['foto' => $validated['foto']]);
+                $foto = Image::make($validated['foto']);
+                $foto->resize(750, 750, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $imageQuality = 100;
+                $maxFileSize = 1024 * 1024;
+                $imageData = (string) $foto->encode('jpg', $imageQuality);
+                while (strlen($imageData) > $maxFileSize) {
+                    $imageQuality -= 1;
+                    $imageData = (string) $foto->encode('jpeg', $imageQuality);
+                }
+                $filename = md5($imageData) . '.jpg';
+                $filePath = '/user-profiles/dauhpurikaja/' . $filename;
+                Storage::disk('public')->put($filePath, $imageData);
+                $penduduk->update(['foto' => $filePath]);
                 return to_route('user.profile')->with('message', 'Foto Profil Berhasil Diperbarui');
             }
         }
