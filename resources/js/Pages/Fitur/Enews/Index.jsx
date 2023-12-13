@@ -143,12 +143,23 @@ function Berita(props) {
         >
             <div>
                 {props.carousel.length ? (
-                    <>
-                        <h1 className="text-slate-800 font-bold px-4">
-                            Berita Terbaru
-                        </h1>
-                        <CarouselBerita berita={props.carousel} />
-                    </>
+                    props.card.length <= 0 ? (
+                        <>
+                            <div className="h-full w-full flex flex-col justify-center items-center gap-4 px-4 pb-20">
+                                <h1 className="text-slate-800 font-bold px-4 w-full">
+                                    Berita
+                                </h1>
+                                <CardBerita berita={props.carousel} />
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <h1 className="text-slate-800 font-bold px-4">
+                                Berita Terbaru
+                            </h1>
+                            <CarouselBerita berita={props.carousel} />
+                        </>
+                    )
                 ) : (
                     <h1 className="m-auto">Belum Ada Berita Tersedia</h1>
                 )}

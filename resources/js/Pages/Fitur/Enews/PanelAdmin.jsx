@@ -1,4 +1,5 @@
 import ChartAdmin from "@/Components/Enews/Admin/ChartAdmin";
+import GrafikPie from "@/Components/Enews/Admin/GrafikPie";
 import BackBtn from "@/assets/svg/BackBtn";
 import { Link } from "@inertiajs/react";
 
@@ -18,6 +19,7 @@ function PanelAdmin(props) {
                 <div className="w-full h-full flex flex-col items-center gap-4 border rounded-xl p-4">
                     <h1 className="w-full font-bold">E-News</h1>
                     <ChartAdmin datachart={props.datachart} />
+                    {/* <GrafikPie /> */}
                     <div className="flex justify-center items-center gap-4">
                         {props.datachart.map((item, i) => (
                             <h1 key={i} className="font-bold">
