@@ -44,7 +44,7 @@ function CarouselPengumuman({ pengumuman }) {
                           >
                               <div className="h-full w-[95%] border rounded-3xl overflow-hidden shadow-lg relative">
                                   <img
-                                      src={"/storage/" + item.image}
+                                      src={"/storage" + item.image}
                                       alt="image"
                                       className="h-full w-full object-cover object-center"
                                   />

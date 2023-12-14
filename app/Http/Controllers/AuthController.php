@@ -67,6 +67,7 @@ class AuthController extends Controller
             'confirmPassword' => 'string|min:6',
         ]);
 
+        $agree = $request->input('isAgree');
         $username = $validatedData['username'];
         $namaLengkap = $validatedData['namaLengkap'];
         $nik = $validatedData['nik'];
@@ -75,16 +76,22 @@ class AuthController extends Controller
         $confirmpassword = $validatedData['confirmPassword'];
         $desa = Penduduk::where('nik', $nik)->first();
 
+        $isAvailable = User::where('nik', $nik)->first();
+
 
         if ($password == $confirmpassword) {
-            User::create([
-                'username' => $username,
-                'nik' => $nik,
-                'email' => $email,
-                'password' => bcrypt($password),
-                'kelas_id' => 3,
-                'desa_id' => $desa->desa_id
-            ]);
+            if ($isAvailable) {
+                return Inertia::render('Auth/Register')->with('message', 'NIK ini Sudah Terdaftar!');
+            } else {
+                User::create([
+                    'username' => $username,
+                    'nik' => $nik,
+                    'email' => $email,
+                    'password' => bcrypt($password),
+                    'kelas_id' => 3,
+                    'desa_id' => $desa->desa_id
+                ]);
+            }
         } else {
             return Inertia::render('Auth/Register')->with('message', 'Password dan ConfirmPassword tidak sama!');
         }

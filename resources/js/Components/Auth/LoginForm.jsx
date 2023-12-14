@@ -36,7 +36,7 @@ function LoginForm({ errors, flash }) {
             <Head title="Login" />
             <div className="entrance min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-tr from-white to-red-50 ">
                 <form onSubmit={handleLogin} className="px-12">
-                    <div className="px-12 py-8 gap-4 w-full flex flex-col justify-center items-center bg-transparent backdrop-blur shadow-lg border rounded-lg relative z-10 ">
+                    <div className="px-12 py-8 gap-4 w-full flex flex-col justify-center items-center bg-transparent backdrop-blur shadow-lg border-2 rounded-xl relative z-10 border-white">
                         <img src={logo} alt="logo" className="h-[2rem] mb-8" />
 
                         <div>

@@ -260,7 +260,7 @@ function EditProfil(props) {
                                         temporaryUrlPhoto
                                             ? temporaryUrlPhoto
                                             : fotoProfil
-                                            ? "/storage/" + fotoProfil
+                                            ? "/storage" + fotoProfil
                                             : defaultPict
                                     }
                                     alt="profil"

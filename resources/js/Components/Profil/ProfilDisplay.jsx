@@ -13,7 +13,7 @@ function ProfilDisplay({ userPhoto }) {
                     <img
                         src={
                             userPhoto
-                                ? "/storage/" + userPhoto
+                                ? "/storage" + userPhoto
                                 : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                         }
                         alt="fotoProfil"
@@ -25,7 +25,7 @@ function ProfilDisplay({ userPhoto }) {
                         <img
                             src={
                                 userPhoto
-                                    ? "/storage/" + userPhoto
+                                    ? "/storage" + userPhoto
                                     : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                             }
                             alt="foto"

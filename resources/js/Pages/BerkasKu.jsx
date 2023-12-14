@@ -207,7 +207,7 @@ function BerkasKu(props) {
                                                 temporaryUrlKtp
                                                     ? temporaryUrlKtp
                                                     : ktp
-                                                    ? "/storage/" + ktp
+                                                    ? "/storage" + ktp
                                                     : null
                                             }
                                             className="h-full w-full object-center object-contain"
@@ -362,7 +362,7 @@ function BerkasKu(props) {
                                                 temporaryUrlKk
                                                     ? temporaryUrlKk
                                                     : kk
-                                                    ? "/storage/" + kk
+                                                    ? "/storage" + kk
                                                     : null
                                             }
                                             className="h-full w-full object-center object-contain"
