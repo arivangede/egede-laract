@@ -2072,6 +2072,252 @@ function Register(props) {
                                                     </ul>
                                                 </li>
                                             </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak Anda
+                                                    <div className="font-normal">
+                                                        <p>
+                                                            Di bawah ini kami
+                                                            menjelaskan detail
+                                                            tentang bagaimana
+                                                            Anda dapat
+                                                            menggunakan hak
+                                                            Anda.{" "}
+                                                        </p>
+                                                        <p>
+                                                            Kami berhak menolak
+                                                            permintaan Anda
+                                                            untuk mengakses,
+                                                            memperbaiki dan/atau
+                                                            menghapus, sebagian
+                                                            atau seluruh Data
+                                                            Pribadi Anda yang
+                                                            kami kuasai, jika
+                                                            diizinkan atau
+                                                            diharuskan
+                                                            berdasarkan
+                                                            Peraturan
+                                                            Perundang-undangan
+                                                            yang berlaku,
+                                                            terutama jika
+                                                            permintaan tersebut
+                                                            dapat berdampak
+                                                            mengenai hal-hal
+                                                            seperti namun tidak
+                                                            terbatas pada:
+                                                        </p>
+                                                        <ul>
+                                                            <li>
+                                                                membahayakan
+                                                                keselamatan,
+                                                                kesehatan fisik
+                                                                atau mental Anda
+                                                                dan/atau orang
+                                                                lain; dan/atau
+                                                            </li>
+                                                            <li>
+                                                                ada dampak
+                                                                pengungkapan
+                                                                Data Pribadi
+                                                                orang lain;
+                                                                dan/atau
+                                                            </li>
+                                                            <li>
+                                                                bertentangan
+                                                                dengan
+                                                                kepentingan
+                                                                pertahanan dan
+                                                                keamanan negara
+                                                                dan/atau
+                                                            </li>
+                                                            <li>
+                                                                alasan
+                                                                permintaan tidak
+                                                                relevan bagi
+                                                                Anda dan/atau
+                                                                aktivitas
+                                                                pemrosesan data
+                                                                pribadi yang
+                                                                kami lakukan.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk mengakses data
+                                                    pribadi
+                                                    <p className="font-normal">
+                                                        Anda berhak untuk dan
+                                                        mengakses data pribadi
+                                                        yang dimiliki BGD
+                                                        tentang Anda.{" "}
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk mengoreksi data
+                                                    pribadi
+                                                    <p className="font-normal">
+                                                        Anda memiliki hak untuk
+                                                        memperbaiki informasi
+                                                        yang dimiliki tentang
+                                                        Anda jika informasi
+                                                        tersebut tidak akurat.
+                                                        Jika informasi yang kami
+                                                        miliki tentang Anda
+                                                        tidak akurat atau perlu
+                                                        diperbarui, Anda dapat
+                                                        masuk ke aplikasi untuk
+                                                        memperbaruinya. Anda
+                                                        dianjurkan untuk aktif
+                                                        dalam memastikan
+                                                        keakuratan dan
+                                                        pemutakhiran data Anda
+                                                        dari waktu ke waktu.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk menolak penggunaan
+                                                    data pribadi
+                                                    <p className="font-normal">
+                                                        Anda berhak, dalam
+                                                        keadaan tertentu, untuk
+                                                        menolak BGD memproses
+                                                        informasi pribadi Anda.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk menarik kembali
+                                                    persetujuan penggunaan data
+                                                    pribadi
+                                                    <p className="font-normal">
+                                                        Anda berhak, dalam
+                                                        keadaan tertentu,
+                                                        menarik kembali
+                                                        persetujuan atas
+                                                        pemrosesan data pribadi
+                                                        yang sebelumnya Anda
+                                                        berikan.
+                                                    </p>
+                                                    <p className="font-normal">
+                                                        Namun, tidak tersedianya
+                                                        informasi data pribadi
+                                                        Anda menyebabkan kami
+                                                        menjadi tidak dapat
+                                                        melakukan verifikasi dan
+                                                        memproses data anda,
+                                                        sehingga Anda mungkin
+                                                        menjadi tidak dapat
+                                                        menggunakan fitur dan
+                                                        layanan aplikasi kami.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk membatasi
+                                                    penggunaan data Anda
+                                                    <p className="font-normal">
+                                                        Jika Anda merasa data
+                                                        yang kami simpan tentang
+                                                        Anda tidak akurat, atau
+                                                        Anda yakin kami
+                                                        seharusnya tidak
+                                                        memproses data Anda,
+                                                        silakan hubungi kami
+                                                        untuk mendiskusikan hak
+                                                        Anda. Dalam keadaan
+                                                        tertentu, Anda berhak
+                                                        meminta kami membatasi
+                                                        pemrosesan.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                            <ul className="p-0">
+                                                <li className="font-bold">
+                                                    Hak untuk menghapus data
+                                                    Anda
+                                                    <p className="font-normal">
+                                                        BGD berusaha untuk hanya
+                                                        memproses dan menyimpan
+                                                        data Anda selama kami
+                                                        membutuhkannya. Dalam
+                                                        keadaan tertentu Anda
+                                                        memiliki hak untuk
+                                                        meminta kami menghapus
+                                                        data pribadi Anda yang
+                                                        kami pegang. Jika
+                                                        kontrak Anda dengan BGD
+                                                        telah berakhir, kami
+                                                        mungkin masih memiliki
+                                                        alasan yang sah untuk
+                                                        memproses data pribadi
+                                                        Anda.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <ul className="p-0">
+                                        <li className="font-bold">
+                                            Pengakuan dan Persetujuan
+                                            <ul className="font-normal">
+                                                <li>
+                                                    Anda menjamin bahwa segala
+                                                    data yang diberikan dalam
+                                                    bentuk tertulis maupun
+                                                    bentuk lainnya untuk
+                                                    menggunakan Layanan ini
+                                                    adalah benar milik Anda dan
+                                                    bukan diperoleh dari
+                                                    informasi pribadi milik
+                                                    pihak ketiga tanpa izin yang
+                                                    sah, sehingga segala hal
+                                                    yang timbul sehubungan
+                                                    dengan pemberian dan
+                                                    kebenaran data-data tersebut
+                                                    menjadi tanggung jawab penuh
+                                                    dari Anda.
+                                                </li>
+                                                <li>
+                                                    Dengan menyetujui Kebijakan
+                                                    Privasi ini, Anda mengakui
+                                                    bahwa Anda telah membaca dan
+                                                    memahami Kebijakan Privasi
+                                                    ini dan menyetujui semua
+                                                    ketentuannya. Secara khusus,
+                                                    Anda setuju dan memberikan
+                                                    izin kepada kami untuk
+                                                    melakukan pengumpulan,
+                                                    pemrosesan, analisis,
+                                                    penyimpanan, pengungkapan,
+                                                    koreksi, dan penghapusan
+                                                    data pribadi Anda sesuai
+                                                    dengan Kebijakan Privasi
+                                                    ini.
+                                                </li>
+                                                <li>
+                                                    Jika Anda berada di bawah
+                                                    persyaratan usia minimum
+                                                    atau termasuk dalam kategori
+                                                    anak-anak sesuai dengan
+                                                    ketentuan peraturan
+                                                    perundang-undangan yang
+                                                    berlaku, maka Anda wajib
+                                                    memastikan telah mendapatkan
+                                                    persetujuan dari orang tua
+                                                    (ayah atau ibu) atau wali
+                                                    Anda sesuai dengan peraturan
+                                                    yang berlaku.
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
