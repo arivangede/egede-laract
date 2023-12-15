@@ -172,35 +172,4 @@ class EnewsController extends Controller
         }
         return to_route('user.enews');
     }
-
-
-    public function paneladmin()
-    {
-        $admin = auth()->user()->kelas_id;
-        if ($admin == 2) {
-            $desa_id = auth()->user()->desa_id;
-            $berita = eNews::where('desa_id', $desa_id)->where('category', 'berita')->get();
-            $pengumuman = eNews::where('desa_id', $desa_id)->where('category', 'pengumuman')->get();
-            if ($berita->isNotEmpty() || $pengumuman->isNotEmpty()) {
-                $datachart = eNews::where('desa_id', $desa_id)
-                    ->select('category as category', DB::raw('count(*) as jumlah'))
-                    ->groupBy('category')
-                    ->get();
-            } else {
-                $datachart = [
-                    ['category' => 'pengumuman', 'jumlah' => 0],
-                    ['category' => 'berita', 'jumlah' => 0]
-                ];
-            }
-        } else {
-            return Inertia::render('kamu bukan admin desa!');
-        }
-
-
-        return Inertia::render('Fitur/Enews/PanelAdmin', [
-            'berita' => $berita,
-            'pengumuman' => $pengumuman,
-            'datachart' => $datachart
-        ]);
-    }
 }

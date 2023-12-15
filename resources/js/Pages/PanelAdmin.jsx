@@ -19,7 +19,6 @@ function PanelAdmin(props) {
                 <div className="w-full h-full flex flex-col items-center gap-4 border rounded-xl p-4">
                     <h1 className="w-full font-bold">E-News</h1>
                     <ChartAdmin datachart={props.datachart} />
-                    {/* <GrafikPie /> */}
                     <div className="flex justify-center items-center gap-4">
                         {props.datachart.map((item, i) => (
                             <h1 key={i} className="font-bold">
@@ -27,7 +26,10 @@ function PanelAdmin(props) {
                             </h1>
                         ))}
                     </div>
-                    <Link className="border border-red-500 text-red-500 font-bold text-lg py-2 px-4 rounded-full shadow hover:bg-red-400 hover:text-white transition duration-200">
+                    <Link
+                        href="/panel-admin/e-news"
+                        className="border border-red-500 text-red-500 font-bold text-lg py-2 px-4 rounded-full shadow hover:bg-red-400 hover:text-white transition duration-200"
+                    >
                         <h1>Lihat Detail</h1>
                     </Link>
                 </div>

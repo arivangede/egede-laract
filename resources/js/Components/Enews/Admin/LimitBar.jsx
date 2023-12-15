@@ -1,17 +1,17 @@
 function LimitBar({ pengumumanCount, title }) {
     const countPengumuman = pengumumanCount;
     const limitPengumuman = 365;
-    const persentase = Math.floor((countPengumuman / limitPengumuman) * 100);
+    const persentase = ((countPengumuman / limitPengumuman) * 100).toFixed(1);
 
     return (
         <div className="w-full flex flex-col justify-center items-center">
-            <h1 className="text-slate-600 font-bold w-full px-4 capitalize">
+            <h1 className="text-slate-600 font-bold w-full px-4 capitalize 0">
                 Limit Post {title}
             </h1>
             <div className="w-full flex flex-col justify-center items-center px-10">
                 <div className="bg-slate-100 border w-full rounded-full py-2 flex justify-center items-center overflow-hidden relative">
                     <div
-                        className={`absolute left-0 ${
+                        className={`absolute left-0 transition-all duration-1000 ${
                             persentase > 0 && persentase < 50
                                 ? "bg-green-400"
                                 : persentase >= 50 && persentase < 80
