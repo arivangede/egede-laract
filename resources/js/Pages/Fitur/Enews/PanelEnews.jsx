@@ -21,7 +21,7 @@ function PanelEnews(props) {
                     <h1 className="text-slate-600 text-lg">Panel E-News</h1>
                 </div>
                 <div className="py-8 px-4 flex flex-col w-full gap-4">
-                    {props.flash.message.length > 0 && (
+                    {props.flash.message && (
                         <div role="alert" className="alert flex gap-4">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
