@@ -43,7 +43,11 @@ class AuthController extends Controller
                 if ($user->kelas_id === 1) {
                     return to_route('user.pilihdesa');
                 } else {
-                    return to_route('user.home')->with('message', true);;
+                    if ($user->email_verified_at !== null) {
+                        return to_route('user.home')->with('message', true);
+                    } else {
+                        return to_route('user.login')->withErrors('Akun ini Belum Terverifikasi!');
+                    }
                 }
             }
         } else {
@@ -69,7 +73,6 @@ class AuthController extends Controller
             'confirmPassword' => 'string|min:6',
         ]);
 
-        $agree = $request->input('isAgree');
         $username = $validatedData['username'];
         $namaLengkap = $validatedData['namaLengkap'];
         $nik = $validatedData['nik'];
