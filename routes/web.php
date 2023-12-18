@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil-desa/wilayah-desa', [ProfilDesaController::class, 'wilayahdesa'])->name('user.wilayahdesa');
     Route::get('/profil-desa/sejarah-desa', [ProfilDesaController::class, 'sejarahdesa'])->name('user.sejarahdesa');
     Route::get('/profil-desa/visi-misi', [ProfilDesaController::class, 'visimisi'])->name('user.visimisidesa');
-    Route::get('/profil-desa/struktur-pemerintahan', [ProfilDesaController::class, 'struktur'])->name('user.visimisidesa');
+    Route::get('/profil-desa/struktur-pemerintahan', [ProfilDesaController::class, 'struktur'])->name('user.strukturpemerintahan');
     Route::get('/profil-desa/lpm', [ProfilDesaController::class, 'lpm'])->name('user.lpmdesa');
     Route::get('/profil-desa/sub/{title}', [SubProfilDesaController::class, 'index'])->name('user.sub');
 
@@ -96,6 +96,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [AuthController::class, 'generateOTP']);
 Route::get('/verify', [AuthController::class, 'verifyPage'])->name('user.verify');
 Route::post('/verify', [AuthController::class, 'verifyOTP']);
+
+Route::get('/lupa-password', [AuthController::class, 'lupapassword'])->name('user.lupapassword');
+Route::post('/lupa-password', [AuthController::class, 'lupapassword']);
+Route::get('/resetpassword/{token}', [AuthController::class, 'resetpassword'])->name('user.resetpassword');
+Route::post('/resetpassword/{token}', [AuthController::class, 'resetpassword']);
 
 
 

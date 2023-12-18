@@ -9,6 +9,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Otp;
 use App\Models\User;
+use Hashids\Hashids;
+use Illuminate\Support\Facades\Crypt;
 
 
 class AuthController extends Controller
@@ -194,6 +196,57 @@ class AuthController extends Controller
         Auth::logout();
         return to_route('user.login')->with('message', 'berhasil logout');
     }
+
+    public function lupapassword(Request $request)
+    {
+        $nik = $request->input('nik');
+        $nama = $request->input('nama');
+
+        if ($nik && $nama) {
+            $isUserAvailable = User::where('nik', $nik)->first();
+            $isNameTrue = Penduduk::where('nik', $nik)->where('nama', $nama)->first();
+
+            if ($isNameTrue && $isUserAvailable) {
+                $email = $isUserAvailable->email;
+                $encryptedNik = Crypt::encryptString($nik);;
+                $link = url('resetpassword/' . $encryptedNik);
+
+                Mail::raw("Klik Link ini untuk melakukan Reset Passwotd : $link", function ($message) use ($email) {
+                    $message->to($email)->subject('Reset Password e-GeDe');
+                });
+
+                return to_route('user.lupapassword')->with('message', 'Link Reset Password sudah dikirim ke email anda.');
+            } else {
+                return to_route('user.lupapassword')->with('message', 'Akun dengan Nik atau Nama tersebut tidak ada di database kami.');
+            }
+        }
+
+        return Inertia::render('Auth/LupaPassword');
+    }
+
+
+
+    public function resetpassword($token, Request $request)
+    {
+        $decryptednik = Crypt::decryptString($token);
+        $user = User::where('nik', $decryptednik)->first();
+
+        $newpass = $request->input('newpass');
+        $confirmpass = $request->input('confirmpass');
+        $userid = $request->input('userid');
+        if ($userid && $newpass && $confirmpass) {
+            if ($newpass === $confirmpass) {
+                $encryptedpass = bcrypt($newpass);
+                User::where('id', $userid)->first()->update(['password' => $encryptedpass]);
+                return to_route('user.login')->with('message', 'Password Anda Berhasil Diperbarui');
+            }
+        }
+
+        return Inertia::render('Auth/ResetPassword', [
+            "user" => $user
+        ]);
+    }
 }
+
 
 // qdtl iloh wvzr ychh

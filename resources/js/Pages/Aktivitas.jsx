@@ -25,7 +25,7 @@ const Aktivitas = (props) => {
         <>
             <Navbar active={"Aktivitas"} />
             <Head title="Aktivitas" />
-            <div className="bg-slate-50 min-h-screen">
+            <div className="bg-slate-50 min-h-screen pt-4">
                 <div className="entrance min-h-screen h-full flex flex-col items-center ">
                     <h1 className="text-[#ff4344] font-black text-4xl w-full pt-16 px-4">
                         Aktivitas

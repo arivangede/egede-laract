@@ -12,7 +12,7 @@ const Homepage = (props) => {
         <>
             <Head title="Homepage" />
             <Navbar active={"Homepage"} />
-            <div className="bg-slate-50 min-h-screen w-full">
+            <div className="bg-slate-50 min-h-screen w-full pt-4">
                 <div className="entrance flex flex-col items-center w-full p-4">
                     <div className="flex flex-col items-center pb-10 w-full">
                         <Header data={props.auth.user} flash={props.flash} />

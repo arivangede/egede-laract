@@ -6,7 +6,7 @@ const Notifikasi = () => {
         <>
             <Navbar active={"Notifikasi"} />
             <Head title="Notifikasi" />
-            <div className="bg-slate-50 min-h-screen">
+            <div className="bg-slate-50 min-h-screen pt-4">
                 <div className="entrance min-h-screen h-full flex flex-col items-center bg-slate-50">
                     <h1 className="text-[#ff4344] font-black text-4xl w-full pt-16 pb-8 px-4">
                         Notifikasi

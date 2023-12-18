@@ -85,10 +85,19 @@ function LoginForm({ errors, flash }) {
                             )}
                         </div>
 
+                        <div className="w-full flex justify-end items-center">
+                            <Link
+                                href="/lupa-password"
+                                className="text-sm underline text-slate-600"
+                            >
+                                Lupa Password?
+                            </Link>
+                        </div>
+
                         <button
                             type="submit"
                             name="submit"
-                            className="w-full py-3 mt-3 gap-2 bg-red-500 text-white rounded-full flex items-center justify-center border border-red-500 hover:bg-transparent  hover:text-red-500 transition duration-300 ease-in-out"
+                            className="w-full py-3 gap-2 bg-red-500 text-white rounded-full flex items-center justify-center border border-red-500 hover:bg-transparent  hover:text-red-500 transition duration-300 ease-in-out"
                         >
                             <span className="font-bold text-xl">Login</span>
                             <i className="bx bxs-log-in-circle text-2xl"></i>

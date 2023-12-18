@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
             DesaSeeder::class,
             DusunSeeder::class,
             UserclassesSeeder::class,
-            // PendudukSeeder::class,
+            PendudukSeeder::class,
             UsersSeeder::class,
-            // EnewsSeeder::class,
+            EnewsSeeder::class,
         ]);
     }
 }

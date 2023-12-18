@@ -14,10 +14,10 @@ const Profil = (props) => {
             <Head title="Profil" />
             <div className="bg-slate-50 min-h-screen">
                 <div className="h-full w-full">
-                    <div className="bg-[#ff4344] w-full h-[20vh] px-6 py-8 text-white flex justify-between">
+                    <div className="bg-[#ff4344] w-full h-[24vh] pt-12 px-6 pb-8 text-white flex justify-between">
                         <Link
                             href="/logout"
-                            className="font-bold text-base flex items-center h-max gap-2"
+                            className="font-bold text-base flex items-center h-max gap-2 "
                         >
                             <img src={logouticon} alt="icon" className="h-8" />
                             Logout
@@ -30,7 +30,7 @@ const Profil = (props) => {
                             <img src={profile} alt="icon" className="h-8" />
                         </Link>
                     </div>
-                    <div className="w-full px-6 -mt-10 pb-20">
+                    <div className="w-full px-6 -mt-12 pb-20">
                         <div className="entrance h-full bg-white rounded-2xl w-full shadow flex flex-col items-center gap-6">
                             <KartuEgede userData={props.auth.user} />
                             <ProfilDisplay
