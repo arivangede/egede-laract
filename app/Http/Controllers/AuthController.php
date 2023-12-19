@@ -61,12 +61,12 @@ class AuthController extends Controller
         $otp = rand(1000, 9999);
 
         $validatedData = $request->validate([
-            'username' => 'string|max:10|required',
+            'username' => 'required|string|max:10',
             'namaLengkap' => 'required',
-            'nik' => 'string|max:18|required',
-            'email' => 'email:dns|required',
-            'password' => 'string|min:6',
-            'confirmPassword' => 'string|min:6',
+            'nik' => 'required|string|max:18',
+            'email' => 'required|email:dns',
+            'password' => 'required|string|min:6',
+            'confirmPassword' => 'required|string|min:6',
         ]);
 
         $username = $validatedData['username'];

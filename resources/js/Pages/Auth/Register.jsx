@@ -57,73 +57,140 @@ function Register(props) {
                     </div>
                 )}
 
-                <div className="entrance w-full bg-transparent backdrop-blur shadow-lg rounded-xl flex flex-col items-center gap-4 px-8 py-8 text-slate-600 border-2 border-white">
+                <div className="entrance w-full max-w-xs bg-transparent backdrop-blur shadow-lg rounded-xl flex flex-col items-center gap-4 px-8 py-8 text-slate-600 border-2 border-white">
                     <h1 className="text-xl font-bold">Register</h1>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        className="border-slate-200 rounded-lg w-full bg-transparent"
-                        value={formData.username}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                username: e.target.value,
-                            })
-                        }
-                    />
-                    <input
-                        type="text"
-                        placeholder="Nama Lengkap (Sesuai KTP)"
-                        className="border-slate-200 rounded-lg w-full bg-transparent"
-                        value={formData.namaLengkap}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                namaLengkap: e.target.value,
-                            })
-                        }
-                    />
-                    <input
-                        type="text"
-                        placeholder="NIK"
-                        className="border-slate-200 rounded-lg w-full bg-transparent"
-                        value={formData.nik}
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            const sanitizedValue = value.replace(/[^0-9]/g, "");
-                            setFormData({ ...formData, nik: sanitizedValue });
-                        }}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="border-slate-200 rounded-lg w-full bg-transparent"
-                        value={formData.email}
-                        onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                        }
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="border-slate-200 rounded-lg w-full bg-transparent"
-                        value={formData.password}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                password: e.target.value,
-                            })
-                        }
-                    />
+                    <div className="w-full">
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            className={`${
+                                !props.errors.username
+                                    ? "border-slate-200"
+                                    : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                            } rounded-lg w-full bg-transparent`}
+                            value={formData.username}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    username: e.target.value,
+                                })
+                            }
+                        />
+                        {props.errors.username && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.username}
+                            </span>
+                        )}
+                    </div>
+                    <div className="w-full">
+                        <input
+                            type="text"
+                            placeholder="Nama Lengkap (Sesuai KTP)"
+                            className={`${
+                                !props.errors.namaLengkap
+                                    ? "border-slate-200"
+                                    : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                            } rounded-lg w-full bg-transparent`}
+                            value={formData.namaLengkap}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    namaLengkap: e.target.value,
+                                })
+                            }
+                        />
+                        {props.errors.namaLengkap && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.namaLengkap}
+                            </span>
+                        )}
+                    </div>
+                    <div className="w-full">
+                        <input
+                            type="text"
+                            placeholder="NIK"
+                            className={`${
+                                !props.errors.nik
+                                    ? "border-slate-200"
+                                    : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                            } rounded-lg w-full bg-transparent`}
+                            value={formData.nik}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                const sanitizedValue = value.replace(
+                                    /[^0-9]/g,
+                                    ""
+                                );
+                                setFormData({
+                                    ...formData,
+                                    nik: sanitizedValue,
+                                });
+                            }}
+                        />
+                        {props.errors.nik && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.nik}
+                            </span>
+                        )}
+                    </div>
+                    <div className="w-full">
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            className={`${
+                                !props.errors.email
+                                    ? "border-slate-200"
+                                    : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                            } rounded-lg w-full bg-transparent`}
+                            value={formData.email}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    email: e.target.value,
+                                })
+                            }
+                        />
+                        {props.errors.email && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.email}
+                            </span>
+                        )}
+                    </div>
+                    <div className="w-full">
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className={`${
+                                !props.errors.password
+                                    ? "border-slate-200"
+                                    : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                            } rounded-lg w-full bg-transparent`}
+                            value={formData.password}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    password: e.target.value,
+                                })
+                            }
+                        />
+                        {props.errors.password && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.password}
+                            </span>
+                        )}
+                    </div>
                     <div className="w-full flex flex-col gap-2">
                         <input
                             type="password"
                             placeholder="Confirm Password"
                             className={`${
-                                formData.confirmPassword == ""
+                                formData.confirmPassword == "" &&
+                                !props.errors.confirmPassword
                                     ? "border-slate-200"
                                     : formData.confirmPassword !=
                                       formData.password
+                                    ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+                                    : props.errors.confirmPassword
                                     ? "border-red-400 focus:border-red-400 focus:ring-red-400"
                                     : "border-slate-200"
                             } rounded-lg w-full bg-transparent`}
@@ -136,11 +203,16 @@ function Register(props) {
                             }
                         />
 
-                        {formData.confirmPassword == "" ? (
+                        {formData.confirmPassword == "" &&
+                        !props.errors.confirmPassword ? (
                             ""
                         ) : formData.confirmPassword != formData.password ? (
-                            <span className="text-red-400 text-sm">
+                            <span className="text-red-400 text-xs">
                                 Kolom Password dan Confirm Password tidak sama
+                            </span>
+                        ) : props.errors.confirmPassword ? (
+                            <span className="text-red-400 text-xs">
+                                {props.errors.confirmPassword}
                             </span>
                         ) : (
                             ""
