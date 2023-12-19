@@ -14,7 +14,7 @@ function Show(props) {
     return (
         <>
             <Head title={data.nama} />
-            <div className="min-h-screen bg-slate-50 flex flex-col gap-10 p-4">
+            <div className="min-h-screen bg-slate-50 flex flex-col gap-10 pt-12 pb-8 px-4">
                 <div className="w-9">
                     {props.nullback != "true" && (
                         <div
@@ -238,7 +238,7 @@ function Show(props) {
                         Keluarga {data.nama}{" "}
                         <span className="whitespace-nowrap">(Menurut KK)</span>
                     </h1>
-                    <div className="flex flex-wrap justify-around items-center w-full gap-14">
+                    <div className="flex flex-wrap justify-around items-center w-full gap-4">
                         {!props.dataKeluarga.length ? (
                             <h1 className="text-slate-500 text-center">
                                 Data Keluarga untuk penduduk ini tidak ditemukan

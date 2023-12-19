@@ -14,7 +14,7 @@ const Profil = (props) => {
             <Head title="Profil" />
             <div className="bg-slate-50 min-h-screen">
                 <div className="h-full w-full">
-                    <div className="bg-[#ff4344] w-full h-[24vh] pt-12 px-6 pb-8 text-white flex justify-between">
+                    <div className="bg-[#ff4344] w-full h-[24vh] pt-16 px-6 pb-8 text-white flex justify-between">
                         <Link
                             href="/logout"
                             className="font-bold text-base flex items-center h-max gap-2 "

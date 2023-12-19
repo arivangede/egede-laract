@@ -6,7 +6,7 @@ import sejarahdesa from "@/assets/img/profildesa/wilayahdesa/sejarahdesa.jpeg";
 function SejarahDesa() {
     return (
         <div className="w-full min-h-screen bg-slate-50 flex flex-col items-center">
-            <div className="w-full flex items-center text-white py-8 px-4 bg-red-500">
+            <div className="w-full flex items-center text-white pt-12 pb-8 px-4 bg-red-500">
                 <Link href="/profil-desa" className="w-8 h-8">
                     <BackBtn color={"#fff"} />
                 </Link>

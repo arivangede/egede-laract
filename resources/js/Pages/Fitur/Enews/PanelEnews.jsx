@@ -12,7 +12,7 @@ function PanelEnews(props) {
     return (
         <div className="bg-slate-50 min-h-screen flex flex-col items-center">
             <div className="entrance flex flex-col w-full">
-                <div className="flex items-center gap-4 pt-8 px-4">
+                <div className="flex items-center gap-4 pt-12 px-4">
                     <div className="h-8 w-8">
                         <Link href="/panel-admin">
                             <BackBtn color={"#1e293b"} />

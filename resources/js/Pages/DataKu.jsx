@@ -7,7 +7,7 @@ function DataKu() {
     return (
         <>
             <Head title="BerkasKu" />
-            <div className="min-h-screen bg-gradient-to-br from-red-300 from-10% to-slate-50 to-40% py-8 px-4 text-slate-600 flex flex-col items-center gap-8">
+            <div className="min-h-screen bg-gradient-to-br from-red-300 from-10% to-slate-50 to-40% pt-12 pb-8 px-4 text-slate-600 flex flex-col items-center gap-8">
                 <div className="w-full flex justify-start">
                     <Link href="/profil" className="flex items-center">
                         <div className="h-8 w-8">

@@ -7,7 +7,7 @@ function KeluargaCard({ data }) {
             {data.map((item, i) => (
                 <div
                     key={i}
-                    className="w-32 bg-white flex flex-col items-center rounded-xl shadow"
+                    className="w-32 bg-white flex flex-col items-center rounded-xl shadow mt-10"
                 >
                     <div className="w-20 h-20 items-center justify-center rounded-full overflow-hidden -mt-12 ">
                         <img

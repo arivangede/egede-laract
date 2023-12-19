@@ -38,7 +38,7 @@ function Index(props) {
     return (
         <>
             <Head title="Data Desa" />
-            <div className="entrance min-h-screen bg-red-500 relative">
+            <div className="entrance min-h-screen bg-red-500 relative pt-8">
                 <Header titlePage={"Data Desa"} />
 
                 <Container>

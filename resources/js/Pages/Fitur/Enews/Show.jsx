@@ -29,7 +29,7 @@ function Show(props) {
         <>
             <Head title={props.berita.title} />
 
-            <div className="entrance rounded-t-2xl flex flex-col items-center text-slate-800 bg-slate-50 min-h-screen">
+            <div className="entrance rounded-t-2xl flex flex-col items-center text-slate-800 bg-slate-50 min-h-screen pt-8">
                 <div className="w-full flex p-4">
                     <div onClick={handleBack} className="w-8">
                         <BackBtn color={"#1e293b"} />

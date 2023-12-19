@@ -7,7 +7,7 @@ function PanelAdmin(props) {
     console.log(props);
     return (
         <div className="min-h-screen bg-gradient-to-bl from-red-200 from-10% to-slate-50 to-30%">
-            <div className="w-full h-full flex flex-col gap-5 px-4 entrance">
+            <div className="w-full h-full flex flex-col gap-5 px-4 pt-8 entrance">
                 <div className="flex items-center gap-4 pt-4">
                     <div className="h-8 w-8">
                         <Link href="/e-news">

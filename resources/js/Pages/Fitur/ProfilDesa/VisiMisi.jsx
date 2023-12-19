@@ -9,7 +9,7 @@ function VisiMisi() {
     const [state, setState] = useState("visi");
     return (
         <div className="w-full min-h-screen bg-red-500 flex flex-col justify-between items-center">
-            <div className="w-full flex items-center text-white py-8 px-4">
+            <div className="w-full flex items-center text-white pt-12 pb-8 px-4">
                 <Link href="/profil-desa" className="w-8 h-8">
                     <BackBtn color={"#fff"} />
                 </Link>

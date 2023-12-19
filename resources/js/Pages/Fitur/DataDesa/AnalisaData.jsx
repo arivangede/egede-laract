@@ -135,7 +135,7 @@ function AnalisaData(props) {
     return (
         <>
             <Head title="Analisa Data" />
-            <div className="entrance flex flex-col bg-slate-50 min-h-screen py-8 px-4 gap-4 relative">
+            <div className="entrance flex flex-col bg-slate-50 min-h-screen pt-12 pb-8 px-4 gap-4 relative">
                 <div className="w-full flex justify-between items-center">
                     <div className="flex items-center">
                         <div className="w-9">

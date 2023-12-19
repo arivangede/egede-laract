@@ -27,7 +27,7 @@ function LPM() {
 
     return (
         <div className="w-full min-h-screen bg-slate-50 flex flex-col items-center">
-            <div className="w-full flex items-center text-white pt-8 pb-14 px-4 bg-red-500">
+            <div className="w-full flex items-center text-white pt-12 pb-14 px-4 bg-red-500">
                 <Link
                     onClick={() =>
                         window.localStorage.removeItem("lastOpenedlk")

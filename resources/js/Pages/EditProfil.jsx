@@ -174,7 +174,7 @@ function EditProfil(props) {
     return (
         <>
             <Head title="Edit Profil" />
-            <div className="min-h-screen bg-slate-50 py-8 px-4 text-slate-600 flex flex-col items-center gap-4">
+            <div className="min-h-screen bg-slate-50 pt-12 pb-8 px-4 text-slate-600 flex flex-col items-center gap-4">
                 <div className="w-full flex justify-start">
                     <Link href="/dataku" className="flex items-center">
                         <div className="h-8 w-8">

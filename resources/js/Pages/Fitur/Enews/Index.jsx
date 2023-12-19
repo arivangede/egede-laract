@@ -22,7 +22,7 @@ function Enews(props) {
         <>
             <Head title="E-News" />
             <div className="min-h-screen bg-slate-50">
-                <div className="entrance flex flex-col items-center h-full">
+                <div className="entrance flex flex-col items-center h-full pt-4">
                     {props.auth.user.kelas_id == 2 ? (
                         <>
                             <div className="fixed z-50 bottom-4 right-4 flex flex-col items-end gap-1">
