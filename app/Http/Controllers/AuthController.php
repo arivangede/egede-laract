@@ -237,7 +237,7 @@ class AuthController extends Controller
             if ($newpass === $confirmpass) {
                 $encryptedpass = bcrypt($newpass);
                 User::where('id', $userid)->first()->update(['password' => $encryptedpass]);
-                return to_route('user.login')->with('message', 'Password Anda Berhasil Diperbarui');
+                return to_route('user.success')->with('message', 'Password Anda Berhasil Diperbarui, Silahkan Buka Aplikasi e-GeDe dan Login dengan Password Baru.');
             }
         }
 

@@ -101,6 +101,9 @@ Route::get('/lupa-password', [AuthController::class, 'lupapassword'])->name('use
 Route::post('/lupa-password', [AuthController::class, 'lupapassword']);
 Route::get('/resetpassword/{token}', [AuthController::class, 'resetpassword'])->name('user.resetpassword');
 Route::post('/resetpassword/{token}', [AuthController::class, 'resetpassword']);
+Route::get('/success', function () {
+    return Inertia::render('Auth/Success');
+})->name('user.success');
 
 
 

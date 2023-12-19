@@ -24,7 +24,7 @@ function ResetPassword(props) {
 
     return (
         <div className="bg-slate-50 flex justify-center items-center w-full min-h-screen px-8">
-            <div className="bg-white w-full rounded-xl flex flex-col items-end gap-4 px-4 py-8">
+            <div className="bg-white w-full max-w-xs rounded-xl flex flex-col items-end gap-4 px-4 py-8">
                 <h1 className="w-full font-bold text-center">Reset Password</h1>
                 <input
                     type="password"
