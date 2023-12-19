@@ -13,7 +13,7 @@ function FilterCard({ desa, kategori, onDesaChange, onKategoriChange }) {
                 >
                     <option value={""}>Pilih Desa</option>
                     <option value={"1"}>Dauh Puri Kaja</option>
-                    <option value={"2"}>Padang Sambian Kelod</option>
+                    {/* <option value={"2"}>Padang Sambian Kelod</option> */}
                 </select>
                 <select
                     value={kategori}

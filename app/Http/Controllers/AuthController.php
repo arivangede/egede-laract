@@ -37,17 +37,13 @@ class AuthController extends Controller
 
 
         if (Auth::attempt($infologin)) {
-
             if (Auth::check()) {
                 $user = Auth::user();
-                if ($user->kelas_id === 1) {
-                    return to_route('user.pilihdesa');
+                if ($user->email_verified_at !== null) {
+                    return to_route('user.home')->with('message', true);
                 } else {
-                    if ($user->email_verified_at !== null) {
-                        return to_route('user.home')->with('message', true);
-                    } else {
-                        return to_route('user.login')->withErrors('Akun ini Belum Terverifikasi!');
-                    }
+                    Auth::logout();
+                    return to_route('user.login')->withErrors('Akun ini Belum Terverifikasi!');
                 }
             }
         } else {
