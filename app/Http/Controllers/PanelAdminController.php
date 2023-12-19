@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
 use App\Models\eNews;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -80,8 +82,20 @@ class PanelAdminController extends Controller
         $useradmin = auth()->user()->kelas_id;
         if ($idberita) {
             if ($useradmin == 2) {
-                eNews::where('id', $id)->delete();
-                return to_route('user.panelenews')->with('message', 'Berita berhasil dihapus');
+                $likeCount = Like::where('enews_id', $id)->count();
+                $bookmarkCount = Bookmark::where('enews_id', $id)->count();
+
+                if ($likeCount > 0) {
+                    Like::where('enews_id', $id)->delete();
+                }
+
+                if ($bookmarkCount > 0) {
+                    Bookmark::where('enews_id', $id)->delete();
+                }
+
+
+                $idberita->delete();
+                return to_route('user.panelenews')->with('message', 'Pengumuman berhasil dihapus');
             } else {
                 return to_route('user.panelenews')->with('message', 'Kamu bukan admin!');
             }
@@ -95,7 +109,18 @@ class PanelAdminController extends Controller
         $useradmin = auth()->user()->kelas_id;
         if ($idpengumuman) {
             if ($useradmin == 2) {
-                eNews::where('id', $id)->delete();
+                $likeCount = Like::where('enews_id', $id)->count();
+                $bookmarkCount = Bookmark::where('enews_id', $id)->count();
+
+                if ($likeCount > 0) {
+                    Like::where('enews_id', $id)->delete();
+                }
+
+                if ($bookmarkCount > 0) {
+                    Bookmark::where('enews_id', $id)->delete();
+                }
+
+                $idpengumuman->delete();
                 return to_route('user.panelenews')->with('message', 'Pengumuman berhasil dihapus');
             } else {
                 return to_route('user.panelenews')->with('message', 'Kamu bukan admin!');

@@ -50,7 +50,7 @@ function Show(props) {
                 </div>
                 <ShowCarousel carousel={props.berita.image} />
                 <div className="w-full flex justify-between items-center p-4 gap-2">
-                    <div className="flex gap-2">
+                    <div className="flex items-center gap-2">
                         <LikeBtn
                             userId={props.auth.user.id}
                             newsId={props.berita.id}
@@ -58,7 +58,10 @@ function Show(props) {
                             liked={props.liked}
                         />
                         <span>{likeCount} suka</span>
-                        <ShareBtn />
+                        {/* <ShareBtn
+                            newsId={props.berita.id}
+                            newsTitle={props.berita.title}
+                        /> */}
                     </div>
                     <div className="flex gap-2">
                         <SaveBtn
