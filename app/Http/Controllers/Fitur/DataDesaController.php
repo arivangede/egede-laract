@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use App\Models\Desa;
 use App\Models\Dusun;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -76,7 +77,7 @@ class DataDesaController extends Controller
 
     public function analisa(Request $request)
     {
-        $desa = $request->input('desa');
+        $desa = Auth()->user()->desa_id;
         $selectedDusun = $request->input('dusun');
         $selectedJk = $request->input('jenis_kelamin');
         $selectedPekerjaan = $request->input('pekerjaan');
@@ -87,6 +88,9 @@ class DataDesaController extends Controller
         $selectedKewarganegaraan = $request->input('kewarganegaraan');
         $selectedPendidikan = $request->input('pendidikan');
         $search = $request->input('search');
+
+        $umur = $request->input('umur');
+        $tanggal = $request->input('tanggal');
 
         $jumlahPenduduk = DB::table('penduduk')
             ->where('desa_id', $desa)
@@ -192,6 +196,16 @@ class DataDesaController extends Controller
         }
 
 
+
+        if ($umur && $tanggal) {
+            $Penduduk = Penduduk::whereRaw("TIMESTAMPDIFF(YEAR, tanggal_lahir, '$tanggal') = ?", [$umur])
+                ->get();
+            $count = $Penduduk->count();
+        }
+
+
+
+
         return Inertia::render('Fitur/DataDesa/AnalisaData', [
             'jumlahPenduduk' => $jumlahPenduduk,
             'jumlahHasil' => $count,
@@ -205,7 +219,6 @@ class DataDesaController extends Controller
             'kewarganegaraanOptions' => $kewarganegaraan,
             'pendidikanOptions' => $pendidikan,
             'data' => $Penduduk,
-
         ]);
     }
 

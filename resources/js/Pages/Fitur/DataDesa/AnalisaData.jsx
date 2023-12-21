@@ -2,13 +2,17 @@ import FilterBtn from "@/Components/DataDesa/AnalisaData/FilterBtn";
 import FilterMenu from "@/Components/DataDesa/AnalisaData/FilterMenu";
 import Pagination from "@/Components/DataDesa/AnalisaData/Pagination";
 import PendudukCard from "@/Components/DataDesa/AnalisaData/PendudukCard";
+import PrediksiUsia from "@/Components/DataDesa/AnalisaData/PrediksiUsia";
 import SearchBar from "@/Components/DataDesa/AnalisaData/SearchBar";
+import SpesifikUsia from "@/Components/DataDesa/AnalisaData/SpesifikUsia";
 import StatusCard from "@/Components/DataDesa/AnalisaData/StatusCard";
 import BackBtn from "@/assets/svg/BackBtn";
 import { Head, Link, router } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 function AnalisaData(props) {
+    console.log(props);
+
     const [desaId, setDesaId] = useState(props.auth.user.desa_id);
 
     const [dusun, setDusun] = useState("");
@@ -132,11 +136,16 @@ function AnalisaData(props) {
         setPopUpFilter(!popUpFilter);
     };
 
+    const [popupPrediksi, setPopupPrediksi] = useState(false);
+    const Prediksibtn = () => {
+        setPopupPrediksi(!popupPrediksi);
+    };
+
     return (
         <>
             <Head title="Analisa Data" />
             <div className="entrance flex flex-col bg-slate-50 min-h-screen pt-12 pb-8 px-4 gap-4 relative">
-                <div className="w-full flex justify-between items-center">
+                <div className="w-full flex justify-between items-center gap-4">
                     <div className="flex items-center">
                         <div className="w-9">
                             <Link href="/data-desa" onClick={clearLastOpened}>
@@ -145,7 +154,7 @@ function AnalisaData(props) {
                         </div>
                         <h1 className="font-extrabold text-xl">Analisa Data</h1>
                     </div>
-
+                    <SpesifikUsia click={Prediksibtn} />
                     <FilterBtn click={FilterButton} />
                 </div>
                 <FilterMenu
@@ -180,6 +189,7 @@ function AnalisaData(props) {
                     setPendidikan={setPendidikan}
                     apply={handleApply}
                 />
+                <PrediksiUsia popup={popupPrediksi} />
                 <div
                     className={`transition duration-200 flex flex-col justify-center items-center gap-2`}
                 >

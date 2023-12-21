@@ -129,25 +129,6 @@ function FilterMenu({
                     </select>
                 </div>
                 <div className="flex flex-col">
-                    <label htmlFor="usia" className="text-slate-500 text-sm">
-                        Usia :
-                    </label>
-                    <select
-                        name="usia"
-                        id="usia"
-                        className="rounded border-slate-300"
-                        value={lastUsia}
-                        onChange={(e) => setUsia(e.target.value)}
-                    >
-                        <option value="">pilih</option>
-                        {usiaOptions.map((usia, i) => (
-                            <option key={i} value={usia}>
-                                {usia}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="flex flex-col">
                     <label
                         htmlFor="stt_nikah"
                         className="text-slate-500 text-sm"
@@ -240,7 +221,7 @@ function FilterMenu({
             >
                 <button
                     onClick={apply}
-                    className="py-1 px-4 bg-slate-600 text-white rounded-lg"
+                    className="py-1 px-4 bg-slate-600 text-white font-bold rounded-lg"
                 >
                     apply
                 </button>
