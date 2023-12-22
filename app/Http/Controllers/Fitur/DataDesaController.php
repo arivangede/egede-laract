@@ -149,7 +149,7 @@ class DataDesaController extends Controller
             ->orderBy('pendidikan_terakhir', 'asc')
             ->pluck('pendidikan_terakhir');
 
-        if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah && !$selectedAgama && !$selectedKewarganegaraan && !$selectedPendidikan && !$search) {
+        if (!$selectedDusun && !$selectedJk && !$selectedPekerjaan && !$selectedSuku && !$selectedUsia && !$selectedSttNikah && !$selectedAgama && !$selectedKewarganegaraan && !$selectedPendidikan && !$search && !$umur && !$tanggal) {
             $Penduduk = Penduduk::select('nik', 'nama', 'foto', 'alamat')->where('desa_id', $desa)->orderBy('id', 'desc')->get();
             $count = 0;
         } else {
@@ -170,9 +170,6 @@ class DataDesaController extends Controller
                 ->when($selectedSuku, function ($query, $selectedSuku) {
                     return $query->where('suku_bangsa', $selectedSuku);
                 })
-                ->when($selectedUsia, function ($query, $selectedUsia) {
-                    return $query->whereRaw('TIMESTAMPDIFF(YEAR, tanggal_lahir, CURDATE()) = ?', [$selectedUsia]);
-                })
                 ->when($selectedSttNikah, function ($query, $selectedSttNikah) {
                     return $query->where('stt_nikah', $selectedSttNikah);
                 })
@@ -190,21 +187,13 @@ class DataDesaController extends Controller
                         ->orWhere('nik', 'like', '%' . $search . '%')
                         ->orWhere('no_kk', 'like', '%' . $search . '%');
                 })
+                ->when($umur && $tanggal, function ($query) use ($umur, $tanggal) {
+                    return $query->whereRaw("TIMESTAMPDIFF(YEAR, tanggal_lahir, '$tanggal') = ?", [$umur]);
+                })
                 ->get();
 
             $count = $Penduduk->count();
         }
-
-
-
-        if ($umur && $tanggal) {
-            $Penduduk = Penduduk::whereRaw("TIMESTAMPDIFF(YEAR, tanggal_lahir, '$tanggal') = ?", [$umur])
-                ->get();
-            $count = $Penduduk->count();
-        }
-
-
-
 
         return Inertia::render('Fitur/DataDesa/AnalisaData', [
             'jumlahPenduduk' => $jumlahPenduduk,

@@ -25,6 +25,8 @@ function AnalisaData(props) {
     const [kewarganegaraan, setKewarganegaraan] = useState("");
     const [pendidikan, setPendidikan] = useState("");
     const [search, setSearch] = useState("");
+    const [umur, setUmur] = useState("");
+    const [tanggal, setTanggal] = useState("");
 
     const [currentPage, setCurrentPage] = useState(1);
     const dataPerPage = 25;
@@ -51,6 +53,8 @@ function AnalisaData(props) {
             kewarganegaraan: kewarganegaraan,
             pendidikan: pendidikan,
             search: search,
+            umur: umur,
+            tanggal: tanggal,
         });
     };
 
@@ -69,6 +73,8 @@ function AnalisaData(props) {
             setPendidikan(data.pendidikan);
             setSearch(data.search);
             setCurrentPage(data.currentPage);
+            setUmur(data.umur);
+            setTanggal(data.tanggal);
         }
     }, []);
 
@@ -85,6 +91,8 @@ function AnalisaData(props) {
         pendidikan,
         search,
         currentPage,
+        umur,
+        tanggal,
     };
 
     useEffect(() => {
@@ -102,6 +110,8 @@ function AnalisaData(props) {
         pendidikan,
         search,
         currentPage,
+        umur,
+        tanggal,
     ]);
 
     useEffect(() => {
@@ -121,6 +131,8 @@ function AnalisaData(props) {
             kewarganegaraan: kewarganegaraan,
             pendidikan: pendidikan,
             search: search,
+            umur: umur,
+            tanggal: tanggal,
         });
         setCurrentPage(1);
     };
@@ -154,7 +166,6 @@ function AnalisaData(props) {
                         </div>
                         <h1 className="font-extrabold text-xl">Analisa Data</h1>
                     </div>
-                    <SpesifikUsia click={Prediksibtn} />
                     <FilterBtn click={FilterButton} />
                 </div>
                 <FilterMenu
@@ -187,9 +198,12 @@ function AnalisaData(props) {
                     setAgama={setAgama}
                     setKewarganegaraan={setKewarganegaraan}
                     setPendidikan={setPendidikan}
+                    umur={umur}
+                    tanggal={tanggal}
+                    setUmur={setUmur}
+                    setTanggal={setTanggal}
                     apply={handleApply}
                 />
-                <PrediksiUsia popup={popupPrediksi} />
                 <div
                     className={`transition duration-200 flex flex-col justify-center items-center gap-2`}
                 >

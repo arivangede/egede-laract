@@ -1,23 +1,10 @@
-import { router } from "@inertiajs/react";
-import React, { useState } from "react";
-
-function PrediksiUsia({ popup }) {
-    const [umur, setUmur] = useState("");
-    const [tanggal, setTanggal] = useState("");
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Umur:", umur);
-        console.log("Tanggal:", tanggal);
-        const data = { umur: umur, tanggal: tanggal };
-        router.post("/data-desa/analisa-data", data);
-    };
-
+function PrediksiUsia({ umur, tanggal, setUmur, setTanggal, popup, apply }) {
     const handleClear = (e) => {
         e.preventDefault();
         setUmur("");
         setTanggal("");
     };
+
     return (
         <form
             className={`${
@@ -61,7 +48,7 @@ function PrediksiUsia({ popup }) {
                         clear
                     </button>
                     <button
-                        onClick={handleSubmit}
+                        onClick={apply}
                         className="py-2 px-4 flex justify-center items-center border border-slate-400 bg-slate-600 text-white font-bold rounded-xl"
                     >
                         apply
