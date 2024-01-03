@@ -22,13 +22,13 @@ const Profil = (props) => {
                             <img src={logouticon} alt="icon" className="h-8" />
                             Logout
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/dataku"
                             className="font-bold text-base flex items-center h-max gap-2"
                         >
                             Dataku
                             <img src={profile} alt="icon" className="h-8" />
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className="w-full px-6 -mt-12 pb-20">
                         <div className="entrance h-full bg-white rounded-2xl w-full shadow flex flex-col items-center gap-6">

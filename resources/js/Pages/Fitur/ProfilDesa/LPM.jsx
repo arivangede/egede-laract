@@ -2,15 +2,6 @@ import BackBtn from "@/assets/svg/BackBtn";
 import { Link } from "@inertiajs/react";
 import lpm from "@/assets/img/profildesa/lpm/LPM.jpeg";
 import kt from "@/assets/img/profildesa/kt/Karang Taruna.jpeg";
-import strukturbpd from "@/assets/img/profildesa/bpd/Dicompress dengan WA.jpeg";
-
-import ketuabpd from "@/assets/img/profildesa/bpd/Drs. I Ketut Alit Adnyana Yuda.png";
-import wakilbpd from "@/assets/img/profildesa/bpd/Drs. Ketut Jayanegara, M.Si..png";
-import sekrebpd from "@/assets/img/profildesa/bpd/I Ketut Gede Arjana, S.Pt..png";
-import anggota1bpd from "@/assets/img/profildesa/bpd/H. Moh. Farham, SE..jpg";
-import anggota2bpd from "@/assets/img/profildesa/bpd/Ir. Wayan Sudarta, MS..png";
-import anggota3bpd from "@/assets/img/profildesa/bpd/I Nyoman Sutarma.png";
-import anggota4bpd from "@/assets/img/profildesa/bpd/Desak Nyoman Sekarini, SE..png";
 
 import pelindung from "@/assets/img/profildesa/struktur/I Gusti Ketut Sucipta.jpg";
 import profile from "@/assets/img/profildesa/lpm/profile.svg";
@@ -19,7 +10,7 @@ import ChevronR from "@/assets/svg/ChevronR";
 
 function LPM() {
     const lastOpened = JSON.parse(localStorage.getItem("lastOpenedlk"));
-    const [selected, setSelected] = useState(lastOpened || "BPD");
+    const [selected, setSelected] = useState(lastOpened || "LPM");
 
     useEffect(() => {
         window.localStorage.setItem("lastOpenedlk", JSON.stringify(selected));
@@ -45,7 +36,6 @@ function LPM() {
                     onChange={(e) => setSelected(e.target.value)}
                     className="bg-white w-full border-none shadow-lg rounded-lg py-4 text-sm focus:border-none focus:ring-0"
                 >
-                    <option value="BPD">Badan Permusyawaratan Desa</option>
                     <option value="LPM">Lembaga Pemberdayaan Masyarakat</option>
                     <option value="KT">Karang Taruna</option>
                 </select>
@@ -386,107 +376,6 @@ function StrukturKT() {
                         <ChevronR />
                     </div>
                 </Link>
-            </div>
-        </div>
-    );
-}
-
-function StrukturBPD() {
-    return (
-        <div className="entrance w-full flex flex-col items-center gap-4">
-            <div className="w-full px-2">
-                <img
-                    src={strukturbpd}
-                    alt="lpm"
-                    className="rounded-xl shadow-lg"
-                />
-            </div>
-            <div className="entrance w-full flex flex-col items-center">
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={ketuabpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">
-                            Drs. I Ketut Alit Adnyana Yuda
-                        </h1>
-                        <span>KETUA</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={wakilbpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">
-                            Drs. Ketut Jayanegara, M.Si.
-                        </h1>
-                        <span>WAKIL KETUA</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={sekrebpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">
-                            I Ketut Gede Arjana, S.Pt.
-                        </h1>
-                        <span>SEKRETARIS</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={anggota1bpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">H. Moh. Farham, SE.</h1>
-                        <span>ANGGOTA BPD</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={anggota2bpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">Ir. Wayan Sudarta, MS.</h1>
-                        <span>ANGGOTA BPD</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={anggota3bpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">I Nyoman Sutarma</h1>
-                        <span>ANGGOTA BPD</span>
-                    </div>
-                </div>
-                <div className="flex items-center gap-4 h-24 px-4 w-full border">
-                    <img
-                        src={anggota4bpd}
-                        alt="img"
-                        className="rounded-full object-cover object-top h-16 w-16"
-                    />
-                    <div className="flex flex-col gap-2 text-slate-700">
-                        <h1 className="font-bold">
-                            Desak Nyoman Sekarini, SE.
-                        </h1>
-                        <span>ANGGOTA BPD</span>
-                    </div>
-                </div>
             </div>
         </div>
     );

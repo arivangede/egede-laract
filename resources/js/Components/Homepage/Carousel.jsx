@@ -79,7 +79,11 @@ function Carousel({ datadesa }) {
                         <div
                             className={`carousel-item w-[100%] flex justify-center items-center`}
                         >
-                            <img src={slides[0]} alt="banner" />
+                            <img
+                                src={slides[0]}
+                                alt="banner"
+                                className="w-full object-contain object-center"
+                            />
                         </div>
                     ) : (
                         ""
