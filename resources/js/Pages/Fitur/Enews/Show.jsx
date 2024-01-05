@@ -77,7 +77,7 @@ function Show(props) {
                         dangerouslySetInnerHTML={{
                             __html: props.berita.content,
                         }}
-                        className="w-full break-all post"
+                        className="w-full break-words text-justify post"
                     />
                 </div>
             </div>

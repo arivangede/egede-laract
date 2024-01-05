@@ -5,7 +5,7 @@ function ShowCarousel({ carousel }) {
         <>
             <div className="w-full h-60 flex justify-center items-center">
                 <img
-                    src={"/storage/" + carousel}
+                    src={"/storage" + carousel}
                     alt="img"
                     className="object-cover object-center h-full w-full"
                 />

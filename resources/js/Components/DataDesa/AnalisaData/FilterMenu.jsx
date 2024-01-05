@@ -229,7 +229,7 @@ function FilterMenu({
                 <form
                     className={`${
                         popup == true ? "scale-100" : "absolute -z-20"
-                    } scale-0 w-full bg-white shadow rounded-xl p-4 transition duration-200 origin-top border`}
+                    } scale-0 w-full shadow rounded-xl p-4 transition duration-200 origin-top border`}
                 >
                     <div
                         className={`${
@@ -238,7 +238,7 @@ function FilterMenu({
                     >
                         <h1 className="text-slate-600">Prediksi Usia</h1>
                         <div
-                            className={`flex justify-center items-center w-full gap-4`}
+                            className={`flex justify-center items-center w-full gap-4 text-slate-700`}
                         >
                             <div className="w-full">
                                 <label htmlFor="umur">Umur:</label>
