@@ -30,7 +30,7 @@ function Register(props) {
     };
 
     console.log(props);
-    console.log(isOpen);
+    console.log(formData);
     return (
         <>
             <Head title="Register" />
