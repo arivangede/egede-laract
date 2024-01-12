@@ -65,6 +65,7 @@ class AuthController extends Controller
             'namaLengkap' => 'required',
             'nik' => 'required|string|max:18',
             'email' => 'required|email:dns',
+            'nohp' => 'required|string|max:14',
             'password' => 'required|string|min:6',
             'confirmPassword' => 'required|string|min:6',
         ]);
@@ -72,52 +73,48 @@ class AuthController extends Controller
         $username = $validatedData['username'];
         $namaLengkap = $validatedData['namaLengkap'];
         $nik = $validatedData['nik'];
+        $nohp = $validatedData['nohp'];
         $email = $validatedData['email'];
         $password = $validatedData['password'];
         $confirmpassword = $validatedData['confirmPassword'];
         $desa = Penduduk::where('nik', $nik)->first();
 
         $isAvailable = User::where('nik', $nik)->first();
+        $dataPenduduk = Penduduk::select('nik', 'nama')->where('nik', $nik)->first();
 
 
         if ($password == $confirmpassword) {
-            if ($isAvailable) {
-                return Inertia::render('Auth/Register')->with('message', 'NIK ini Sudah Terdaftar!');
+            if ($dataPenduduk) {
+                if ($dataPenduduk->nama == $namaLengkap) {
+                    if ($isAvailable) {
+                        return Inertia::render('Auth/Register')->with('message', 'NIK ini Sudah Terdaftar!');
+                    } else {
+                        User::create([
+                            'username' => $username,
+                            'nik' => $nik,
+                            'email' => $email,
+                            'no_hp' => $nohp,
+                            'password' => bcrypt($password),
+                            'kelas_id' => 3,
+                            'desa_id' => $desa->desa_id
+                        ]);
+                        Otp::create([
+                            'email' => $email,
+                            'otp' => $otp
+                        ]);
+                        Mail::raw("Kode OTP Anda : $otp", function ($message) use ($email) {
+                            $message->to($email)->subject('Kode OTP');
+                        });
+                    }
+                } else {
+                    return Inertia::render('Auth/Register')->with('message', 'Nama lengkap atau NIK yang anda masukan salah!');
+                }
             } else {
-                User::create([
-                    'username' => $username,
-                    'nik' => $nik,
-                    'email' => $email,
-                    'password' => bcrypt($password),
-                    'kelas_id' => 3,
-                    'desa_id' => $desa->desa_id
-                ]);
+                return Inertia::render('Auth/Register')->with('message', 'Nik atau Nama Lengkap anda tidak ditemukan di database kami');
             }
         } else {
             return Inertia::render('Auth/Register')->with('message', 'Password dan ConfirmPassword tidak sama!');
         }
-
-
-        $dataPenduduk = Penduduk::select('nik', 'nama')->where('nik', $nik)->first();
-
-        if ($dataPenduduk) {
-            if ($dataPenduduk->nama == $namaLengkap) {
-                Otp::create([
-                    'email' => $email,
-                    'otp' => $otp
-                ]);
-            } else {
-                return Inertia::render('Auth/Register')->with('message', 'Nama lengkap atau NIK yang anda masukan salah!');
-            }
-        } else {
-            return Inertia::render('Auth/Register')->with('message', 'Nik atau Nama Lengkap anda tidak ditemukan di database kami');
-        }
-
-
-        Mail::raw("Kode OTP Anda : $otp", function ($message) use ($email) {
-            $message->to($email)->subject('Kode OTP');
-        });
-
 
         return to_route('user.verify')->with('message', 'kode OTP sudah dikirim ke email anda')->with('email', $request->input('email'));
     }

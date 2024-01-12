@@ -9,6 +9,7 @@ function Register(props) {
         namaLengkap: "",
         nik: "",
         email: "",
+        nohp: "",
         password: "",
         confirmPassword: "",
     });
@@ -20,6 +21,7 @@ function Register(props) {
             namaLengkap: formData.namaLengkap,
             nik: formData.nik,
             email: formData.email,
+            nohp: "+62" + formData.nohp,
             password: formData.password,
             confirmPassword: formData.confirmPassword,
             isAgree: isAgree,
@@ -153,6 +155,38 @@ function Register(props) {
                         {props.errors.email && (
                             <span className="px-4 text-xs text-red-400">
                                 {props.errors.email}
+                            </span>
+                        )}
+                    </div>
+                    <div className="w-full">
+                        <div className="flex items-center gap-2">
+                            <span>+62</span>
+                            <input
+                                type="text"
+                                placeholder="No Telepon/HP"
+                                className={`${
+                                    !props.errors.nohp
+                                        ? "border-slate-200"
+                                        : "border-red-400 focus:border-red-400 focus:ring-red-400"
+                                } rounded-lg w-full bg-transparent`}
+                                value={formData.nohp}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    const sanitizedValue = value.replace(
+                                        /[^0-9]/g,
+                                        ""
+                                    );
+                                    setFormData({
+                                        ...formData,
+                                        nohp: sanitizedValue,
+                                    });
+                                }}
+                            />
+                        </div>
+
+                        {props.errors.nohp && (
+                            <span className="px-4 text-xs text-red-400">
+                                {props.errors.nohp}
                             </span>
                         )}
                     </div>
