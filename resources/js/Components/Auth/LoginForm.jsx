@@ -23,18 +23,18 @@ function LoginForm({ errors, flash }) {
     return (
         <>
             <img
-                src={topAsset}
-                alt="top"
-                className="fixed top-0 left-0 w-full fade-down"
-            />
-            <img
                 src={bottomAsset}
                 alt="bottom"
                 className="fixed bottom-0 left-0 w-full fade-up"
             />
+            <img
+                src={topAsset}
+                alt="top"
+                className="fixed top-0 left-0 w-full fade-down"
+            />
 
             <Head title="Login" />
-            <div className="entrance min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-tr from-white to-red-50">
+            <div className="entrance min-h-screen w-full flex flex-col justify-center items-center bg-gradient-to-tr from-white to-red-50 z-50">
                 <form onSubmit={handleLogin} className="px-12">
                     <div className="px-12 py-8 gap-4 w-full flex flex-col justify-center items-center bg-transparent backdrop-blur shadow-lg border-2 rounded-xl relative z-10 border-white">
                         <img src={logo} alt="logo" className="h-[2rem] mb-8" />

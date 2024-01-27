@@ -148,11 +148,6 @@ function AnalisaData(props) {
         setPopUpFilter(!popUpFilter);
     };
 
-    const [popupPrediksi, setPopupPrediksi] = useState(false);
-    const Prediksibtn = () => {
-        setPopupPrediksi(!popupPrediksi);
-    };
-
     return (
         <>
             <Head title="Analisa Data" />

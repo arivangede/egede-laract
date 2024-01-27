@@ -19,6 +19,7 @@ function Number({ n }) {
 function Index(props) {
     const [selectedDesa, setSelectedDesa] = useState("");
     const [selectedKategori, setSelectedKategori] = useState("");
+    const kelasUser = props.auth.user.kelas_id;
 
     const handleDesaChange = (desa) => {
         setSelectedDesa(desa);
@@ -51,17 +52,17 @@ function Index(props) {
                         />
                     </div>
 
-                    {props.auth.user.kelas_id == 3 ? (
+                    {kelasUser == 3 ? (
                         ""
                     ) : (
                         <div className="w-full pt-4 px-8 flex justify-center items-center">
                             <Link
                                 href={
-                                    props.auth.user.desa_id != 0
-                                        ? `/data-desa/analisa-data`
-                                        : "/data-desa/analisa-data"
+                                    kelasUser === 1
+                                        ? "/data-desa/analisa-data"
+                                        : "/data-desa/analisa-data-admindesa"
                                 }
-                                className="w-full p-4 flex justify-center items-center bg-red-500 rounded-lg shadow"
+                                className="w-full p-4 flex justify-center items-center bg-red-500 rounded-lg shadow select-none"
                             >
                                 <h1 className="text-white font-bold">
                                     Analisa Data

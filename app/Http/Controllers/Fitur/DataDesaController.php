@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use App\Models\Desa;
 use App\Models\Dusun;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -229,6 +228,125 @@ class DataDesaController extends Controller
             'usia' => $usia,
             'dataKeluarga' => $getKeluarga,
             'nullback' => $nullback
+        ]);
+    }
+
+    public function analisaLite(Request $request)
+    {
+        // init index
+        $user_desa = Auth()->user()->desa_id;
+        $penduduk = Penduduk::where('desa_id', $user_desa);
+        $nama_desa = Desa::where('id', $user_desa)->select('nama_desa')->first();
+        $count_penduduk = $penduduk->count();
+
+        // select opt data
+        $dusun = Dusun::where('desa_id', $user_desa)
+            ->select('id', 'nama_dusun')
+            ->orderBy('nama_dusun', 'asc')
+            ->get();
+        $jeniskelamin = Penduduk::where('desa_id', $user_desa)
+            ->select('jenis_kelamin')
+            ->distinct()
+            ->orderBy('jenis_kelamin', 'asc')
+            ->get();
+        $pekerjaan = Penduduk::where('desa_id', $user_desa)
+            ->select('pekerjaan')
+            ->distinct()
+            ->orderBy('pekerjaan', 'asc')
+            ->get();
+        $suku_bangsa = Penduduk::where('desa_id', $user_desa)
+            ->select('suku_bangsa')
+            ->distinct()
+            ->orderBy('suku_bangsa', 'asc')
+            ->get();
+        $status_pernikahan = Penduduk::where('desa_id', $user_desa)
+            ->select('stt_nikah')
+            ->distinct()
+            ->orderBy('stt_nikah', 'asc')
+            ->get();
+        $agama = Penduduk::where('desa_id', $user_desa)
+            ->select('agama')
+            ->distinct()
+            ->orderBy('agama', 'asc')
+            ->get();
+        $warga_negara = Penduduk::where('desa_id', $user_desa)
+            ->select('kewarganegaraan')
+            ->distinct()
+            ->orderBy('kewarganegaraan', 'asc')
+            ->get();
+        $pendidikan = Penduduk::where('desa_id', $user_desa)
+            ->select('pendidikan_terakhir')
+            ->distinct()
+            ->orderBy('pendidikan_terakhir', 'asc')
+            ->get();
+
+        $options = compact(
+            'dusun',
+            'jeniskelamin',
+            'pekerjaan',
+            'suku_bangsa',
+            'status_pernikahan',
+            'agama',
+            'warga_negara',
+            'pendidikan'
+        );
+
+        // apply filter
+
+        $selectedDusun = $request->input('dusun');
+        $selectedJk = $request->input('jk');
+        $selectedPekerjaan = $request->input('pekerjaan');
+        $selectedSuku = $request->input('sukuBangsa');
+        $selectedStatus = $request->input('status');
+        $selectedAgama = $request->input('agama');
+        $selectedWargaNegara = $request->input('wargaNegara');
+        $selectedPendidikan = $request->input('pendidikan');
+        $selectedTanggal = $request->input('tanggal');
+        $selectedUmur = $request->input('umur');
+
+        $filterResult = Penduduk::where('desa_id', $user_desa)
+            ->when($selectedDusun, function ($query, $selectedDusun) {
+                if ($selectedDusun !== 'wherenull') {
+                    return $query->where('dusun_id', $selectedDusun);
+                } else {
+                    return $query->whereNull('dusun_id');
+                }
+            })
+            ->when($selectedJk, function ($query, $selectedJk) {
+                return $query->where('jenis_kelamin', $selectedJk);
+            })
+            ->when($selectedPekerjaan, function ($query, $selectedPekerjaan) {
+                return $query->where('pekerjaan', $selectedPekerjaan);
+            })
+            ->when($selectedSuku, function ($query, $selectedSuku) {
+                return $query->where('suku_bangsa', $selectedSuku);
+            })
+            ->when($selectedStatus, function ($query, $selectedStatus) {
+                return $query->where('stt_nikah', $selectedStatus);
+            })
+            ->when($selectedAgama, function ($query, $selectedAgama) {
+                return $query->where('agama', $selectedAgama);
+            })
+            ->when($selectedWargaNegara, function ($query, $selectedWargaNegara) {
+                return $query->where('kewarganegaraan', $selectedWargaNegara);
+            })
+            ->when($selectedPendidikan, function ($query, $selectedPendidikan) {
+                return $query->where('pendidikan_terakhir', $selectedPendidikan);
+            })
+            ->when($selectedUmur && $selectedTanggal, function ($query) use ($selectedUmur, $selectedTanggal) {
+                return $query->whereRaw("TIMESTAMPDIFF(YEAR, tanggal_lahir, '$selectedTanggal') = ?", [$selectedUmur]);
+            })
+            ->count();
+
+
+
+        return Inertia::render('Fitur/DataDesa/AnalisaDataLite', [
+            'namaDesa' => $nama_desa,
+            'jumlahPenduduk' => $count_penduduk,
+            'opt' => $options,
+            'dusun' => $selectedDusun,
+            'status' => $selectedStatus,
+            'countResult' => $filterResult,
         ]);
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\GuestAppController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PanelAdminController;
 use App\Http\Controllers\ProfilDesaController;
+use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\SubProfilDesaController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Foundation\Application;
@@ -51,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data-desa/analisa-data', [DataDesaController::class, 'analisa']);
     Route::get('/data-desa/analisa-data/show/{nik}', [DataDesaController::class, 'show'])->name('user.showdata');
 
+    Route::get('/data-desa/analisa-data-admindesa', [DataDesaController::class, 'analisaLite'])->name('user.analisadatalite');
+    Route::post('/data-desa/analisa-data-admindesa', [DataDesaController::class, 'analisaLite']);
+
     Route::get('/profil-desa', [ProfilDesaController::class, 'index'])->name('user.profildesa');
     Route::get('/profil-desa/wilayah-desa', [ProfilDesaController::class, 'wilayahdesa'])->name('user.wilayahdesa');
     Route::get('/profil-desa/sejarah-desa', [ProfilDesaController::class, 'sejarahdesa'])->name('user.sejarahdesa');
@@ -58,6 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil-desa/struktur-pemerintahan', [ProfilDesaController::class, 'struktur'])->name('user.strukturpemerintahan');
     Route::get('/profil-desa/lpm', [ProfilDesaController::class, 'lpm'])->name('user.lpmdesa');
     Route::get('/profil-desa/sub/{title}', [SubProfilDesaController::class, 'index'])->name('user.sub');
+
+    Route::get('/regulasi-desa', [RegulasiController::class, 'index'])->name('user.regulasidesa');
+    Route::get('/regulasi-desa/tambah-regulasi', [RegulasiController::class, 'create'])->name('user.addregulasidesa');
+
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);
