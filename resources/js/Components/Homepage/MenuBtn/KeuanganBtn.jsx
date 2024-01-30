@@ -1,9 +1,12 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-function KeuanganBtn() {
+function KeuanganBtn({ color, to }) {
     return (
-        <Link className="w-20 h-20 rounded flex flex-col justify-around items-center">
+        <Link
+            href={to || ""}
+            className="w-20 h-20 rounded flex flex-col justify-around items-center"
+        >
             <div className="w-16 h-16  rounded-full flex justify-center items-center bg-slate-200 bg-opacity-40 p-2 drop-shadow-md">
                 <svg
                     width="55"
@@ -14,7 +17,7 @@ function KeuanganBtn() {
                 >
                     <path
                         d="M30.4701 4.95725C29.4367 4.33107 28.2514 4 27.0431 4C25.8348 4 24.6496 4.33107 23.6161 4.95725L8.18596 14.3094C7.21361 14.8986 6.40958 15.7285 5.8515 16.719C5.29343 17.7096 5.00015 18.8273 5 19.9642V35.0358C5.00015 36.1727 5.29343 37.2904 5.8515 38.281C6.40958 39.2715 7.21361 40.1014 8.18596 40.6906L23.6161 50.0427C24.6496 50.6689 25.8348 51 27.0431 51C28.2514 51 29.4367 50.6689 30.4701 50.0427L45.9002 40.6906C46.8726 40.1014 47.6766 39.2715 48.2347 38.281C48.7928 37.2904 49.0861 36.1727 49.0862 35.0358V19.9642C49.0861 18.8273 48.7928 17.7096 48.2347 16.719C47.6766 15.7285 46.8726 14.8986 45.9002 14.3094L30.4701 4.95725Z"
-                        fill="#FF4344"
+                        fill={color || "#000"}
                     />
                     <g clipPath="url(#clip0_1160_593)">
                         <path

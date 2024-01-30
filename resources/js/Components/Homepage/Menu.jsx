@@ -7,18 +7,18 @@ import DataDesaBtn from "./MenuBtn/DataDesaBtn";
 import LayananPublikBtn from "./MenuBtn/LayananPublikBtn";
 import KeuanganBtn from "./MenuBtn/KeuanganBtn";
 
-function Menu() {
+function Menu({ classUser }) {
     return (
         <>
             <div className="grid grid-cols-4 grid-flow-row gap-2 pb-4">
-                <EnewsBtn />
-                <ProfilDesaBtn />
-                <RegulasiBtn />
-                <PengaduanBtn />
-                <DataDesaBtn />
-                <LayananPublikBtn />
-                <KeuanganBtn />
-                <LainnyaButton />
+                <EnewsBtn color={"#ff4344"} to={"/e-news"} />
+                <ProfilDesaBtn color={"#ff4344"} to={"/profil-desa"} />
+                <RegulasiBtn color={"#ff4344"} to={"/regulasi-desa"} />
+                <PengaduanBtn color={"#ff4344"} />
+                <DataDesaBtn color={"#ff4344"} to={"/data-desa"} />
+                <LayananPublikBtn color={"#ff4344"} />
+                <KeuanganBtn color={"#ff4344"} />
+                <LainnyaButton classUser={classUser} />
             </div>
         </>
     );

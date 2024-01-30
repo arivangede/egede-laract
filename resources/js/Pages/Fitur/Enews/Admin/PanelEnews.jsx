@@ -4,17 +4,14 @@ import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
 
 function PanelEnews(props) {
-    console.log(props);
-
     const [state, setState] = useState("berita");
 
-    console.log(state);
     return (
         <div className="bg-slate-50 min-h-screen flex flex-col items-center">
             <div className="entrance flex flex-col w-full">
                 <div className="flex items-center gap-4 pt-12 px-4">
                     <div className="h-8 w-8">
-                        <Link href="/panel-admin">
+                        <Link href="/">
                             <BackBtn color={"#1e293b"} />
                         </Link>
                     </div>
@@ -48,6 +45,41 @@ function PanelEnews(props) {
                         }
                         title={state == "berita" ? "Berita" : "Pengumuman"}
                     />
+                    <button
+                        onClick={() =>
+                            document.getElementById("my_modal_1").showModal()
+                        }
+                        className="py-2 px-4 w-full rounded-xl bg-red-500 text-white text-sm"
+                    >
+                        Buat E-News
+                    </button>
+                    <dialog id="my_modal_1" className="modal">
+                        <div className="modal-box flex flex-col items-center">
+                            <h3 className="font-bold text-lg">Buat E-News</h3>
+                            <p className="py-4">
+                                E-News apa yang ingin anda buat?
+                            </p>
+                            <div className="flex gap-2">
+                                <Link
+                                    href="/create-berita"
+                                    className="btn bg-rose-500 text-white text-sm hover:text-slate-600"
+                                >
+                                    Berita
+                                </Link>
+                                <Link
+                                    href="/create-pengumuman"
+                                    className="btn bg-rose-500 text-white text-sm hover:text-slate-600"
+                                >
+                                    Pengumuman
+                                </Link>
+                            </div>
+                            <div className="modal-action w-full items-end">
+                                <form method="dialog">
+                                    <button className="btn">Batal</button>
+                                </form>
+                            </div>
+                        </div>
+                    </dialog>
                     <div className="flex gap-4 items-center px-4">
                         <button
                             onClick={() => setState("berita")}
@@ -113,9 +145,8 @@ function BeritaList({ berita }) {
     };
 
     const confirmDelete = () => {
-        console.log("berita yang di delete:", deletedBerita);
         document.getElementById("delete_berita").close();
-        router.post(`/panel-admin/e-news/delete/berita${deletedBerita}`);
+        router.post(`/e-news-admin/delete/berita${deletedBerita}`);
     };
     return berita.map((item) => (
         <>
@@ -196,11 +227,8 @@ function PengumumanList({ pengumuman }) {
     };
 
     const confirmDelete = () => {
-        console.log("berita yang di delete:", deletedPengumuman);
         document.getElementById("delete_pengumuman").close();
-        router.post(
-            `/panel-admin/e-news/delete/pengumuman${deletedPengumuman}`
-        );
+        router.post(`/e-news-admin/delete/pengumuman${deletedPengumuman}`);
     };
     return pengumuman.map((item) => (
         <>

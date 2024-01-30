@@ -127,7 +127,7 @@ class EnewsController extends Controller
                 'jenis' => $validatedData['jenis'],
             ]);
         }
-        return to_route('user.enews');
+        return to_route('user.panelenews');
     }
 
     public function createberita(Request $request)

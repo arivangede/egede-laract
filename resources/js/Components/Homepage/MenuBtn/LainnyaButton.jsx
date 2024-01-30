@@ -2,8 +2,9 @@ import { useState } from "react";
 
 import LainnyaPopup from "../LainnyaPopup";
 
-function LainnyaButton() {
+function LainnyaButton({ classUser }) {
     const [popup, setPopup] = useState(null);
+
     return (
         <>
             <button
@@ -57,7 +58,11 @@ function LainnyaButton() {
                 </div>
             </button>
 
-            <LainnyaPopup trigger={popup} setTrigger={setPopup} />
+            <LainnyaPopup
+                trigger={popup}
+                setTrigger={setPopup}
+                classUser={classUser}
+            />
         </>
     );
 }

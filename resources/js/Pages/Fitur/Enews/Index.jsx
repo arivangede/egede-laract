@@ -23,50 +23,6 @@ function Enews(props) {
             <Head title="E-News" />
             <div className="min-h-screen bg-slate-50">
                 <div className="entrance flex flex-col items-center h-full pt-4">
-                    {props.auth.user.kelas_id == 2 ? (
-                        <>
-                            <div className="fixed z-50 bottom-4 right-4 flex flex-col items-end gap-1">
-                                <div
-                                    className={`${
-                                        popupState == true
-                                            ? "scale-100"
-                                            : "scale-0"
-                                    } transition duration-200 origin-bottom-right bg-red-500 text-white rounded-xl border w-full shadow-lg`}
-                                >
-                                    <div
-                                        className={`${
-                                            popupState == true ? "" : "hidden"
-                                        } flex flex-col items-end p-5 gap-4`}
-                                    >
-                                        <Link
-                                            href="/create-pengumuman"
-                                            className="text-bold text-white"
-                                        >
-                                            Buat Pengumuman
-                                        </Link>
-                                        <Link
-                                            href="/create-berita"
-                                            className="text-bold text-white"
-                                        >
-                                            Buat Berita
-                                        </Link>
-                                    </div>
-                                </div>
-                                <button
-                                    onClick={() => setPopupState(!popupState)}
-                                    className={`${
-                                        popupState == true
-                                            ? "rotate-[225deg] bg-red-500"
-                                            : "bg-red-400"
-                                    } transition duration-500 text-4xl text-white rounded-full w-16 h-16 flex items-center justify-center`}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </>
-                    ) : (
-                        ""
-                    )}
                     <div className="w-full flex justify-between gap-4 items-center py-8 px-4">
                         <div className="flex items-center gap-4">
                             <div
@@ -83,15 +39,6 @@ function Enews(props) {
                             </div>
                             <h1 className="text-slate-800">E-News</h1>
                         </div>
-
-                        {props.auth.user.kelas_id == 2 && (
-                            <Link
-                                href="/panel-admin"
-                                className="font-bold text-red-400"
-                            >
-                                Panel Admin
-                            </Link>
-                        )}
                     </div>
                     <div className="flex items-center gap-6 w-full px-8">
                         <button

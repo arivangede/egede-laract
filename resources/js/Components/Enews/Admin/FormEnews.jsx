@@ -33,7 +33,7 @@ function FormEnews({ author, desaID, error }) {
             jenis: "desa",
         };
         console.log(data);
-        router.post("/create-pengumuman", data);
+        router.post(`/create-${category}`, data);
     };
 
     console.log(error);

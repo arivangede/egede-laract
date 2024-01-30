@@ -41,10 +41,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/create-pengumuman', [EnewsController::class, 'createpengumuman']);
     Route::post('/create-berita', [EnewsController::class, 'createberita']);
 
-    Route::get('/panel-admin', [PanelAdminController::class, 'paneladmin'])->name('user.paneladmin');
-    Route::get('/panel-admin/e-news', [PanelAdminController::class, 'enews'])->name('user.panelenews');
-    Route::post('/panel-admin/e-news/delete/berita{id}', [PanelAdminController::class, 'deleteberita']);
-    Route::post('/panel-admin/e-news/delete/pengumuman{id}', [PanelAdminController::class, 'deletepengumuman']);
+    Route::get('/e-news-admin', [PanelAdminController::class, 'enews'])->name('user.panelenews');
+    Route::post('/e-news-admin/delete/berita{id}', [PanelAdminController::class, 'deleteberita']);
+    Route::post('/e-news-admin/delete/pengumuman{id}', [PanelAdminController::class, 'deletepengumuman']);
 
     Route::get('/data-desa', [DataDesaController::class, 'index'])->name('user.datadesa');
     Route::post('/data-desa', [DataDesaController::class, 'index']);

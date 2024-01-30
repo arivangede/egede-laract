@@ -1,11 +1,10 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
-import Enews from "../svg/Enews";
 
-function EnewsBtn() {
+function EnewsBtn({ color, to }) {
     return (
         <Link
-            href="/e-news"
+            href={to}
             className="w-20 h-20 rounded flex flex-col justify-around items-center"
         >
             <div className="w-16 h-16 rounded-full flex justify-center items-center bg-slate-200 bg-opacity-40 p-2 drop-shadow-md">
@@ -18,7 +17,7 @@ function EnewsBtn() {
                 >
                     <path
                         d="M19.4771 1.00152C20.5583 0.346378 21.7983 0 23.0625 0C24.3267 0 25.5667 0.346378 26.648 1.00152L42.7917 10.7862C43.809 11.4026 44.6502 12.2709 45.2341 13.3072C45.818 14.3436 46.1248 15.513 46.125 16.7025V32.4711C46.1248 33.6606 45.818 34.8299 45.2341 35.8663C44.6502 36.9026 43.809 37.7709 42.7917 38.3874L26.648 48.172C25.5667 48.8272 24.3267 49.1735 23.0625 49.1735C21.7983 49.1735 20.5583 48.8272 19.4771 48.172L3.3333 38.3874C2.31598 37.7709 1.47477 36.9026 0.890884 35.8663C0.306999 34.8299 0.000164032 33.6606 3.8147e-06 32.4711V16.7025C0.000164032 15.513 0.306999 14.3436 0.890884 13.3072C1.47477 12.2709 2.31598 11.4026 3.3333 10.7862L19.4771 1.00152Z"
-                        fill="#FF4344"
+                        fill={color || "#000"}
                     />
                     <mask
                         id="mask0_1167_593"

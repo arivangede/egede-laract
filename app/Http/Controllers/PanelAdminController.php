@@ -68,7 +68,7 @@ class PanelAdminController extends Controller
         }
 
 
-        return Inertia::render('Fitur/Enews/PanelEnews', [
+        return Inertia::render('Fitur/Enews/Admin/PanelEnews', [
             'berita' => $berita,
             'pengumuman' => $pengumuman,
             'beritacount' => $countberita,

@@ -8,6 +8,7 @@ import { Head } from "@inertiajs/react";
 
 const Homepage = (props) => {
     console.log("properti:", props);
+    const classUser = props.auth.class.id;
     return (
         <>
             <Head title="Homepage" />
@@ -17,7 +18,7 @@ const Homepage = (props) => {
                     <div className="flex flex-col items-center pb-10 w-full">
                         <Header data={props.auth.user} flash={props.flash} />
                         <Carousel datadesa={props.auth.user.desa} />
-                        <Menu />
+                        <Menu classUser={classUser} />
                         {props.pengumuman.length > 0 ? (
                             <div className="h-full w-full flex flex-col gap-4 pt-4">
                                 <h1 className="font-bold text-slate-600 w-full px-4">
