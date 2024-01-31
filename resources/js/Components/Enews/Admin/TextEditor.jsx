@@ -24,11 +24,11 @@ function TextEditor({ desc, setdesc, error }) {
                 value={desc}
                 onChange={handleChange}
                 className={`${
-                    error.title ? "border-red-400" : "border-slate-200"
+                    error.desc ? "border-red-400" : "border-slate-200"
                 } rounded-xl w-full post border`}
             />
-            {error.title ? (
-                <span className="text-sm text-red-400">{error.title}</span>
+            {error.desc ? (
+                <span className="text-sm text-red-400">{error.desc}</span>
             ) : (
                 ""
             )}
