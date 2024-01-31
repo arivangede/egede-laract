@@ -20,7 +20,7 @@ function Form(props) {
         <>
             <Head title={`Buat ` + title} />
             <div className="bg-slate-50 min-h-screen">
-                <div className="entrance flex flex-col items-center gap-4 w-full h-full">
+                <div className="entrance flex flex-col items-center gap-4 w-full h-full pt-8">
                     <div className="w-full p-4 flex items-center">
                         <button onClick={handleBack} className="w-8 h-8">
                             <BackBtn color={"#1e293b"} />

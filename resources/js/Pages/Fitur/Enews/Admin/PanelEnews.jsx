@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function PanelEnews(props) {
     const [state, setState] = useState("berita");
-
+    console.log(props);
     return (
         <div className="bg-slate-50 min-h-screen flex flex-col items-center">
             <div className="entrance flex flex-col w-full">
@@ -148,75 +148,85 @@ function BeritaList({ berita }) {
         document.getElementById("delete_berita").close();
         router.post(`/e-news-admin/delete/berita${deletedBerita}`);
     };
-    return berita.map((item) => (
-        <>
-            <div
-                key={item.id}
-                className="entrance w-full h-40 bg-white shadow-lg rounded-xl
+    return berita.length != 0 ? (
+        berita.map((item, index) => (
+            <>
+                <div
+                    key={index}
+                    className="entrance w-full h-40 bg-white shadow-lg rounded-xl
             border-slate-100 flex justify-around items-center gap-2
             overflow-hidden"
-            >
-                <div className="h-full w-[40%] overflow-hidden">
-                    <img
-                        src={"/storage" + item.image}
-                        alt="image"
-                        className="h-full w-full object-cover object-center"
-                    />
-                </div>
-                <div className="flex flex-col justify-between w-[60%] p-2">
-                    <div>
-                        <h1 className="font-bold text-xl line-clamp-1 px-2 break-words">
-                            {item.title}
-                        </h1>
-                        <span className="text-xs text-slate-400 px-2">
-                            {item.created_at}
-                        </span>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: item.content,
-                            }}
-                            className="text-sm line-clamp-3 px-2 text-slate-500 text-justify break-words"
-                        ></div>
+                >
+                    <div className="h-full w-[40%] overflow-hidden">
+                        <img
+                            src={"/storage" + item.image}
+                            alt="image"
+                            className="h-full w-full object-cover object-center"
+                        />
                     </div>
-                    <div className="w-full flex justify-end items-center pr-4 gap-2">
-                        <button
-                            className="py-2 px-4 rounded-xl bg-red-400 text-white"
-                            onClick={() => handleDelete(item.id)}
-                        >
-                            Hapus
-                        </button>
-                        <dialog id="delete_berita" className="modal">
-                            <div className="modal-box">
-                                <h3 className="font-bold text-lg">Tunggu!</h3>
-                                <p className="py-4">
-                                    apa kamu yakin untuk menghapus postingan
-                                    ini?
-                                </p>
-                                <div className="modal-action flex items-center gap-4">
-                                    <button
-                                        onClick={() => confirmDelete()}
-                                        className="py-2 px-4 bg-red-400 text-white rounded-xl"
-                                    >
-                                        Hapus
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            document
-                                                .getElementById("delete_berita")
-                                                .close()
-                                        }
-                                        className="py-2 px-4 bg-slate-200 rounded-xl"
-                                    >
-                                        Batal
-                                    </button>
+                    <div className="flex flex-col justify-between w-[60%] p-2">
+                        <div>
+                            <h1 className="font-bold text-xl line-clamp-1 px-2 break-words">
+                                {item.title}
+                            </h1>
+                            <span className="text-xs text-slate-400 px-2">
+                                {item.created_at}
+                            </span>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: item.content,
+                                }}
+                                className="text-sm line-clamp-3 px-2 text-slate-500 text-justify break-words"
+                            ></div>
+                        </div>
+                        <div className="w-full flex justify-end items-center pr-4 gap-2">
+                            <button
+                                className="py-2 px-4 rounded-xl bg-red-400 text-white"
+                                onClick={() => handleDelete(item.id)}
+                            >
+                                Hapus
+                            </button>
+                            <dialog id="delete_berita" className="modal">
+                                <div className="modal-box">
+                                    <h3 className="font-bold text-lg">
+                                        Tunggu!
+                                    </h3>
+                                    <p className="py-4">
+                                        apa kamu yakin untuk menghapus postingan
+                                        ini?
+                                    </p>
+                                    <div className="modal-action flex items-center gap-4">
+                                        <button
+                                            onClick={() => confirmDelete()}
+                                            className="py-2 px-4 bg-red-400 text-white rounded-xl"
+                                        >
+                                            Hapus
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                document
+                                                    .getElementById(
+                                                        "delete_berita"
+                                                    )
+                                                    .close()
+                                            }
+                                            className="py-2 px-4 bg-slate-200 rounded-xl"
+                                        >
+                                            Batal
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </dialog>
+                            </dialog>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
-    ));
+            </>
+        ))
+    ) : (
+        <div className="w-full min-h-[10rem] flex justify-center items-center">
+            <h1 className="font-bold text-slate-500">Belum ada Berita.</h1>
+        </div>
+    );
 }
 
 function PengumumanList({ pengumuman }) {
@@ -230,77 +240,85 @@ function PengumumanList({ pengumuman }) {
         document.getElementById("delete_pengumuman").close();
         router.post(`/e-news-admin/delete/pengumuman${deletedPengumuman}`);
     };
-    return pengumuman.map((item) => (
-        <>
-            <div
-                key={item.id}
-                className="entrance w-full h-40 bg-white shadow-lg rounded-xl
+    return pengumuman.length != 0 ? (
+        pengumuman.map((item, index) => (
+            <>
+                <div
+                    key={index}
+                    className="entrance w-full h-40 bg-white shadow-lg rounded-xl
             border-slate-100 flex justify-around items-center gap-2
             overflow-hidden"
-            >
-                <div className="h-full w-[40%] overflow-hidden">
-                    <img
-                        src={"/storage" + item.image}
-                        alt="image"
-                        className="h-full w-full object-cover object-center"
-                    />
-                </div>
-                <div className="flex flex-col justify-between w-[60%] p-2">
-                    <div>
-                        <h1 className="font-bold text-xl line-clamp-1 px-2 break-words">
-                            {item.title}
-                        </h1>
-                        <span className="text-xs text-slate-400 px-2">
-                            {item.created_at}
-                        </span>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: item.content,
-                            }}
-                            className="text-sm line-clamp-3 px-2 text-slate-500 text-justify break-words"
-                        ></div>
+                >
+                    <div className="h-full w-[40%] overflow-hidden">
+                        <img
+                            src={"/storage" + item.image}
+                            alt="image"
+                            className="h-full w-full object-cover object-center"
+                        />
                     </div>
-                    <div className="w-full flex justify-end items-center pr-4 gap-2">
-                        <button
-                            className="py-2 px-4 rounded-xl bg-red-400 text-white"
-                            onClick={() => handleDelete(item.id)}
-                        >
-                            Hapus
-                        </button>
-                        <dialog id="delete_pengumuman" className="modal">
-                            <div className="modal-box">
-                                <h3 className="font-bold text-lg">Tunggu!</h3>
-                                <p className="py-4">
-                                    apa kamu yakin untuk menghapus postingan
-                                    ini?
-                                </p>
-                                <div className="modal-action flex items-center gap-4">
-                                    <button
-                                        onClick={() => confirmDelete()}
-                                        className="py-2 px-4 bg-red-400 text-white rounded-xl"
-                                    >
-                                        Hapus
-                                    </button>
-                                    <button
-                                        onClick={() =>
-                                            document
-                                                .getElementById(
-                                                    "delete_pengumuman"
-                                                )
-                                                .close()
-                                        }
-                                        className="py-2 px-4 bg-slate-200 rounded-xl"
-                                    >
-                                        Batal
-                                    </button>
+                    <div className="flex flex-col justify-between w-[60%] p-2">
+                        <div>
+                            <h1 className="font-bold text-xl line-clamp-1 px-2 break-words">
+                                {item.title}
+                            </h1>
+                            <span className="text-xs text-slate-400 px-2">
+                                {item.created_at}
+                            </span>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: item.content,
+                                }}
+                                className="text-sm line-clamp-3 px-2 text-slate-500 text-justify break-words"
+                            ></div>
+                        </div>
+                        <div className="w-full flex justify-end items-center pr-4 gap-2">
+                            <button
+                                className="py-2 px-4 rounded-xl bg-red-400 text-white"
+                                onClick={() => handleDelete(item.id)}
+                            >
+                                Hapus
+                            </button>
+                            <dialog id="delete_pengumuman" className="modal">
+                                <div className="modal-box">
+                                    <h3 className="font-bold text-lg">
+                                        Tunggu!
+                                    </h3>
+                                    <p className="py-4">
+                                        apa kamu yakin untuk menghapus postingan
+                                        ini?
+                                    </p>
+                                    <div className="modal-action flex items-center gap-4">
+                                        <button
+                                            onClick={() => confirmDelete()}
+                                            className="py-2 px-4 bg-red-400 text-white rounded-xl"
+                                        >
+                                            Hapus
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                document
+                                                    .getElementById(
+                                                        "delete_pengumuman"
+                                                    )
+                                                    .close()
+                                            }
+                                            className="py-2 px-4 bg-slate-200 rounded-xl"
+                                        >
+                                            Batal
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </dialog>
+                            </dialog>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
-    ));
+            </>
+        ))
+    ) : (
+        <div className="w-full min-h-[10rem] flex justify-center items-center">
+            <h1 className="font-bold text-slate-500">Belum ada Pengumuman.</h1>
+        </div>
+    );
 }
 
 export default PanelEnews;

@@ -7,40 +7,11 @@ use App\Models\eNews;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class PanelAdminController extends Controller
 {
-    public function paneladmin()
-    {
-        $admin = auth()->user()->kelas_id;
-        if ($admin == 2) {
-            $desa_id = auth()->user()->desa_id;
-            $berita = eNews::where('desa_id', $desa_id)->where('category', 'berita')->get();
-            $pengumuman = eNews::where('desa_id', $desa_id)->where('category', 'pengumuman')->get();
-            if ($berita->isNotEmpty() || $pengumuman->isNotEmpty()) {
-                $datachart = eNews::where('desa_id', $desa_id)
-                    ->select('category as category', DB::raw('count(*) as jumlah'))
-                    ->groupBy('category')
-                    ->get();
-            } else {
-                $datachart = [
-                    ['category' => 'pengumuman', 'jumlah' => 0],
-                    ['category' => 'berita', 'jumlah' => 0]
-                ];
-            }
-        } else {
-            return Inertia::render('kamu bukan admin desa!');
-        }
-
-
-        return Inertia::render('PanelAdmin', [
-            'berita' => $berita,
-            'pengumuman' => $pengumuman,
-            'datachart' => $datachart
-        ]);
-    }
-
     public function enews()
     {
         $isadmin = auth()->user()->kelas_id;
@@ -80,6 +51,7 @@ class PanelAdminController extends Controller
     {
         $idberita = eNews::find($id);
         $useradmin = auth()->user()->kelas_id;
+        $pathImage = $idberita->image;
         if ($idberita) {
             if ($useradmin == 2) {
                 $likeCount = Like::where('enews_id', $id)->count();
@@ -93,9 +65,13 @@ class PanelAdminController extends Controller
                     Bookmark::where('enews_id', $id)->delete();
                 }
 
-
-                $idberita->delete();
-                return to_route('user.panelenews')->with('message', 'Pengumuman berhasil dihapus');
+                if (Storage::exists($pathImage)) {
+                    Storage::delete($pathImage);
+                    $idberita->delete();
+                    return to_route('user.panelenews')->with('message', 'Berita berhasil dihapus');
+                } else {
+                    return to_route('user.panelenews')->with('message', 'File tidak ditemukan');
+                }
             } else {
                 return to_route('user.panelenews')->with('message', 'Kamu bukan admin!');
             }
@@ -107,6 +83,7 @@ class PanelAdminController extends Controller
     {
         $idpengumuman = eNews::find($id);
         $useradmin = auth()->user()->kelas_id;
+        $pathImage = $idpengumuman->image;
         if ($idpengumuman) {
             if ($useradmin == 2) {
                 $likeCount = Like::where('enews_id', $id)->count();
@@ -120,13 +97,24 @@ class PanelAdminController extends Controller
                     Bookmark::where('enews_id', $id)->delete();
                 }
 
-                $idpengumuman->delete();
-                return to_route('user.panelenews')->with('message', 'Pengumuman berhasil dihapus');
+                if (Storage::exists($pathImage)) {
+                    Storage::delete($pathImage);
+                    $idpengumuman->delete();
+                    return to_route('user.panelenews')->with('message', 'Pengumuman berhasil dihapus');
+                } else {
+                    return to_route('user.panelenews')->with('message', 'File tidak ditemukan');
+                }
             } else {
                 return to_route('user.panelenews')->with('message', 'Kamu bukan admin!');
             }
         } else {
             return to_route('user.panelenews')->with('message', 'Pengumuman gagal dihapus');
         }
+    }
+
+    // regulasi-desa
+    public function regulasi()
+    {
+        return Inertia::render('Fitur/Regulasi/Admin/PanelRegulasi');
     }
 }

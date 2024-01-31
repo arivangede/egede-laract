@@ -7,7 +7,6 @@ use App\Models\Bookmark;
 use App\Models\eNews;
 use App\Models\Like;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
@@ -68,7 +67,7 @@ class EnewsController extends Controller
         $pengumuman = Enews::where('desa_id', $desa_id)->where('category', 'pengumuman');
         $jumlah = $pengumuman->count();
 
-        return Inertia::render('Fitur/Enews/Form', [
+        return Inertia::render('Fitur/Enews/Admin/Form', [
             'enewscount' => $jumlah
         ]);
     }
@@ -82,7 +81,7 @@ class EnewsController extends Controller
         $berita = Enews::where('desa_id', $desa_id)->where('category', 'berita');
         $jumlah = $berita->count();
 
-        return Inertia::render('Fitur/Enews/Form', [
+        return Inertia::render('Fitur/Enews/Admin/Form', [
             'enewscount' => $jumlah
         ]);
     }
@@ -170,6 +169,6 @@ class EnewsController extends Controller
                 'jenis' => $validatedData['jenis'],
             ]);
         }
-        return to_route('user.enews');
+        return to_route('user.panelenews');
     }
 }

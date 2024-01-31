@@ -63,8 +63,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil-desa/sub/{title}', [SubProfilDesaController::class, 'index'])->name('user.sub');
 
     Route::get('/regulasi-desa', [RegulasiController::class, 'index'])->name('user.regulasidesa');
+    Route::get('/regulasi-desa/show/id', [RegulasiController::class, 'show']);
     Route::get('/regulasi-desa/tambah-regulasi', [RegulasiController::class, 'create'])->name('user.addregulasidesa');
 
+    Route::get('/regulasi-admin', [PanelAdminController::class, 'regulasi'])->name('user.panelregulasi');
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);

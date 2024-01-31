@@ -12,6 +12,11 @@ class RegulasiController extends Controller
         return Inertia::render('Fitur/Regulasi/Index');
     }
 
+    public function show()
+    {
+        return Inertia::render('Fitur/Regulasi/Show');
+    }
+
     public function create()
     {
         return Inertia::render('Fitur/Regulasi/Tambah');
