@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,5 +12,10 @@ class Regulasi extends Model
 
     protected $table = 'regulasi';
 
-    protected $fillable = ['desa_id', 'jenis', 'judul', 'deskripsi', 'author', 'file', 'tahun', 'status'];
+    protected $fillable = ['desa_id', 'jenis', 'no_regulasi', 'tentang', 'author', 'file_name', 'file_path', 'tahun', 'status'];
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->diffForHumans();
+    }
 }

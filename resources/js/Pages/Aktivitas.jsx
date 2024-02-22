@@ -12,14 +12,6 @@ const Aktivitas = (props) => {
         window.localStorage.setItem("lastOpened", JSON.stringify(selectedPage));
     }, [selectedPage]);
 
-    // useEffect(() => {
-    //     const shouldReload = window.localStorage.getItem("reload");
-    //     if (shouldReload === "true") {
-    //         window.localStorage.setItem("reload", "false");
-    //         window.location.reload();
-    //     }
-    // }, []);
-
     console.log(props);
     return (
         <>

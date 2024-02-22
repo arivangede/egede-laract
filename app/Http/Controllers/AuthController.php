@@ -102,7 +102,7 @@ class AuthController extends Controller
                             'email' => $email,
                             'otp' => $otp
                         ]);
-                        Mail::raw("Kode OTP Anda : $otp", function ($message) use ($email) {
+                        Mail::raw("Kode OTP Anda: $otp", function ($message) use ($email) {
                             $message->to($email)->subject('Kode OTP');
                         });
                     }

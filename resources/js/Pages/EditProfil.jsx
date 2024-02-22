@@ -169,8 +169,6 @@ function EditProfil(props) {
         penghasilan.replace(/\./g, "")
     ).toLocaleString("id-ID");
 
-    console.log("foto :", fotoProfil, temporaryUrlPhoto);
-    console.log("state :", input, changes, update);
     return (
         <>
             <Head title="Edit Profil" />

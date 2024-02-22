@@ -20,12 +20,5 @@ class DesaSeeder extends Seeder
             'provinsi' => 'Bali',
             'sc_desa' => 'dauhpurikaja'
         ]);
-        DB::table('desa')->insert([
-            'nama_desa' => 'Peguyangan Kangin',
-            'kecamatan' => 'Denpasar Utara',
-            'kota' => 'Denpasar',
-            'provinsi' => 'Bali',
-            'sc_desa' => 'peguyangankangin'
-        ]);
     }
 }

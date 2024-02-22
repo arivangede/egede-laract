@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('alamat');
             $table->foreignId('dusun_id')->nullable()->constrained('dusun');
             $table->foreignId('desa_id')->constrained('desa');
-            $table->string('no_hp')->nullable();
             $table->string('stt_nikah');
             $table->string('agama');
             $table->string('suku_bangsa');

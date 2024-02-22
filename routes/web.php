@@ -63,10 +63,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil-desa/sub/{title}', [SubProfilDesaController::class, 'index'])->name('user.sub');
 
     Route::get('/regulasi-desa', [RegulasiController::class, 'index'])->name('user.regulasidesa');
-    Route::get('/regulasi-desa/show/id', [RegulasiController::class, 'show']);
-    Route::get('/regulasi-desa/tambah-regulasi', [RegulasiController::class, 'create'])->name('user.addregulasidesa');
+    Route::post('/regulasi-desa', [RegulasiController::class, 'index']);
+    Route::get('/regulasi-desa/show/{id}', [RegulasiController::class, 'show']);
 
     Route::get('/regulasi-admin', [PanelAdminController::class, 'regulasi'])->name('user.panelregulasi');
+    Route::post('/regulasi-admin', [PanelAdminController::class, 'regulasi']);
+    Route::get('/regulasi-admin/create-regulasi', [PanelAdminController::class, 'formRegulasi'])->name('admin.create-regulasi');
+    Route::post('/regulasi-admin/create-regulasi', [PanelAdminController::class, 'createRegulasi']);
+    Route::post('/regulasi-admin/delete-{id}', [PanelAdminController::class, 'deleteRegulasi']);
+    Route::get('/regulasi-admin/edit-{id}', [PanelAdminController::class, 'showEditForm']);
+    Route::post('/regulasi-admin/edit-{id}', [PanelAdminController::class, 'updateRegulasi']);
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);
@@ -105,6 +111,10 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [AuthController::class, 'generateOTP']);
 Route::get('/verify', [AuthController::class, 'verifyPage'])->name('user.verify');
 Route::post('/verify', [AuthController::class, 'verifyOTP']);
+
+Route::get('/kebijakan-privasi', function () {
+    return Inertia::render('KebijakanPrivasi');
+});
 
 Route::get('/lupa-password', [AuthController::class, 'lupapassword'])->name('user.lupapassword');
 Route::post('/lupa-password', [AuthController::class, 'lupapassword']);

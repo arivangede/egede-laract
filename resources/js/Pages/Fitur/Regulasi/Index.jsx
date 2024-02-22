@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import React from "react";
 import BackBtn from "@/assets/svg/BackBtn";
 import { useState } from "react";
@@ -8,11 +8,24 @@ import RegulasiCard from "@/Components/Regulasi/RegulasiCard";
 function Index(props) {
     console.log(props);
     const [filterData, setFilterData] = useState({
-        kategori: "perdes",
-        status: "berlaku",
-        tahun: "2022",
+        keyword: "",
+        sortir: "Terbaru",
+        kategori: "",
+        status: "",
+        tahun: "",
     });
 
+    const handleApply = () => {
+        const data = {
+            keyword: filterData.keyword,
+            sortir: filterData.sortir,
+            kategori: filterData.kategori,
+            status: filterData.status,
+            tahun: filterData.tahun,
+        };
+        router.post("/regulasi-desa", data);
+        document.getElementById("filter").close();
+    };
     console.log(filterData);
     return (
         <div className="bg-slate-50 h-screen">
@@ -27,8 +40,9 @@ function Index(props) {
                 <FilterRegulasi
                     filterData={filterData}
                     setFilterData={setFilterData}
+                    handleApply={handleApply}
                 />
-                <RegulasiCard />
+                <RegulasiCard data={props.data} />
             </div>
         </div>
     );

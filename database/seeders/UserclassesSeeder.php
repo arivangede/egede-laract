@@ -14,7 +14,7 @@ class UserclassesSeeder extends Seeder
     public function run(): void
     {
         DB::table('userclasses')->insert([
-            'nama_kelas' => 'Walikota',
+            'nama_kelas' => 'Kepala Desa',
         ]);
         DB::table('userclasses')->insert([
             'nama_kelas' => 'Admin Desa',

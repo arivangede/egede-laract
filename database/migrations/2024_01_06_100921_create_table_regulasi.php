@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('desa_id')->constrained('desa');
             $table->string('jenis');
-            $table->string('judul');
-            $table->string('deskripsi');
+            $table->string('no_regulasi');
+            $table->string('tentang');
             $table->foreignId('author')->constrained('users');
             $table->string('tahun');
             $table->string('status');
+            $table->string('file_name');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
