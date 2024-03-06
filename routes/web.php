@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerkaskuController;
 use App\Http\Controllers\Fitur\DataDesaController;
 use App\Http\Controllers\Fitur\EnewsController;
+use App\Http\Controllers\Fitur\KeuanganController;
 use App\Http\Controllers\GuestAppController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PanelAdminController;
@@ -73,6 +74,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/regulasi-admin/delete-{id}', [PanelAdminController::class, 'deleteRegulasi']);
     Route::get('/regulasi-admin/edit-{id}', [PanelAdminController::class, 'showEditForm']);
     Route::post('/regulasi-admin/edit-{id}', [PanelAdminController::class, 'updateRegulasi']);
+
+    Route::get('/keuangan-desa', [KeuanganController::class, 'indexKeuangan'])->name('user.keuangan');
+
 
     Route::post('/likes', [LikeController::class, 'store']);
     Route::post('/likes/{id}', [LikeController::class, 'destroy']);

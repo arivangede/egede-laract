@@ -17,7 +17,7 @@ function Menu({ classUser }) {
                 <PengaduanBtn color={"#ff4344"} />
                 <DataDesaBtn color={"#ff4344"} to={"/data-desa"} />
                 <LayananPublikBtn color={"#ff4344"} />
-                <KeuanganBtn color={"#ff4344"} />
+                <KeuanganBtn color={"#ff4344"} to={"/keuangan-desa"} />
                 <LainnyaButton classUser={classUser} />
             </div>
         </>

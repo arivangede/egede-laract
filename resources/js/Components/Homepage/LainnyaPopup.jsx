@@ -29,7 +29,7 @@ function LainnyaPopup({ trigger, setTrigger, classUser }) {
                         color={"#ff4344"}
                         to={"/layanan-publik"}
                     />
-                    <KeuanganBtn color={"#ff4344"} to={"keuangan"} />
+                    <KeuanganBtn color={"#ff4344"} to={"/keuangan-desa"} />
                 </div>
                 {classUser === 2 ? (
                     <div className="flex flex-col">
